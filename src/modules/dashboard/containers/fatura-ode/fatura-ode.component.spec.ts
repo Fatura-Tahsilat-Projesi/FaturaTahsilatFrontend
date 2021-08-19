@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LayoutDashboardComponent } from './layout-dashboard.component';
+import { FaturaOdeComponent } from './fatura-ode.component';
 
-describe('LayoutDashboardComponent', () => {
-  let component: LayoutDashboardComponent;
-  let fixture: ComponentFixture<LayoutDashboardComponent>;
+describe('FaturaOdeComponent', () => {
+  let component: FaturaOdeComponent;
+  let fixture: ComponentFixture<FaturaOdeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LayoutDashboardComponent ]
+      declarations: [ FaturaOdeComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LayoutDashboardComponent);
+    fixture = TestBed.createComponent(FaturaOdeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

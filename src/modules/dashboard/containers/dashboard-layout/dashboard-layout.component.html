@@ -1,17 +1,14 @@
 <span [ngClass]='{"sb-nav-fixed": !static}'
     ><sb-top-nav></sb-top-nav>
     <div id="layoutSidenav">
-        <div id="layoutSidenav_nav"><sb-side-nav [sidenavStyle]="sidenavStyle" [sideNavItems]="sideNavItems" [sideNavSections]="sideNavSections"></sb-side-nav></div>
+        <div id="layoutSidenav_nav">
+            <sb-side-nav [sidenavStyle]="sidenavStyle" [sideNavItems]="sideNavItems" [sideNavSections]="sideNavSections"></sb-side-nav>
+        </div>
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid"><ng-content></ng-content></div>
             </main>
-            <!-- <app-fatura-listele></app-fatura-listele>
-            <hr>
-            <app-fatura-olustur></app-fatura-olustur>
-            <hr>
-            <app-fatura-duzenle></app-fatura-duzenle> -->
-            <!-- <ngbd-modal-content></ngbd-modal-content> -->
             <app-footer></app-footer>
-        </div></div
-></span>
+        </div>
+    </div>
+</span>

@@ -13,6 +13,10 @@ export const sideNavSections: SideNavSection[] = [
         text: 'Profil',
         items: ['charts', 'tables'],
     },
+    {
+        text: 'Yönetim Sekmesi',
+        items: ['admin'],
+    },
 ];
 
 export const sideNavItems: SideNavItems = {
@@ -36,12 +40,16 @@ export const sideNavItems: SideNavItems = {
             {
                 text: 'Fatura Düzenle',
                 link: '/dashboard/faturadetay',
+            },
+            {
+                text: 'Fatura Öde',
+                link: '/dashboard/faturaodeme',
             }
         ],
     },
     pages: {
         icon: 'book-open',
-        text: 'Pages',
+        text: 'Sayfalar',
         submenu: [
             {
                 text: 'Authentication',
@@ -72,4 +80,24 @@ export const sideNavItems: SideNavItems = {
         text: 'Hesap Bilgileri',
         link: '/tables',
     },
+    admin: {
+        icon: 'book-open',
+        text: 'Admin',
+        submenu: [
+                    {
+                        text: 'Tüm Faturalar',
+                        link: '/dashboard/faturalarim',
+                    },
+                    {
+                        text: 'Yeni Fatura Tipi Oluştur',
+                        link: '/auth/register',
+                    },
+                    {
+                        text: 'Kullanıcılar',
+                        link: '/auth/forgot-password',
+                    },
+        ],
+    },
+
+
 };

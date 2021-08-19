@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 /* Modules */
-import { AppCommonModule } from '@common/app-common.module';
+import { AppCommonModule } from '../app-common/app-common.module';
 
 /* Components */
 import * as navigationComponents from './components';

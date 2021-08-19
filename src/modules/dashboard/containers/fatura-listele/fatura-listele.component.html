@@ -1,0 +1,98 @@
+<h1>Fatura Listesi</h1>
+
+<table border="4" *ngIf="result else no_data">
+    <td><b>#</b></td>
+    <td><b>Fatura Adı</b></td>
+    <td><b>Fatura Tutar</b></td>
+    <td><b>Toplam Kdv</b></td>
+    <td><b>Kdv'siz Fiyat</b></td>
+    <td><b>Kategori ID</b></td>
+    <td><b>Son Ödeme Tarihi</b></td>
+    <td><b>Fatura İçeriği</b></td>
+    <td><b>Ödenme Bilgisi</b></td>
+    <td><b>Detaylar</b></td>
+    <td><b>Düzenle</b></td>
+    <td><b>Sil</b></td>
+    <tr *ngFor="let deger of result">
+        <td><b>{{deger.id}}</b></td>
+        <td>{{deger.name}}</td>
+        <td>{{deger.tutar}}</td>
+        <td>{{deger.kdvsiztutar}}</td>
+        <td>{{deger.kdvsiztutar}}</td>
+        <td>{{deger.categoryId"}}</td>
+        <td>{{deger.son_odeme}}</td>
+        <td>{{deger.icerik}}</td>
+        <td>{{deger.odendi}}</td>
+        <td><button class="btn btn-primary" (click)="open(content, deger.id)"><i class="fa fa-trash"></i> Detay Görüntüle</button></td>
+        <!-- <td><a class="btn btn-warning" routerLink="/faturadetay/{{deger.id}}"><i class="fa fa-trash"></i> Düzenle</a></td> -->
+        <td><button class="btn btn-danger" (click)="faturaSil(deger.id)"><i class="fa fa-trash"></i> Sil</button></td>
+    </tr>
+</table>
+
+<ng-template #no_data>
+    <div class="alert alert-warning">
+        Veri Bulunamadı!
+    </div>
+</ng-template>
+
+
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Fatura Detayları</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+            <h1>{{faturaDetay}}</h1>
+            <div class="mb-3">
+                <label for="name" class="form-label">Fatura Adı</label>
+                <input disabled #name type="text" class="form-control" value="{{result}}">
+            </div>
+            
+            <div class="mb-3">
+                <label for="tutar" class="form-label">Fatura Tutar:</label>
+                <input #tutar type="text" class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label for="kdvsiztutar" class="form-label">Toplam KDV</label>
+                <input #kdvsiztutar type="text" class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label for="sontarih" class="form-label">Son Ödeme Tarihi</label>
+                <input #sontarih type="text" class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label for="categoryId" class="form-label">Fatura Tipi</label>
+                <select #categoryId class="form-select">
+                    <option value="tip.id">{{faturaTip[1]}}}</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="icerik" class="form-label">Fatura İçeriği</label>
+                <input #icerik type="text" class="form-control">
+            </div>
+
+
+            <!-- <label for="dateOfBirth">Date of birth</label>
+            <div class="input-group">
+                <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
+                <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
+                </div>
+            </div> -->
+
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Geri</button>
+    </div>
+  </ng-template>

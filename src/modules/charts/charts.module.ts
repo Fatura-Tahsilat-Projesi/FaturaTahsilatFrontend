@@ -5,17 +5,14 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 /* Modules */
-import { AppCommonModule } from '@common/app-common.module';
-import { NavigationModule } from '@modules/navigation/navigation.module';
+import { AppCommonModule } from '../app-common/app-common.module';
+import { NavigationModule } from '../navigation/navigation.module';
 
 /* Components */
 import * as chartsComponents from './components';
 
 /* Containers */
 import * as chartsContainers from './containers';
-
-/* Guards */
-import * as chartsGuards from './guards';
 
 /* Services */
 import * as chartsServices from './services';
@@ -29,7 +26,7 @@ import * as chartsServices from './services';
         AppCommonModule,
         NavigationModule,
     ],
-    providers: [...chartsServices.services, ...chartsGuards.guards],
+    providers: [...chartsServices.services],
     declarations: [...chartsContainers.containers, ...chartsComponents.components],
     exports: [...chartsContainers.containers, ...chartsComponents.components],
 })

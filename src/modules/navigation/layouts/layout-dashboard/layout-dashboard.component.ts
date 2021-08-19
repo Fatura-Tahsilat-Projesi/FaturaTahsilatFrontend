@@ -7,8 +7,8 @@ import {
     OnDestroy,
     OnInit,
 } from '@angular/core';
-import { sideNavItems, sideNavSections } from '@modules/navigation/data';
-import { NavigationService } from '@modules/navigation/services';
+import { sideNavItems, sideNavSections } from '../../data';
+import { NavigationService } from '../../services';
 import { Subscription } from 'rxjs';
 
 @Component({

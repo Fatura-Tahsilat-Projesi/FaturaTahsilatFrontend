@@ -1,15 +1,17 @@
 <nav class="sb-sidenav accordion" id="sidenavAccordion" [ngClass]="sidenavStyle">
     <div class="sb-sidenav-menu">
         <div class="nav">
+            
             <ng-container *ngFor="let section of sideNavSections"
                 ><div class="sb-sidenav-menu-heading" *ngIf="section.text">{{ section.text }}</div>
                 <ng-container *ngFor="let item of section.items"><app-side-nav-item [sideNavItem]="sideNavItems[item]"></app-side-nav-item></ng-container
             ></ng-container>
+                
         </div>
     </div>
     <div class="sb-sidenav-footer">
-        <div class="small">Logged in as:</div>
-        <!-- <span *ngIf="userService.user$ | async as user">{{user.firstName}} {{user.lastName}}</span> -->
-        <span>firs-last name (düzeltilecek)</span>
+        <span><b>İsim Soyisim</b></span>
+        <div class="small">Adıyla Giriş Yaptınız</div>
+        
     </div>
-</nav>
+  </nav>

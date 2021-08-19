@@ -7,9 +7,9 @@ import {
     QueryList,
     ViewChildren,
 } from '@angular/core';
-import { SBSortableHeaderDirective, SortEvent } from '@modules/tables/directives';
-import { Country } from '@modules/tables/models';
-import { CountryService } from '@modules/tables/services';
+import { SBSortableHeaderDirective, SortEvent } from '../../../../modules/tables/directives';
+import { Country } from '../../../../modules/tables/models';
+import { CountryService } from '../../../../modules/tables/services';
 import { Observable } from 'rxjs';
 
 @Component({

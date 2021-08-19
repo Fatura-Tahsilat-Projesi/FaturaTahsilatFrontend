@@ -1,19 +1,15 @@
 export class FaturaModel {
-    id: number | undefined;
-    faturaAd: string | undefined;
+    
+    name: string | undefined;
     tutar: number | undefined;
-    topkdv: number | undefined;
-    sontarih: number | undefined;
-    icerik: string | undefined;
-    odendi: boolean | undefined;
+    kdvsiztutar: number | undefined;
+    categoryId: number | undefined;
+    
 
-    constructor(id: number, faturaAd: string, tutar: number, topkdv: number, sontarih: number, icerik: string, odendi: boolean){
-        //this.id = id;
-        this.faturaAd = faturaAd;
+    constructor(name: string, tutar:number, kdvsiztutar:number, categoryId: number){
+        this.name = name;
         this.tutar = tutar;
-        this.topkdv = topkdv;
-        this.sontarih = sontarih;
-        this.icerik = icerik;
-        //this.odendi = odendi;
+        this.kdvsiztutar = kdvsiztutar;
+        this.categoryId = categoryId;
     };
 }

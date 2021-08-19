@@ -4,6 +4,8 @@ export class ServisGelenVeriler {
     tutar: number | undefined;
     topkdv: number | undefined;
     kdvsizfiyat: number | undefined;
+    kdvsiztutar: number | undefined;
+    categoryId: number | undefined;
     son_odeme: Date | undefined;
     icerik: string | undefined;
     odendi: boolean | undefined;

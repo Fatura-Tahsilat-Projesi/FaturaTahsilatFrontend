@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { NavigationService } from '@modules/navigation/services';
+import { NavigationService } from '../../../navigation/services';
 
 @Component({
     selector: 'sb-top-nav',

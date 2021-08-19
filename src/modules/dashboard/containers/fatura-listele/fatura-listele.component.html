@@ -1,4 +1,6 @@
-<h1>Fatura Listesi</h1>
+
+<sb-layout-dashboard [static]="true"
+><sb-dashboard-head title="Fatura Listesi" [hideBreadcrumbs]="false"></sb-dashboard-head>
 
 <table border="4" *ngIf="result else no_data">
     <td><b>#</b></td>
@@ -24,10 +26,12 @@
         <td>{{deger.icerik}}</td>
         <td>{{deger.odendi}}</td>
         <td><button class="btn btn-primary" (click)="open(content, deger.id)"><i class="fa fa-trash"></i> Detay Görüntüle</button></td>
-        <!-- <td><a class="btn btn-warning" routerLink="/faturadetay/{{deger.id}}"><i class="fa fa-trash"></i> Düzenle</a></td> -->
+        <td><a class="btn btn-warning" routerLink="/faturadetay/{{deger.id}}"><i class="fa fa-trash"></i> Düzenle</a></td>
         <td><button class="btn btn-danger" (click)="faturaSil(deger.id)"><i class="fa fa-trash"></i> Sil</button></td>
     </tr>
 </table>
+</sb-layout-dashboard>
+
 
 <ng-template #no_data>
     <div class="alert alert-warning">
@@ -96,3 +100,5 @@
       <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Geri</button>
     </div>
   </ng-template>
+
+  

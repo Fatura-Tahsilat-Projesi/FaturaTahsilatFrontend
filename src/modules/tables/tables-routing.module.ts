@@ -10,7 +10,7 @@ import * as tablesContainers from './containers';
 
 /* Guards */
 import * as tablesGuards from './guards';
-import { SBRouteData } from '@modules/navigation/models';
+import { SBRouteData } from '../navigation/models';
 
 /* Routes */
 export const ROUTES: Routes = [

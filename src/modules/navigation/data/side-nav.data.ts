@@ -2,15 +2,15 @@ import { SideNavItems, SideNavSection } from '../models';
 
 export const sideNavSections: SideNavSection[] = [
     {
-        text: 'CORE',
+        text: 'Ana Sayfa',
         items: ['dashboard'],
     },
     {
-        text: 'INTERFACE',
+        text: 'İşlemler',
         items: ['layouts', 'pages'],
     },
     {
-        text: 'ADDONS',
+        text: 'Profil',
         items: ['charts', 'tables'],
     },
 ];
@@ -18,21 +18,25 @@ export const sideNavSections: SideNavSection[] = [
 export const sideNavItems: SideNavItems = {
     dashboard: {
         icon: 'tachometer-alt',
-        text: 'Dashboard',
+        text: 'Ana Sayfa',
         link: '/dashboard',
     },
     layouts: {
         icon: 'columns',
-        text: 'Layouts',
+        text: 'Fatura İşlemleri',
         submenu: [
             {
-                text: 'Static Navigation',
-                link: '/dashboard/static',
+                text: 'Faturalarımı Listele',
+                link: '/dashboard/faturalarim',
             },
             {
-                text: 'Light Sidenav',
-                link: '/dashboard/light',
+                text: 'Fatura Oluştur',
+                link: '/dashboard/yenifatura',
             },
+            {
+                text: 'Fatura Düzenle',
+                link: '/dashboard/faturadetay',
+            }
         ],
     },
     pages: {
@@ -56,33 +60,16 @@ export const sideNavItems: SideNavItems = {
                     },
                 ],
             },
-            {
-                text: 'Error',
-                submenu: [
-                    {
-                        text: '401 Page',
-                        link: '/error/401',
-                    },
-                    {
-                        text: '404 Page',
-                        link: '/error/404',
-                    },
-                    {
-                        text: '500 Page',
-                        link: '/error/500',
-                    },
-                ],
-            },
         ],
     },
     charts: {
         icon: 'chart-area',
-        text: 'Charts',
+        text: 'Profil Ayarları',
         link: '/charts',
     },
     tables: {
         icon: 'table',
-        text: 'Tables',
+        text: 'Hesap Bilgileri',
         link: '/tables',
     },
 };

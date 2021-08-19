@@ -1,20 +1,19 @@
-<h1>Fatura Oluşturma Sayfa Başlığı</h1>
-<hr>
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit aperiam labore sint maxime nobis sapiente, natus velit quam ea soluta aliquid in nemo, minus magni temporibus inventore impedit dolorum facilis.Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit aperiam labore sint maxime nobis sapiente, natus velit quam ea soluta aliquid in nemo, minus magni temporibus inventore impedit dolorum facilis.</p>
-<hr>
-<h3><b>Yeni Fatura Oluştur</b></h3>
-<hr>
+
+<sb-layout-dashboard [static]="true"
+><sb-dashboard-head title="Fatura Oluştur" [hideBreadcrumbs]="false"></sb-dashboard-head>
+
+
 <form>
-    <div class="mb-3">
-        <label for="name" class="form-label">Fatura Adı</label>
+    <div class="col col-md-6">
+        <label for="name" class="form-label">Fatura Adı:</label>
         <input #name type="text" class="form-control">
     </div>
-    <div class="mb-3">
+    <div class="col col-md-6">
         <label for="tutar" class="form-label">Fatura Tutar:</label>
         <input #tutar type="text" class="form-control">
     </div>
-    <div class="mb-3">
-        <label for="kdvsiztutar" class="form-label">Toplam KDV</label>
+    <div class="col col-md-6">
+        <label for="kdvsiztutar" class="form-label">Toplam KDV:</label>
         <input #kdvsiztutar type="text" class="form-control">
     </div>
     <!-- <div class="mb-3">
@@ -22,8 +21,8 @@
         <input #sontarih type="text" class="form-control">
     </div> -->
 
-    <div class="mb-3">
-        <label for="categoryId" class="form-label">Fatura Tipi</label>
+    <div class="col col-md-6">
+        <label for="categoryId" class="form-label">Fatura Tipi:</label>
         <select #categoryId class="form-select">
             <option *ngFor="let tip of faturaTip" [value]="tip.id">{{tip.name}}</option>
         </select>
@@ -33,7 +32,10 @@
         <label for="icerik" class="form-label">Fatura İçeriği</label>
         <input #icerik type="text" class="form-control">
     </div> -->
-
-    <button class="btn btn-warning" (click)="faturaOlustur(name, tutar, kdvsiztutar, categoryId)">Fatura Oluştur</button>
+    <div class="col col-md-6">
+    <button class="btn btn-primary" (click)="faturaOlustur(name, tutar, kdvsiztutar, categoryId)">Fatura Oluştur</button>
+    </div> 
 </form>
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit aperiam labore sint maxime nobis sapiente, natus velit quam ea soluta aliquid in nemo, minus magni temporibus inventore impedit dolorum facilis.</p>
+
+
+</sb-layout-dashboard>

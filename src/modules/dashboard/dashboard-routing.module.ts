@@ -51,11 +51,10 @@ export const ROUTES: Routes = [
         canActivate: [],
         component: FaturaListeleComponent,
     },
-    { path: 'yenifatura', component: FaturaOlusturComponent },
     {
         path: 'static',
         data: {
-            title: 'Dashboard Static - SB Admin Angular',
+            title: 'FaturaTahsilatFrontend',
             breadcrumbs: [
                 {
                     text: 'Dashboard',
@@ -98,13 +97,31 @@ export const ROUTES: Routes = [
                     link: '/dashboard/faturadetay/',
                 },
                 {
-                    text: 'faturadetay',
+                    text: 'Fatura Detay',
                     active: true,
                 },
             ],
         } as SBRouteData,
         canActivate: [],
         component: dashboardContainers.FaturaDuzenleComponent
+    },
+    {
+        path: 'yenifatura',
+        data: {
+            title: 'Dashboard',
+            breadcrumbs: [
+                {
+                    text: 'Dashboard',
+                    link: '/dashboard/yenifatura/',
+                },
+                {
+                    text: 'Fatura Oluştur',
+                    active: true,
+                },
+            ],
+        } as SBRouteData,
+        canActivate: [],
+        component: dashboardContainers.FaturaOlusturComponent
     }
 ];
 

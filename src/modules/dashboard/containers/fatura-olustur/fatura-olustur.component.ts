@@ -6,7 +6,8 @@ import { FaturaModel } from '../../../../models/faturamodel';
 @Component({
   selector: 'app-fatura-olustur',
   templateUrl: './fatura-olustur.component.html',
-  styleUrls: ['./fatura-olustur.component.scss']
+  styleUrls: ['./fatura-olustur.component.scss'],
+  providers: [FaturaOlusturService]
 })
 export class FaturaOlusturComponent implements OnInit {
 

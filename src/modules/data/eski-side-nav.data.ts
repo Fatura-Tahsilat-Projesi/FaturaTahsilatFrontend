@@ -33,6 +33,10 @@ export const sideNavItems: SideNavItems = {
                 text: 'Fatura Oluştur',
                 link: 'yenifatura',
             },
+            {
+                text: 'Fatura Düzenle',
+                link: 'faturadetay',
+            }
         ],
     },
     pages: {

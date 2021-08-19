@@ -61,7 +61,7 @@ export class FaturaListeleComponent implements OnInit {
   open(content:any, id:any) {
     this.faturaDetayGetir(id);
     console.log("id => "+id);
-    this.modalService.open(content, { size: 'xl', ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.modalService.open(content, { size: 'lg', ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;

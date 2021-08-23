@@ -82,31 +82,13 @@ export const ROUTES: Routes = [
         component: dashboardContainers.LightComponent,
     },
     {
-        path: 'faturadetay',
-        data: {
-            title: 'Dashboard',
-            breadcrumbs: [
-                {
-                    text: 'Dashboard',
-                    link: '/dashboard/faturadetay/',
-                },
-                {
-                    text: 'Fatura Detay',
-                    active: true,
-                },
-            ],
-        } as SBRouteData,
-        canActivate: [],
-        component: dashboardContainers.FaturaDuzenleComponent
-    },
-    {
         path: 'yenifatura',
         data: {
             title: 'Dashboard',
             breadcrumbs: [
                 {
                     text: 'Dashboard',
-                    link: '/dashboard/yenifatura/',
+                    link: '/dashboard/',
                 },
                 {
                     text: 'Fatura Oluştur',
@@ -124,7 +106,7 @@ export const ROUTES: Routes = [
             breadcrumbs: [
                 {
                     text: 'Dashboard',
-                    link: '/dashboard/faturaodeme/',
+                    link: '/dashboard/',
                 },
                 {
                     text: 'Fatura Öde',
@@ -134,7 +116,44 @@ export const ROUTES: Routes = [
         } as SBRouteData,
         canActivate: [],
         component: dashboardContainers.FaturaOdeComponent
-    }
+    },
+    {
+        path:'ayarlar',
+        data: {
+            title: 'Dashboard - SB Admin Angular',
+            breadcrumbs: [
+                {
+                    text: 'Dashboard',
+                    link: '/dashboard/',
+                },
+                {
+                    text: 'Ayarlar',
+                    active: true,
+                },
+            ],
+        } as SBRouteData,
+        canActivate: [],
+        component: dashboardContainers.AyarlarComponent
+    },
+    {
+        path:'faturadetay/:id',
+        data: {
+            title: 'Dashboard - SB Admin Angular',
+            breadcrumbs: [
+                {
+                    text: 'Dashboard',
+                    link: '/dashboard/',
+                },
+                {
+                    text: 'Fatura Detay',
+                    active: true,
+                },
+            ],
+        } as SBRouteData,
+        canActivate: [],
+        component: dashboardContainers.FaturaDuzenleComponent
+    },
+    
 ];
 
 @NgModule({

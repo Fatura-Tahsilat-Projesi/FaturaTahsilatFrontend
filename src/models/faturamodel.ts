@@ -2,14 +2,14 @@ export class FaturaModel {
     
     name: string | undefined;
     tutar: number | undefined;
-    kdvsiztutar: number | undefined;
+    kdvsizTutar: number | undefined;
     categoryId: number | undefined;
     
 
-    constructor(name: string, tutar:number, kdvsiztutar:number, categoryId: number){
+    constructor(name: string, tutar:number, kdvsizTutar:number, categoryId: number){
         this.name = name;
         this.tutar = tutar;
-        this.kdvsiztutar = kdvsiztutar;
+        this.kdvsizTutar = kdvsizTutar;
         this.categoryId = categoryId;
     };
 }

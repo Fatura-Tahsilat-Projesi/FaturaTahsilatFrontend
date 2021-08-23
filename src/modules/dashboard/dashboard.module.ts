@@ -21,6 +21,7 @@ import * as dashboardContainers from './containers';
 
 // /* Services */
 import * as dashboardServices from './services';
+import { AlertifyService } from 'src/services/alertify.service';
 
 @NgModule({
     imports: [
@@ -32,7 +33,7 @@ import * as dashboardServices from './services';
         NavigationModule,
         ChartsModule
     ],
-    providers: [...dashboardServices.services],
+    providers: [...dashboardServices.services, AlertifyService],
     declarations: [...dashboardContainers.containers, ...dashboardComponents.components],
     exports: [...dashboardContainers.containers, ...dashboardComponents.components],
 })

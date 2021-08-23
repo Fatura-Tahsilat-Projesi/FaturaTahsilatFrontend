@@ -2,13 +2,50 @@
 <sb-layout-dashboard [static]="true"
 ><sb-dashboard-head title="Fatura Listesi" [hideBreadcrumbs]="false"></sb-dashboard-head>
 
-<table border="4" *ngIf="result else no_data">
+<div class="alert alert-danger" *ngIf="error">
+    Bilinmeyen bir hata oluştu!
+    {{ error }}
+    {{ error.message }}
+</div>
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+          <select class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Fatura Tipi
+            <option class="dropdown-item">Hepsi</option>
+            <option class="dropdown-item">Elektrik</option>
+            <option class="dropdown-item">Su</option>
+            <option class="dropdown-item">Doğalgaz</option>
+            <option class="dropdown-item">İnternet</option>
+            <option class="dropdown-item">Mobil</option>
+            <option class="dropdown-item">Tv Yayın</option>
+        </select>
+        </li>
+        
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Ara" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Ara</button>
+      </form>
+    </div>
+  </nav>
+
+
+
+<table border="4" *ngIf="result.length != 0 else no_data">
     <td><b>#</b></td>
     <td><b>Fatura Adı</b></td>
     <td><b>Fatura Tutar</b></td>
     <td><b>Toplam Kdv</b></td>
     <td><b>Kdv'siz Fiyat</b></td>
-    <td><b>Kategori ID</b></td>
+    <td><b>Kategori</b></td>
     <td><b>Son Ödeme Tarihi</b></td>
     <td><b>Fatura İçeriği</b></td>
     <td><b>Ödenme Bilgisi</b></td>
@@ -19,14 +56,14 @@
         <td><b>{{deger.id}}</b></td>
         <td>{{deger.name}}</td>
         <td>{{deger.tutar}}</td>
-        <td>{{deger.kdvsiztutar}}</td>
-        <td>{{deger.kdvsiztutar}}</td>
-        <td>{{deger.categoryId"}}</td>
+        <td>{{deger.tutar}}</td>
+        <td>{{deger.kdvsizTutar}}</td>
+        <td ng-model="a as variable deger.categoryId">{{ faturaTip[1].name }}</td>
         <td>{{deger.son_odeme}}</td>
         <td>{{deger.icerik}}</td>
         <td>{{deger.odendi}}</td>
         <td><button class="btn btn-primary" (click)="open(content, deger.id)"><i class="fa fa-trash"></i> Detay Görüntüle</button></td>
-        <td><a class="btn btn-warning" routerLink="/faturadetay/{{deger.id}}"><i class="fa fa-trash"></i> Düzenle</a></td>
+        <td><button class="btn btn-warning" routerLink="../faturadetay/{{deger.id}}"> Düzenle</button></td>
         <td><button class="btn btn-danger" (click)="faturaSil(deger.id)"><i class="fa fa-trash"></i> Sil</button></td>
     </tr>
 </table>
@@ -41,6 +78,9 @@
 
 
 
+
+
+
 <ng-template #content let-modal>
     <div class="modal-header">
       <h4 class="modal-title" id="modal-basic-title">Fatura Detayları</h4>
@@ -51,7 +91,7 @@
     <div class="modal-body">
       <form>
         <div class="form-group">
-            <h1>{{faturaDetay}}</h1>
+            <p>{{faturaDetay}}</p>
             <div class="mb-3">
                 <label for="name" class="form-label">Fatura Adı</label>
                 <input disabled #name type="text" class="form-control" value="{{result}}">
@@ -63,14 +103,14 @@
             </div>
 
             <div class="mb-3">
-                <label for="kdvsiztutar" class="form-label">Toplam KDV</label>
-                <input #kdvsiztutar type="text" class="form-control">
+                <label for="kdvsizTutar" class="form-label">Toplam KDV</label>
+                <input #kdvsizTutar type="text" class="form-control">
             </div>
 
-            <div class="mb-3">
+            <!-- <div class="mb-3">
                 <label for="sontarih" class="form-label">Son Ödeme Tarihi</label>
                 <input #sontarih type="text" class="form-control">
-            </div>
+            </div> -->
 
             <div class="mb-3">
                 <label for="categoryId" class="form-label">Fatura Tipi</label>
@@ -79,10 +119,10 @@
                 </select>
             </div>
 
-            <div class="mb-3">
+            <!-- <div class="mb-3">
                 <label for="icerik" class="form-label">Fatura İçeriği</label>
                 <input #icerik type="text" class="form-control">
-            </div>
+            </div> -->
 
 
             <!-- <label for="dateOfBirth">Date of birth</label>

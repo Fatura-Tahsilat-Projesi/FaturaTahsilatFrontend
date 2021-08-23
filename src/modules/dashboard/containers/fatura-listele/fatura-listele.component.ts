@@ -5,25 +5,49 @@ import { FaturaOlusturService } from '../../../fatura-olustur.service';
 import { NgbActiveModal, NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FaturaModel } from 'src/models/faturamodel';
 import { ActivatedRoute } from '@angular/router';
+import { AlertifyService } from 'src/services/alertify.service';
+import { FaturaService } from 'src/services/fatura.service';
+
 @Component({
   selector: 'app-fatura-listele',
   templateUrl: './fatura-listele.component.html',
   styleUrls: ['./fatura-listele.component.scss'],
-  providers: [FaturaOlusturService]
+  providers: [FaturaOlusturService,FaturaService]
 })
+
 export class FaturaListeleComponent implements OnInit {
 
   //faturaModel: FaturaModel;
   faturaDetay: FaturaModel | undefined;
-  constructor(private http:HttpClient,
-    private faturaOlusturmaServisi:FaturaOlusturService, private modalService: NgbModal, private activatedRoute: ActivatedRoute) { }
+  error: any;
+  tmp: string | any;
+  constructor(
+    private http:HttpClient,
+    private faturaOlusturmaServisi:FaturaOlusturService,
+    private modalService: NgbModal,
+    private activatedRoute: ActivatedRoute,
+    private alertify: AlertifyService,
+    private faturaService: FaturaService) { }
 
   result:ServisGelenVeriler[]=[];
   ngOnInit(): void {
-    this.getValues().subscribe(data =>{
+    this.faturaService.getFatura().subscribe(data =>{
       this.result = data;
-    });
+    }, error => this.error = error);
   }
+  // isEmptyObject(obj:any){
+  //   console.log("obj => "+obj);
+  //   for(var prop in obj) {
+  //     if(obj.hasOwnProperty(prop)) {
+  //       return false;
+  //     }
+  //   }
+  //   console.log(JSON.stringify(obj));
+  //   console.log(JSON.stringify({}));
+  //   console.log("stringify => "+JSON.stringify(obj) === JSON.stringify({}));
+  //   return JSON.stringify(obj) === JSON.stringify({});
+  // }
+
 
   faturaTip =[
     { id: 1, name: "Elektrik" },
@@ -34,8 +58,9 @@ export class FaturaListeleComponent implements OnInit {
     { id: 6, name: "Tv Yayın" }
   ];
 
-
+ 
   getValues(){
+    //Fonksiyon Servise Taşındı artık burada kullanılmıyor.
     return this.http.get<ServisGelenVeriler[]>("https://localhost:44347/api/products");
   }
   
@@ -55,7 +80,17 @@ export class FaturaListeleComponent implements OnInit {
     console.log("id => "+id);
       id: id
     console.log("id=> "+id);
-    this.faturaOlusturmaServisi.deleteFatura(id).subscribe(data => console.log(data));
+    let resp;
+    resp = this.faturaOlusturmaServisi.deleteFatura(id).subscribe(data => {
+      console.log(data);
+      resp = data;
+    });
+    console.log("response dönen cevap => "+ resp);
+    if(resp ){
+      this.alertify.success(id + "numaralı fatura başarıyla silinmiştir!");
+    } else {
+      this.alertify.warning("Fatura silinemedi! Hata Oluştu!");
+    }
   }
   closeResult = '';
   open(content:any, id:any) {

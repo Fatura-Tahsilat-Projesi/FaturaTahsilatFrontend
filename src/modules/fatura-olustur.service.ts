@@ -37,7 +37,10 @@ export class FaturaOlusturService {
     //const url2 = `${this.url}/$id`;
     const url = `${this.url}${id}`;
     console.log("url => "+url);
-    return this.http.delete(url, httpOptions);
+    return this.http.delete(url, httpOptions)
+    .pipe(
+      
+    )
     /*.pipe(
       //catchError(this.handleError('deleteFatura'))
     );*/
@@ -45,7 +48,7 @@ export class FaturaOlusturService {
 
   faturaOlustur(fatura: FaturaModel): Observable<FaturaModel>{
     console.log("Servis fonksiyona girildi!");
-    //console.log("FaturaOlusturFonksiyonIci => " + fatura.name + "-"+ fatura.tutar + "-"+ fatura.kdvsiztutar + "-" + fatura.categoryId );
+    //console.log("FaturaOlusturFonksiyonIci => " + fatura.name + "-"+ fatura.tutar + "-"+ fatura.kdvsizTutar + "-" + fatura.categoryId );
 
     // const httpOptions = {
     //   headers: new HttpHeaders({

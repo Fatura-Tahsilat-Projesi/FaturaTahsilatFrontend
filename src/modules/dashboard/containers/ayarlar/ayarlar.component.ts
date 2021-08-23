@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-fatura-ode',
-  templateUrl: './fatura-ode.component.html',
-  styleUrls: ['./fatura-ode.component.scss']
+  selector: 'app-ayarlar',
+  templateUrl: './ayarlar.component.html',
+  styleUrls: ['./ayarlar.component.scss']
 })
-export class FaturaOdeComponent implements OnInit {
+export class AyarlarComponent implements OnInit {
 
   constructor() { }
 
@@ -20,5 +20,7 @@ export class FaturaOdeComponent implements OnInit {
     { id: 5, name: "Mobil" },
     { id: 6, name: "Tv Yayın" }
   ];
+
+
 
 }

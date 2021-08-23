@@ -13,8 +13,8 @@
         <input #tutar type="text" class="form-control">
     </div>
     <div class="col col-md-6">
-        <label for="kdvsiztutar" class="form-label">Toplam KDV:</label>
-        <input #kdvsiztutar type="text" class="form-control">
+        <label for="kdvsizTutar" class="form-label">Toplam KDV:</label>
+        <input #kdvsizTutar type="text" class="form-control">
     </div>
     <!-- <div class="mb-3">
         <label for="sontarih" class="form-label">Son Ödeme Tarihi</label>
@@ -23,7 +23,7 @@
 
     <div class="col col-md-6">
         <label for="categoryId" class="form-label">Fatura Tipi:</label>
-        <select #categoryId class="form-select">
+        <select #categoryId class="form-select form-control form-control-sm">
             <option *ngFor="let tip of faturaTip" [value]="tip.id">{{tip.name}}</option>
         </select>
     </div>
@@ -32,8 +32,8 @@
         <label for="icerik" class="form-label">Fatura İçeriği</label>
         <input #icerik type="text" class="form-control">
     </div> -->
-    <div class="col col-md-6">
-    <button class="btn btn-primary" (click)="faturaOlustur(name, tutar, kdvsiztutar, categoryId)">Fatura Oluştur</button>
+    <div class="col col-md-6 mt-3">
+    <button class="btn btn-primary" (click)="createFatura(name, tutar, kdvsizTutar, categoryId)">Fatura Oluştur</button>
     </div> 
 </form>
 

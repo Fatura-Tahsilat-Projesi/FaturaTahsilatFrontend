@@ -12,6 +12,7 @@ export const sideNavSections: SideNavSection[] = [
     {
         text: 'Profil',
         items: ['charts', 'tables'],
+        //items: ['charts', 'tables'],
     },
     {
         text: 'Yönetim Sekmesi',

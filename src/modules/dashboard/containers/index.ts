@@ -8,7 +8,8 @@ import { DashboardLayoutComponent } from './dashboard-layout/dashboard-layout.co
 import { FooterComponent } from './footer/footer.component';
 import { FaturaListeleComponent } from './fatura-listele/fatura-listele.component';
 import { FaturaOdeComponent } from './fatura-ode/fatura-ode.component';
-export const containers = [DashboardComponent, StaticComponent, LightComponent, FaturaDuzenleComponent, DashboardLayoutComponent, FaturaOlusturComponent, FaturaListeleComponent, FaturaOdeComponent, FooterComponent];
+import { AyarlarComponent } from './ayarlar/ayarlar.component';
+export const containers = [DashboardComponent, StaticComponent, LightComponent, FaturaDuzenleComponent, DashboardLayoutComponent, FaturaOlusturComponent, FaturaListeleComponent, FaturaOdeComponent, FooterComponent, AyarlarComponent];
 
 export * from './dashboard/dashboard.component';
 // export * from '../dashboard-layout/dashboard-layout.component';
@@ -20,3 +21,4 @@ export * from './fatura-listele/fatura-listele.component';
 export * from './fatura-ode/fatura-ode.component';
 export * from './dashboard-layout/dashboard-layout.component';
 export * from './footer/footer.component';
+export * from './ayarlar/ayarlar.component'

@@ -2,4 +2,40 @@
 <sb-layout-dashboard [static]="true"
 ><sb-dashboard-head title="Fatura Öde" [hideBreadcrumbs]="false"></sb-dashboard-head>
 
+<form>
+    <hr>
+    <div class="col col-md-6">
+        <label for="name" class="form-label">Fatura Seç:</label>
+        <input #name type="text" class="form-control">
+    </div>
+    
+    <div class="col col-md-3">
+        <label for="categoryId" class="form-label">Fatura Tipi:</label>
+        <select #categoryId class="form-select form-control form-control-sm">
+            <option *ngFor="let tip of faturaTip" [value]="tip.id">{{tip.name}}</option>
+        </select>
+    </div>
+    <hr>
+    <div class="col col-md-3">
+        <label for="name" class="form-label">Kart Numarası:</label>
+        <input #name type="text" class="form-control">
+    </div>
+    <div class="col col-md-3">
+        <label for="name" class="form-label">Son Kullanım Tarihi (Ay/Yıl):</label>
+        <input #name type="text" class="form-control">
+    </div>
+    <div class="col col-md-3">
+        <label for="name" class="form-label">Güvenlik Numarası(cvc2):</label>
+        <input #name type="text" class="form-control">
+    </div>
+
+    <hr>
+
+
+    <div class="col col-md-6 mt-3">
+    <button class="btn btn-primary">Ödeme Yap</button>
+    </div> 
+</form>
+
+
 </sb-layout-dashboard>

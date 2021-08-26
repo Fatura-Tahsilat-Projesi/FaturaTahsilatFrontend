@@ -45,6 +45,10 @@ export const sideNavItems: SideNavItems = {
             {
                 text: 'Fatura Öde',
                 link: '/dashboard/faturaodeme',
+            },
+            {
+                text: 'Fatura Hareketleri',
+                link: '/dashboard/faturahareketleri',
             }
         ],
     },
@@ -85,18 +89,45 @@ export const sideNavItems: SideNavItems = {
         icon: 'book-open',
         text: 'Admin',
         submenu: [
+            {
+                text: 'Faturalar',
+                submenu: [
                     {
                         text: 'Tüm Faturalar',
-                        link: '/dashboard/faturalarim',
+                        link: '/dashboard/faturalar',
                     },
                     {
-                        text: 'Yeni Fatura Tipi Oluştur',
+                        text: 'Yeni Fatura Oluştur',
+                        link: '/dashboard/yenifatura',
+                    }
+                ],
+            },
+            {
+                text: 'Firmalar',
+                submenu: [
+                    {
+                        text: 'Tüm Firmalar',
+                        link: '/dashboard/firmalar',
+                    },
+                    {
+                        text: 'Yeni Firma Oluştur',
+                        link: '/dashboard/yenifirma',
+                    }
+                ],
+            },
+            {
+                text: 'Kullanıcılar',
+                submenu: [
+                    {
+                        text: 'Tüm Kullanıcılar',
+                        link: '/auth/login',
+                    },
+                    {
+                        text: 'Yeni Kullanıcı Oluştur',
                         link: '/auth/register',
-                    },
-                    {
-                        text: 'Kullanıcılar',
-                        link: '/auth/forgot-password',
-                    },
+                    }
+                ],
+            }
         ],
     },
 

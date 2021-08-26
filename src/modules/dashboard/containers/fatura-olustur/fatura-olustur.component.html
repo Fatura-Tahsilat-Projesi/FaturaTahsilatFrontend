@@ -9,12 +9,17 @@
         <input #name type="text" class="form-control">
     </div>
     <div class="col col-md-6">
-        <label for="tutar" class="form-label">Fatura Tutar:</label>
-        <input #tutar type="text" class="form-control">
+        <label for="total" class="form-label">Fatura Tutar:</label>
+        <input #total type="text" class="form-control">
     </div>
     <div class="col col-md-6">
-        <label for="kdvsizTutar" class="form-label">Toplam KDV:</label>
-        <input #kdvsizTutar type="text" class="form-control">
+        <label for="totalVat" class="form-label">Toplam KDV:</label>
+        <input #totalVat type="text" class="form-control">
+    </div>
+
+    <div class="col col-md-6" style="display: none;">
+        <label for="dueDate2" class="form-label">dueDate2</label>
+        <input #dueDate2 type="text" class="form-control">
     </div>
     <!-- <div class="mb-3">
         <label for="sontarih" class="form-label">Son Ödeme Tarihi</label>
@@ -22,18 +27,53 @@
     </div> -->
 
     <div class="col col-md-6">
-        <label for="categoryId" class="form-label">Fatura Tipi:</label>
+        <label for="categoryId" class="form-label">Firma:</label>
         <select #categoryId class="form-select form-control form-control-sm">
             <option *ngFor="let tip of faturaTip" [value]="tip.id">{{tip.name}}</option>
         </select>
     </div>
+
+    <div class="col col-md-6">
+        <label for="invoiceType" class="form-label">Fatura Tipi:</label>
+        <select #invoiceType class="form-select form-control form-control-sm">
+            <option *ngFor="let tip of faturaTip" [value]="tip.id">{{tip.name}}</option>
+        </select>
+    </div>
+
+    <div class="col col-md-6">
+        <label for="dueDate" class="form-label">Son Ödeme Tarihi:</label>
+    </div>
+
+    <div class="col col-md-6 input-group">
+        <input #dueDate class="form-control" placeholder="Yıl-Ay-Gün"
+              name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+        </div>
+      </div>
+
+
+    <!-- <p>Simple datepicker</p>
+
+    <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker>
+
+    <hr/>
+
+    <button class="btn btn-sm btn-outline-primary mr-2" (click)="selectToday()">Select Today</button>
+    <button class="btn btn-sm btn-outline-primary mr-2" (click)="dp.navigateTo()">To current month</button>
+    <button class="btn btn-sm btn-outline-primary mr-2" (click)="dp.navigateTo({year: 2013, month: 2})">To Feb 2013</button>
+
+    <hr/> -->
+
+    <!-- <pre>Month: {{ date.month }}.{{ date.year }}</pre>
+    <pre>Model: {{ model | json }}</pre>    -->
 
     <!-- <div class="mb-3">
         <label for="icerik" class="form-label">Fatura İçeriği</label>
         <input #icerik type="text" class="form-control">
     </div> -->
     <div class="col col-md-6 mt-3">
-    <button class="btn btn-primary" (click)="createFatura(name, tutar, kdvsizTutar, categoryId)">Fatura Oluştur</button>
+    <button class="btn btn-primary" (click)="createFatura(name, total, totalVat, dueDate, invoiceType)">Fatura Oluştur</button>
     </div> 
 </form>
 

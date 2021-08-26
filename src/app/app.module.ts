@@ -12,7 +12,7 @@ import { IconsModule } from '../modules/icons/icons.module';
 const thirdParty = [IconsModule, NgbModule];
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,

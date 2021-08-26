@@ -4,7 +4,7 @@ import { ServisGelenVeriler} from '../../../data/ServisGelenVeriler';
 import { FaturaOlusturService } from '../../../fatura-olustur.service';
 import { NgbActiveModal, NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FaturaModel } from 'src/models/faturamodel';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlertifyService } from 'src/services/alertify.service';
 import { FaturaService } from 'src/services/fatura.service';
 
@@ -18,22 +18,28 @@ import { FaturaService } from 'src/services/fatura.service';
 export class FaturaListeleComponent implements OnInit {
 
   //faturaModel: FaturaModel;
+  searchActive = false;
   faturaDetay: FaturaModel | undefined;
   error: any;
   tmp: string | any;
+  idInfo: number | any;
+  selectedType: any;
+  deger: any;
   constructor(
     private http:HttpClient,
     private faturaOlusturmaServisi:FaturaOlusturService,
     private modalService: NgbModal,
     private activatedRoute: ActivatedRoute,
     private alertify: AlertifyService,
-    private faturaService: FaturaService) { }
+    private faturaService: FaturaService,
+    private router: Router) { }
 
   result:ServisGelenVeriler[]=[];
   ngOnInit(): void {
     this.faturaService.getFatura().subscribe(data =>{
       this.result = data;
     }, error => this.error = error);
+    
   }
   // isEmptyObject(obj:any){
   //   console.log("obj => "+obj);
@@ -58,7 +64,25 @@ export class FaturaListeleComponent implements OnInit {
     { id: 6, name: "Tv Yayın" }
   ];
 
- 
+  odemeBilgisi = [
+    { id: 0, name: "Ödenmedi"},
+    { id: 1, name: "Ödendi"},
+    { id: 2, name: "Beklemede"}
+  ];
+
+  function(id: any)
+  {
+    const result2 = this.faturaDetayGetir(id);
+    //this.onChange(result2.invoiceId, id);
+  }
+
+  onChange(categoryIdVariable:any) {
+    //console.log(categoryIdVariable);
+    
+    //this.selectedType = result2?.invoiceId;
+    //this.deger = id;
+  }
+
   getValues(){
     //Fonksiyon Servise Taşındı artık burada kullanılmıyor.
     return this.http.get<ServisGelenVeriler[]>("https://localhost:44347/api/products");
@@ -70,6 +94,14 @@ export class FaturaListeleComponent implements OnInit {
       console.log(data);
     })
   }
+
+  invoiceDelete(id: any) {
+    this.faturaService.deleteInvoice(id).subscribe(data => 
+      this.router.navigate(['dashboard/faturalarim'])  
+    );
+  }
+
+
 
   faturaSil(id: any) {
     // console.log(faturaAd.value);
@@ -102,6 +134,8 @@ export class FaturaListeleComponent implements OnInit {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
+
+
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {

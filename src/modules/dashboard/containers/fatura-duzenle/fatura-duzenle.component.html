@@ -6,36 +6,78 @@
 
 <form *ngIf="fatura else no_data">
     <div class="col col-md-6">
-        <label for="faturaAd" class="form-label">Fatura Adı:</label>
-        <input #faturaAd type="text" class="form-control" [value]="fatura?.name">
+        <label for="name" class="form-label">Fatura Adı:</label>
+        <input #name type="text" class="form-control" [value]="fatura?.name">
     </div>
     <div class="col col-md-6">
-        <label for="tutar" class="form-label">Fatura Tutar:</label>
-        <input #tutar type="text" class="form-control" [value]="fatura?.tutar">
+        <label for="total" class="form-label">Fatura Tutar:</label>
+        <input #total type="text" class="form-control" [value]="fatura?.total">
     </div>
     <div class="col col-md-6">
-        <label for="topkdv" class="form-label">Toplam KDV:</label>
-        <input #topkdv type="text" class="form-control" [value]="fatura?.kdvsizTutar">
+        <label for="totalVat" class="form-label">Toplam KDV:</label>
+        <input #totalVat type="text" class="form-control" [value]="fatura?.excludingVat">
     </div>
-    <!-- <div class="col col-md-6">
-        <label for="sontarih" class="form-label">Son Ödeme Tarihi:</label>
-        <input #sontarih type="text" class="form-control" [value]="fatura?.name">
-    </div> -->
 
     <div class="col col-md-6">
-        <label for="categoryId" class="form-label">Fatura Tipi:</label>
-        <select #categoryId [ngModel]="selectedDevice" class="form-select form-control form-control-sm" (ngModelChange)="onChange($event)" name="sel2">
+        <label for="categoryId" class="form-label">Firma:</label>
+        <select #categoryId [ngModel]="selectedCompany" class="form-select form-control form-control-sm" (ngModelChange)="onChangeCompany($event)" name="sel3">
             <option *ngFor="let tip of faturaTip" [value]="tip.id">{{tip.name}}</option>
         </select>
     </div>
+
+    <div class="col col-md-6">
+        <label for="invoiceType" class="form-label">Fatura Tipi:</label>
+        <select #invoiceType [ngModel]="    " class="form-select form-control form-control-sm" (ngModelChange)="onChange($event)" name="sel2">
+            <option *ngFor="let tip of faturaTip" [value]="tip.id">{{tip.name}}</option>
+        </select>
+    </div>
+
+    <div class="col col-md-6">
+        <label for="dueDate" class="form-label">Son Ödeme Tarihi:</label>
+    </div>
+
+    <div class="col col-md-6 input-group">
+        <input #dueDate class="form-control" placeholder="Yıl-Ay-Gün"
+              name="dp" [(ngModel)]="model" (ngModelChange)="onChangeDate($event)" ngbDatepicker #d="ngbDatepicker">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+        </div>
+      </div>
+
+    
+
 <!-- 
     <div class="col col-md-6">
         <label for="icerik" class="form-label">Fatura İçeriği:</label>
         <input #icerik type="text" class="form-control">
     </div> -->
 
+    
+    <div class="col col-md-6">
+        <label for="invoiceNu" class="form-label">invoiceNu:</label>
+        <input #invoiceNu type="text" class="form-control" [value]="fatura?.invoiceNu">
+    </div>
+    <div class="col col-md-6">
+        <label for="isComplete" class="form-label">isComplete:</label>
+        <input #isComplete type="text" class="form-control" [value]="fatura?.isComplete">
+    </div>
+    <div class="col col-md-6">
+        <label for="statusCode" class="form-label">statusCode:</label>
+        <input #statusCode type="text" class="form-control" [value]="fatura?.statusCode">
+    </div>
+    <div class="col col-md-6">
+        <label for="companyId" class="form-label">companyId:</label>
+        <input #companyId type="text" class="form-control" [value]="fatura?.companyId">
+    </div>
+    <div class="col col-md-6">
+        <label for="userId" class="form-label">userId:</label>
+        <input #userId type="text" class="form-control" [value]="fatura?.userId">
+    </div>
+
+
+
     <div class="col col-md-6 mt-3">
-        <button class="btn btn-warning">Faturayı Düzenle</button>
+        <button class="btn btn-warning" (click)="updateInvoice(name, total, totalVat, dueDate, invoiceType, invoiceNu, isComplete, statusCode, companyId, userId)">Faturayı Düzenle</button>
     </div>
 </form>
 

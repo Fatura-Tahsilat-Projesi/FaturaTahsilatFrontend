@@ -118,6 +118,24 @@ export const ROUTES: Routes = [
         component: dashboardContainers.FaturaOdeComponent
     },
     {
+        path: 'faturahareketleri',
+        data: {
+            title: 'Dashboard',
+            breadcrumbs: [
+                {
+                    text: 'Dashboard',
+                    link: '/dashboard/',
+                },
+                {
+                    text: 'Fatura Hareketleri',
+                    active: true,
+                },
+            ],
+        } as SBRouteData,
+        canActivate: [],
+        component: dashboardContainers.FaturaHareketComponent
+    },
+    {
         path:'ayarlar',
         data: {
             title: 'Dashboard - SB Admin Angular',

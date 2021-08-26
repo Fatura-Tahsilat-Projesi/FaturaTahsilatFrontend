@@ -5,21 +5,66 @@ import { FaturaOlusturService } from '../../../fatura-olustur.service';
 import { FaturaModel } from '../../../../models/faturamodel';
 import { FaturaService } from 'src/services/fatura.service';
 import { Router } from '@angular/router';
+import { 
+  NgbDateStruct,
+  NgbCalendar,
+  NgbDate,
+  NgbInputDatepickerConfig,
+  NgbTimeStruct, 
+  } from '@ng-bootstrap/ng-bootstrap';
+  import {NgbTimepickerConfig} from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-fatura-olustur',
   templateUrl: './fatura-olustur.component.html',
   styleUrls: ['./fatura-olustur.component.scss'],
-  providers: [FaturaService]
+  providers: [FaturaService, NgbInputDatepickerConfig, NgbTimepickerConfig]
 })
 export class FaturaOlusturComponent implements OnInit {
 
+  model: NgbDateStruct | undefined;
+  date: { year: number; month: number; } | undefined;
+
   constructor(private http:HttpClient,
     private faturaService: FaturaService,
-    private router: Router) { }
+    private router: Router,
+    config: NgbInputDatepickerConfig,
+    calendar: NgbCalendar,
+    configtime: NgbTimepickerConfig) {
+      configtime.seconds = true;
+      configtime.spinners = false;
+      //model: NgbDateStruct;
+      // customize default values of datepickers used by this component tree
+      config.minDate = {year: 1900, month: 1, day: 1};
+      config.maxDate = {year: 2099, month: 12, day: 31};
+
+      // days that don't belong to current month are not visible
+      config.outsideDays = 'hidden';
+
+      // weekends are disabled
+      //config.markDisabled = (date: NgbDate) => calendar.getWeekday(date) >= 6;
+
+      // setting datepicker popup to close only on click outside
+      config.autoClose = 'outside';
+
+      // setting datepicker popup to open above the input
+      config.placement = ['top-left', 'top-right'];
+
+  }
 
   ngOnInit(): void {
   }
   
+  selectToday() {
+    //this.model = this.calendar.getToday();
+  }
+
+  time: NgbTimeStruct = {hour: 13, minute: 30, second: 30};
+  seconds = true;
+
+  toggleSeconds() {
+    this.seconds = !this.seconds;
+  }
+
   items: FaturaModel[] = [
     
   ];
@@ -32,15 +77,23 @@ export class FaturaOlusturComponent implements OnInit {
     { id: 5, name: "Mobil" },
     { id: 6, name: "Tv Yayın" }
   ];
+  
 
+  createFatura(name: any, total:any, totalVat:any, dueDate: any, invoiceType: any) {
 
-
-  createFatura(name: any, tutar:any, kdvsizTutar: any, categoryId: any) {
     const faturaBilgileri = {
+      invoiceNu: 0,
+      //Math.floor(Math.random() * (99999999999 -  10000000000)) + 10000000000;
       name: name.value,
-      tutar: parseInt(tutar.value),
-      kdvsizTutar: parseInt(kdvsizTutar.value),
-      categoryId: parseInt(categoryId.value)
+      total: parseInt(total.value),
+      totalVat: parseInt(totalVat.value),
+      excludingVat: parseInt(total.value) - parseInt(totalVat.value),
+      dueDate: dueDate.value,
+      isComplete: 0,
+      invoiceType: parseInt(invoiceType.value),
+      statusCode: 0,
+      companyId: 1,
+      userId: 1
       };
     this.faturaService.createFatura(faturaBilgileri).subscribe(data => 
       this.router.navigate(['dashboard/faturalarim'])  
@@ -79,5 +132,6 @@ export class FaturaOlusturComponent implements OnInit {
   //this.FaturaOlusturService.deleteFatura(1).subscribe();
   
 
+  
 
 }

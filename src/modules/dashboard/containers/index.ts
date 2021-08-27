@@ -15,9 +15,12 @@ import { KullaniciOlusturComponent } from './kullanici-olustur/kullanici-olustur
 import { TumFaturalarComponent } from './tum-faturalar/tum-faturalar.component';
 import { TumFirmalarComponent } from './tum-firmalar/tum-firmalar.component';
 import { TumKullanicilarComponent } from './tum-kullanicilar/tum-kullanicilar.component';
+import { FaturaHareketleriComponent } from './fatura-hareketleri/fatura-hareketleri.component';
+import { PaymentAccountInformationComponent } from './payment-account-information/payment-account-information.component';
+import { KullaniciDuzenleComponent } from './kullanici-duzenle/kullanici-duzenle.component';
+import { FirmaDuzenleComponent } from './firma-duzenle/firma-duzenle.component';
 
-
-export const containers = [DashboardComponent, StaticComponent, LightComponent, FaturaDuzenleComponent, DashboardLayoutComponent, FaturaOlusturComponent, FaturaListeleComponent, FaturaOdeComponent, FooterComponent, AyarlarComponent, FaturaHareketComponent, FirmaOlusturComponent, KullaniciOlusturComponent, TumFaturalarComponent, TumFirmalarComponent, TumKullanicilarComponent];
+export const containers = [DashboardComponent, StaticComponent, LightComponent, FaturaDuzenleComponent, DashboardLayoutComponent, FaturaOlusturComponent, FaturaListeleComponent, FaturaOdeComponent, FooterComponent, AyarlarComponent, FaturaHareketComponent, FirmaOlusturComponent, KullaniciOlusturComponent, TumFaturalarComponent, TumFirmalarComponent, TumKullanicilarComponent, FaturaHareketleriComponent, PaymentAccountInformationComponent, KullaniciDuzenleComponent, FirmaDuzenleComponent];
 
 export * from './dashboard/dashboard.component';
 // export * from '../dashboard-layout/dashboard-layout.component';
@@ -36,3 +39,7 @@ export * from './kullanici-olustur/kullanici-olustur.component';
 export * from './tum-faturalar/tum-faturalar.component';
 export * from './tum-firmalar/tum-firmalar.component';
 export * from './tum-kullanicilar/tum-kullanicilar.component';
+export * from './fatura-hareketleri/fatura-hareketleri.component';
+export * from './payment-account-information/payment-account-information.component';
+export * from './kullanici-duzenle/kullanici-duzenle.component';
+export * from './firma-duzenle/firma-duzenle.component';

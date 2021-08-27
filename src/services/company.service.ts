@@ -2,8 +2,8 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http
 import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
 import { catchError, tap } from "rxjs/operators";
-import { InvoiceActivitiesModel } from "src/models/invoiceactivitiesmodel";
-import { InvoiceActivitiesData } from "src/modules/data/invoiceActivitiesData";
+import { CompanyModel } from "src/models/companymodel";
+import { CompanyData } from "src/modules/data/companyData";
 
 const httpOptions = {
     headers: new HttpHeaders({
@@ -13,29 +13,59 @@ const httpOptions = {
     })
 };
 
-@Injectable()
-export class InvoiceActivitiesService {
 
-    url = "https://localhost:44389/api/invoiceActivities";
-    result:InvoiceActivitiesData[]=[];
-    
+@Injectable()
+export class CompanyService
+{
+    url = "https://localhost:44389/api/companies/";
+
     constructor(private http: HttpClient) {}
 
-    getInvoiceActivities():Observable<InvoiceActivitiesModel[]> {
-        return this.http.get<InvoiceActivitiesModel[]>(this.url)
+    getAllCompany():Observable<CompanyData[]>
+    {
+        return this.http.get<CompanyData[]>(this.url)
         .pipe(
             tap(data => console.log(data)),
             catchError(this.handleError)
         );
     }
 
-    getInvoiceActivitiesById(id: number): Observable<InvoiceActivitiesData> {
-        return this.http.get<InvoiceActivitiesData>(this.url + id)
+    getCompanyById(id: number): Observable<CompanyModel> {
+        return this.http.get<CompanyModel>(this.url + id)
         .pipe(
             tap(data => console.log(data)),
             catchError(this.handleError)
         );
     }
+
+    createCompany(company: CompanyModel): Observable<CompanyModel>
+    {
+        return this.http.post<CompanyModel>(this.url, company, httpOptions)
+        .pipe(
+            tap(data => console.log(data)),
+            catchError(this.handleError)
+        )
+    }
+
+
+    updateCompany(company: CompanyModel): Observable<CompanyModel> {
+        return this.http.put<CompanyModel>(this.url, company, httpOptions)
+        .pipe(
+            tap(data => console.log(data)),
+            catchError(this.handleError)
+        );
+    }
+
+
+    deleteCompany(id: number): Observable<unknown>
+    {
+        return this.http.delete(this.url + id, httpOptions)
+        .pipe(
+            tap(data => console.log(data)),
+            catchError(this.handleError)
+        );
+    }
+
 
     private handleError(error: HttpErrorResponse) {
 
@@ -67,7 +97,5 @@ export class InvoiceActivitiesService {
 
         return throwError("Bir hata oluştu!");
     }
-
-
 
 }

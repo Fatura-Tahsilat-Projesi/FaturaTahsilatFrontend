@@ -7,7 +7,7 @@ export const sideNavSections: SideNavSection[] = [
     },
     {
         text: 'İşlemler',
-        items: ['layouts', 'pages'],
+        items: ['layouts'],
     },
     {
         text: 'Profil',
@@ -33,14 +33,6 @@ export const sideNavItems: SideNavItems = {
             {
                 text: 'Faturalarımı Listele',
                 link: '/dashboard/faturalarim',
-            },
-            {
-                text: 'Fatura Oluştur',
-                link: '/dashboard/yenifatura',
-            },
-            {
-                text: 'Fatura Düzenle',
-                link: '/dashboard/faturadetay',
             },
             {
                 text: 'Fatura Öde',
@@ -78,12 +70,12 @@ export const sideNavItems: SideNavItems = {
     charts: {
         icon: 'chart-area',
         text: 'Profil Ayarları',
-        link: '/charts',
+        link: '/dashboard/ayarlar',
     },
     tables: {
         icon: 'table',
         text: 'Hesap Bilgileri',
-        link: '/tables',
+        link: '/dashboard/hesapbilgilerim',
     },
     admin: {
         icon: 'book-open',
@@ -99,6 +91,10 @@ export const sideNavItems: SideNavItems = {
                     {
                         text: 'Yeni Fatura Oluştur',
                         link: '/dashboard/yenifatura',
+                    },
+                    {
+                        text: 'Tüm Fatura Hareketler',
+                        link: '/dashboard/faturahareketleri',
                     }
                 ],
             },
@@ -120,11 +116,11 @@ export const sideNavItems: SideNavItems = {
                 submenu: [
                     {
                         text: 'Tüm Kullanıcılar',
-                        link: '/auth/login',
+                        link: '/dashboard/kullanicilar',
                     },
                     {
                         text: 'Yeni Kullanıcı Oluştur',
-                        link: '/auth/register',
+                        link: '/dashboard/yenikullanici',
                     }
                 ],
             }

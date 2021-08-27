@@ -1,0 +1,48 @@
+
+<sb-layout-dashboard [static]="true">
+    <sb-dashboard-head title="Hesap Bilgilerim" [hideBreadcrumbs]="false">
+    
+    </sb-dashboard-head>
+    
+
+    <div class="col col-md-6">
+        <label for="faturaAd" class="form-label">TC Kimlik No:</label>
+        <input #faturaAd type="text" class="form-control" value="11122233344" disabled>
+    </div>
+
+    <div class="col col-md-6">
+        <label for="faturaAd" class="form-label">Iban Numarası:</label>
+        <input #faturaAd type="text" class="form-control" value="TR330006100519786457841326" disabled>
+    </div>
+
+    
+    <div class="col col-md-6">
+        <label for="faturaAd" class="form-label">Telefon Numarası:</label>
+        <input #faturaAd type="text" class="form-control" value="05300000000" disabled>
+    </div>
+    
+    <div class="col col-md-6 mt-3"> 
+        <button class="btn btn-primary">Bilgileri Güncelle</button>
+    </div>
+
+    <hr>
+
+    <p>Kayıtlı Kredi Kartlarım</p>
+
+    <div>
+        <table border="4">
+            <td><b>#</b></td>
+            <td><b>Kart Numarası:</b></td>
+            <td><b>Banka</b></td>
+            <tr>
+                <td><b>1</b></td>
+                <td>1111 2222 3333 444</td>
+                <td>Vakıfbank<td>
+            </tr>
+        </table>
+    </div>
+
+
+    </sb-layout-dashboard>
+    
+    

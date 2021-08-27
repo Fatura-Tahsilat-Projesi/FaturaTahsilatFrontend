@@ -5,35 +5,46 @@
 <form>
     <hr>
     <div class="col col-md-6">
-        <label for="name" class="form-label">Fatura Seç:</label>
-        <input #name type="text" class="form-control">
+        <label for="selectedFatura" class="form-label">Fatura Seç:</label>
+        <select #selectedFatura class="form-select form-control form-control-sm">
+            <option *ngFor="let fatura of result" [value]="fatura.invoiceId" (click)="verileriGetir(fatura.invoiceId)">{{fatura.name}}</option>
+        </select>
     </div>
     
-    <div class="col col-md-3">
+    <!-- <div class="col col-md-3">
         <label for="categoryId" class="form-label">Fatura Tipi:</label>
         <select #categoryId class="form-select form-control form-control-sm">
             <option *ngFor="let tip of faturaTip" [value]="tip.id">{{tip.name}}</option>
         </select>
-    </div>
+    </div> -->
     <hr>
     <div class="col col-md-3">
         <label for="name" class="form-label">Kart Numarası:</label>
-        <input #name type="text" class="form-control">
+        <input #name type="text" class="form-control" disabled>
     </div>
     <div class="col col-md-3">
         <label for="name" class="form-label">Son Kullanım Tarihi (Ay/Yıl):</label>
-        <input #name type="text" class="form-control">
+        <input #name type="text" class="form-control" disabled>
     </div>
     <div class="col col-md-3">
-        <label for="name" class="form-label">Güvenlik Numarası(cvc2):</label>
-        <input #name type="text" class="form-control">
+        <label for="name" class="form-label">Güvenlik Numarası(CVC2):</label>
+        <input #name type="text" class="form-control" disabled>
     </div>
 
     <hr>
 
 
+    <div class="col col-md-12 mt-3">
+        <button class="col col-md-2 mr-2 btn btn-success" (click)="successPayment(selectedFatura.value)">Ödeme Yap(Yeterli Bakiye)</button>
+        <button class="col col-md-3 mr-2 btn btn-danger" (click)="failPayment(selectedFatura.value)">Ödeme Yap(Yetersiz Bakiye)</button>
+        <button class="col col-md-3  btn btn-primary" (click)="provisionPayment(selectedFatura.value)">Ödeme Yap(Provizyonda Beklemede)</button>
+
+
+    </div> 
     <div class="col col-md-6 mt-3">
-    <button class="btn btn-primary">Ödeme Yap</button>
+        
+    </div> 
+    <div class="col col-md-6 mt-3">
     </div> 
 </form>
 

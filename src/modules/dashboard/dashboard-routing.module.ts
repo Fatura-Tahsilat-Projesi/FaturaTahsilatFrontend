@@ -136,6 +136,96 @@ export const ROUTES: Routes = [
         component: dashboardContainers.FaturaHareketComponent
     },
     {
+        path: 'yenifirma',
+        data: {
+            title: 'Dashboard',
+            breadcrumbs: [
+                {
+                    text: 'Dashboard',
+                    link: '/dashboard/',
+                },
+                {
+                    text: 'Yeni Firma Oluştur',
+                    active: true,
+                },
+            ],
+        } as SBRouteData,
+        canActivate: [],
+        component: dashboardContainers.FirmaOlusturComponent
+    },
+    {
+        path: 'yenikullanici',
+        data: {
+            title: 'Dashboard',
+            breadcrumbs: [
+                {
+                    text: 'Dashboard',
+                    link: '/dashboard/',
+                },
+                {
+                    text: 'Yeni Kullanıcı Oluştur',
+                    active: true,
+                },
+            ],
+        } as SBRouteData,
+        canActivate: [],
+        component: dashboardContainers.KullaniciOlusturComponent
+    },
+    {
+        path: 'faturalar',
+        data: {
+            title: 'Dashboard',
+            breadcrumbs: [
+                {
+                    text: 'Dashboard',
+                    link: '/dashboard/',
+                },
+                {
+                    text: 'Tüm Faturalar',
+                    active: true,
+                },
+            ],
+        } as SBRouteData,
+        canActivate: [],
+        component: dashboardContainers.TumFaturalarComponent
+    },
+    {
+        path: 'firmalar',
+        data: {
+            title: 'Dashboard',
+            breadcrumbs: [
+                {
+                    text: 'Dashboard',
+                    link: '/dashboard/',
+                },
+                {
+                    text: 'Tüm Firmalar',
+                    active: true,
+                },
+            ],
+        } as SBRouteData,
+        canActivate: [],
+        component: dashboardContainers.TumFirmalarComponent
+    },
+    {
+        path: 'kullanicilar',
+        data: {
+            title: 'Dashboard',
+            breadcrumbs: [
+                {
+                    text: 'Dashboard',
+                    link: '/dashboard/',
+                },
+                {
+                    text: 'Tüm Kullanıcılar',
+                    active: true,
+                },
+            ],
+        } as SBRouteData,
+        canActivate: [],
+        component: dashboardContainers.TumKullanicilarComponent
+    },
+    {
         path:'ayarlar',
         data: {
             title: 'Dashboard - SB Admin Angular',
@@ -154,6 +244,24 @@ export const ROUTES: Routes = [
         component: dashboardContainers.AyarlarComponent
     },
     {
+        path:'hesapbilgilerim',
+        data: {
+            title: 'Dashboard - SB Admin Angular',
+            breadcrumbs: [
+                {
+                    text: 'Dashboard',
+                    link: '/dashboard/',
+                },
+                {
+                    text: 'Hesap Bilgilerim',
+                    active: true,
+                },
+            ],
+        } as SBRouteData,
+        canActivate: [],
+        component: dashboardContainers.PaymentAccountInformationComponent
+    },
+    {
         path:'faturadetay/:id',
         data: {
             title: 'Dashboard - SB Admin Angular',
@@ -170,6 +278,60 @@ export const ROUTES: Routes = [
         } as SBRouteData,
         canActivate: [],
         component: dashboardContainers.FaturaDuzenleComponent
+    },
+    {
+        path:'faturahareket/:id',
+        data: {
+            title: 'Dashboard - SB Admin Angular',
+            breadcrumbs: [
+                {
+                    text: 'Dashboard',
+                    link: '/dashboard/',
+                },
+                {
+                    text: 'Fatura Hareketleri',
+                    active: true,
+                },
+            ],
+        } as SBRouteData,
+        canActivate: [],
+        component: dashboardContainers.FaturaHareketleriComponent
+    },
+    {
+        path:'kullanicidetay/:id',
+        data: {
+            title: 'Dashboard - SB Admin Angular',
+            breadcrumbs: [
+                {
+                    text: 'Dashboard',
+                    link: '/dashboard/',
+                },
+                {
+                    text: 'Kullanıcı Düzenle',
+                    active: true,
+                },
+            ],
+        } as SBRouteData,
+        canActivate: [],
+        component: dashboardContainers.KullaniciDuzenleComponent
+    },
+    {
+        path:'firmadetay/:id',
+        data: {
+            title: 'Dashboard - SB Admin Angular',
+            breadcrumbs: [
+                {
+                    text: 'Dashboard',
+                    link: '/dashboard/',
+                },
+                {
+                    text: 'Firma Düzenle',
+                    active: true,
+                },
+            ],
+        } as SBRouteData,
+        canActivate: [],
+        component: dashboardContainers.FirmaDuzenleComponent
     },
     
 ];

@@ -1,1 +1,110 @@
-<p>tum-kullanicilar works!</p>
+
+<sb-layout-dashboard [static]="true"
+><sb-dashboard-head title="Tüm Kullanıcılar" [hideBreadcrumbs]="false"></sb-dashboard-head>
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+          <select class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Kullanıcı Tipi
+            <option class="dropdown-item">Hepsi</option>
+            <option class="dropdown-item">Normal</option>
+            <option class="dropdown-item">Admin</option>
+            <option class="dropdown-item">Süper Admin</option>
+        </select>
+        </li>
+        
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Ara" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Ara</button>
+      </form>
+    </div>
+  </nav>
+
+  <div *ngIf="!searchActive else searcTable">
+    <table border="4" *ngIf="result.length != 0 else no_data">
+      <td><b>#</b></td>
+      <td><b>Kullanıcı Adı</b></td>
+      <td><b>Ad</b></td>
+      <td><b>Soyad</b></td>
+      <td><b>Yetki</b></td>
+      <td><b>Tc</b></td>
+      <td><b>Adres</b></td>
+      <td><b>Telefon</b></td>
+      <td><b>Mail</b></td>
+      <td><b>Iban</b></td>
+      <td><b>Oluşturulma Tarihi</b></td>
+      <td><b>Düzenle</b></td>
+      <td><b>Sil</b></td>
+      <tr *ngFor="let deger of result">
+          <td><b>{{deger.id}}</b></td>
+          <td>{{deger.userName}}</td>
+          <td>{{deger.name}}</td>
+          <td>{{deger.surname}}</td>
+          <td>{{deger.authorization}}</td>
+          <td>{{deger.tcNu}}</td>
+          <td>{{deger.address}}</td>
+          <td>{{deger.phoneNu}}</td>
+          <td>{{deger.mail}}</td>
+          <td>{{deger.iban}}</td>
+          <td>{{deger.createdAt}}</td>
+          <td><button class="btn btn-warning" routerLink="../kullanicidetay/{{deger.id}}"> Düzenle</button></td>
+          <td><button class="btn btn-danger" (click)="deleteUser(deger.id)"><i class="fa fa-trash"></i> Sil</button></td>
+      </tr>
+    </table>
+    </div>
+    
+    <ng-template #searcTable>
+    <div>
+      <p>Arama Sonuçları</p>
+    <table border="4" *ngIf="result.length != 0 else no_data">
+      <td><b>#</b></td>
+      <td><b>Kullanıcı Adı</b></td>
+      <td><b>Ad</b></td>
+      <td><b>Soyad</b></td>
+      <td><b>Yetki</b></td>
+      <td><b>Tc</b></td>
+      <td><b>Adres</b></td>
+      <td><b>Telefon</b></td>
+      <td><b>Mail</b></td>
+      <td><b>Iban</b></td>
+      <td><b>Oluşturulma Tarihi</b></td>
+      <td><b>Düzenle</b></td>
+      <td><b>Sil</b></td>
+      <tr *ngFor="let deger of result">
+          <td><b>{{deger.id}}</b></td>
+          <td>{{deger.userName}}</td>
+          <td>{{deger.name}}</td>
+          <td>{{deger.surname}}</td>
+          <td>{{deger.authorization}}</td>
+          <td>{{deger.tcNu}}</td>
+          <td>{{deger.address}}</td>
+          <td>{{deger.phoneNu}}</td>
+          <td>{{deger.mail}}</td>
+          <td>{{deger.iban}}</td>
+          <td>{{deger.createdAt}}</td>
+          <td><button class="btn btn-warning"> Düzenle</button></td>
+          <td><button class="btn btn-danger"><i class="fa fa-trash"></i> Sil</button></td>
+      </tr>
+    </table>
+    </div>
+    </ng-template>
+
+
+
+</sb-layout-dashboard>
+
+
+<ng-template #no_data>
+  <div class="alert alert-warning">
+      Veri Bulunamadı!
+  </div>
+</ng-template>

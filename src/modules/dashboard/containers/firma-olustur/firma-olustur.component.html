@@ -1,1 +1,36 @@
-<p>firma-olustur works!</p>
+
+<sb-layout-dashboard [static]="true">
+    <sb-dashboard-head title="Firma Düzenle" [hideBreadcrumbs]="false">
+    
+    </sb-dashboard-head>
+    
+    <form>
+        <div class="col col-md-6">
+            <label for="name" class="form-label">Firma Adı:</label>
+            <input #name type="text" class="form-control">
+        </div>
+        <div class="col col-md-6">
+            <label for="companyCode" class="form-label">Firma Kodu:</label>
+            <input #companyCode type="text" class="form-control">
+        </div>
+       
+        <div class="col col-md-6">
+            <label for="category" class="form-label">Firma Tipi:</label>
+            <select #category class="form-select form-control form-control-sm">
+                <option *ngFor="let tip of faturaTip" [value]="tip.id">{{tip.name}}</option>
+            </select>
+        </div>
+    
+        <div class="col col-md-6 mt-3">
+        <button class="btn btn-primary" (click)="createCompany(name, category, companyCode)">Firma Oluştur</button>
+        </div> 
+    </form>
+    
+    
+    </sb-layout-dashboard>
+    
+    <ng-template #no_data>
+        <div class="alert alert-warning">
+            Veri Bulunamadı!
+        </div>
+    </ng-template>

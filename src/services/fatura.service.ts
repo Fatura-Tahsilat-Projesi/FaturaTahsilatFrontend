@@ -47,7 +47,8 @@ export class FaturaService {
         );
     }
 
-    updateInvoice(invoice: FaturaModel): Observable<FaturaModel> {
+    updateInvoice(invoice: FaturaModel | undefined): Observable<FaturaModel> {
+        console.log(invoice);
         return this.http.put<FaturaModel>(this.url, invoice, httpOptions)
         .pipe(
             tap(data => console.log(data)),
@@ -66,6 +67,32 @@ export class FaturaService {
         
     }
 
+    successPayment(invoice: FaturaModel):Observable<FaturaModel>
+    {
+        return this.http.put<FaturaModel>(this.url, invoice, httpOptions)
+        .pipe(
+            tap(data => console.log(data)),
+            catchError(this.handleError)
+        );
+    }
+
+    failPayment(invoice: FaturaModel):Observable<FaturaModel>
+    {
+        return this.http.put<FaturaModel>(this.url, invoice, httpOptions)
+        .pipe(
+            tap(data => console.log(data)),
+            catchError(this.handleError)
+        );
+    }
+
+    provisionPayment(invoice: FaturaModel):Observable<FaturaModel>
+    {
+        return this.http.put<FaturaModel>(this.url, invoice, httpOptions)
+        .pipe(
+            tap(data => console.log(data)),
+            catchError(this.handleError)
+        );
+    }
 
 
 

@@ -2,9 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http
 import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
 import { catchError, tap } from "rxjs/operators";
-import { InvoiceActivitiesModel } from "src/models/invoiceactivitiesmodel";
-import { InvoiceActivitiesData } from "src/modules/data/invoiceActivitiesData";
-
+import { UserModel } from "src/models/usermodel";
 const httpOptions = {
     headers: new HttpHeaders({
         'Accept': 'text/html, application/xhtml+xml, */*',
@@ -14,28 +12,59 @@ const httpOptions = {
 };
 
 @Injectable()
-export class InvoiceActivitiesService {
+export class UserService
+{
+    url = "https://localhost:44389/api/users/";
 
-    url = "https://localhost:44389/api/invoiceActivities";
-    result:InvoiceActivitiesData[]=[];
-    
     constructor(private http: HttpClient) {}
 
-    getInvoiceActivities():Observable<InvoiceActivitiesModel[]> {
-        return this.http.get<InvoiceActivitiesModel[]>(this.url)
+    getAllUser():Observable<UserModel[]>
+    {
+        return this.http.get<UserModel[]>(this.url)
+        .pipe(
+            tap(data => console.log(data)),
+            catchError(this.handleError)
+        ); 
+    }
+
+    getUserById(id: number): Observable<UserModel> 
+    {
+        return this.http.get<UserModel>(this.url + id)
         .pipe(
             tap(data => console.log(data)),
             catchError(this.handleError)
         );
     }
 
-    getInvoiceActivitiesById(id: number): Observable<InvoiceActivitiesData> {
-        return this.http.get<InvoiceActivitiesData>(this.url + id)
+
+    createUser(user: UserModel):Observable<UserModel>
+    {
+        return this.http.post<UserModel>(this.url, user, httpOptions)
         .pipe(
             tap(data => console.log(data)),
             catchError(this.handleError)
         );
     }
+
+    updateUser(user: UserModel): Observable<UserModel>
+    {
+        return this.http.put<UserModel>(this.url, user, httpOptions)
+        .pipe(
+            tap(data => console.log(data)),
+            catchError(this.handleError)
+        );
+    }
+
+
+    deleteUser(id: number): Observable<unknown>
+    {
+        return this.http.delete(this.url + id, httpOptions) 
+        .pipe(
+            tap(data => console.log(data)),
+            catchError(this.handleError)
+        );
+    }
+
 
     private handleError(error: HttpErrorResponse) {
 
@@ -67,7 +96,5 @@ export class InvoiceActivitiesService {
 
         return throwError("Bir hata oluştu!");
     }
-
-
 
 }

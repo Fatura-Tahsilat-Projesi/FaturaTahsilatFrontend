@@ -4,7 +4,27 @@
     
     </sb-dashboard-head>
     
+    <form>
+        <div class="col col-md-6">
+            <label for="name" class="form-label">Firma Adı:</label>
+            <input #name type="text" class="form-control" [value]="company?.name">
+        </div>
+        <div class="col col-md-6">
+            <label for="companyCode" class="form-label">Firma Kodu:</label>
+            <input #companyCode type="text" class="form-control" [value]="company?.companyCode">
+        </div>
+       
+        <div class="col col-md-6">
+            <label for="category" class="form-label">Firma Tipi:</label>
+            <select #category [ngModel]="selectedCompanyType" class="form-select form-control form-control-sm" (ngModelChange)="onChangeCompanyType($event)" name="sel3">
+                <option *ngFor="let tip of firmaTip" [value]="tip.id">{{tip.name}}</option>
+            </select>
+        </div>
     
+        <div class="col col-md-6 mt-3">
+        <button class="btn btn-primary" (click)="updateCompany(name, category, companyCode)">Firmayı Güncelle</button>
+        </div> 
+    </form>
     
     
     </sb-layout-dashboard>

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/services/user.service';
 import { AlertifyService } from 'src/services/alertify.service';
 import { UserModel } from 'src/models/usermodel';
+import { UserData } from 'src/modules/data/userData';
 
 @Component({
   selector: 'app-tum-kullanicilar',
@@ -24,7 +25,7 @@ export class TumKullanicilarComponent implements OnInit {
     private alertify: AlertifyService
   ) { }
 
-  result:UserModel[]=[];
+  result:UserData[]=[];
   ngOnInit(): void {
     this.userService.getAllUser().subscribe(data => {
       this.result = data;

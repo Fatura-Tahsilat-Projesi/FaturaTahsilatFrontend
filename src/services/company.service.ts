@@ -30,8 +30,8 @@ export class CompanyService
         );
     }
 
-    getCompanyById(id: number): Observable<CompanyModel> {
-        return this.http.get<CompanyModel>(this.url + id)
+    getCompanyById(id: number): Observable<CompanyData> {
+        return this.http.get<CompanyData>(this.url + id)
         .pipe(
             tap(data => console.log(data)),
             catchError(this.handleError)

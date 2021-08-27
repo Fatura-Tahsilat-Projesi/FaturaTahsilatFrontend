@@ -4,7 +4,50 @@
     
     </sb-dashboard-head>
     
-    
+    <form>
+        <div class="col col-md-6">
+            <label for="userName" class="form-label">Kullanıcı Adı:</label>
+            <input #userName type="text" class="form-control" [value]="user?.userName">
+        </div>
+        <div class="col col-md-6">
+            <label for="name" class="form-label">Ad:</label>
+            <input #name type="text" class="form-control" [value]="user?.name">
+        </div>
+        <div class="col col-md-6">
+            <label for="surname" class="form-label">Soyad:</label>
+            <input #surname type="text" class="form-control" [value]="user?.surname">
+        </div>
+        <div class="col col-md-6">
+            <label for="authorization" class="form-label">Yetki Türü:</label>
+            <select #authorization [ngModel]="selectedUserType" class="form-select form-control form-control-sm" (ngModelChange)="onChangeUserType($event)" name="name3">
+                <option *ngFor="let tip of yetkiTip" [value]="tip.id">{{tip.name}}</option>
+            </select>
+        </div>
+        <div class="col col-md-6">
+            <label for="tcNu" class="form-label">Tc:</label>
+            <input #tcNu type="text" class="form-control" [value]="user?.tcNu">
+        </div>
+        <div class="col col-md-6">
+            <label for="address" class="form-label">Adres:</label>
+            <input #address type="text" class="form-control" [value]="user?.address">
+        </div>
+        <div class="col col-md-6">
+            <label for="phoneNu" class="form-label">Telefon:</label>
+            <input #phoneNu type="text" class="form-control" [value]="user?.phoneNu">
+        </div>
+        <div class="col col-md-6">
+            <label for="mail" class="form-label">Mail:</label>
+            <input #mail type="text" class="form-control" [value]="user?.mail">
+        </div>
+        <div class="col col-md-6">
+            <label for="iban" class="form-label">Iban Numarası:</label>
+            <input #iban type="text" class="form-control" [value]="user?.iban">
+        </div>
+        
+        <div class="col col-md-6 mt-3">
+        <button class="btn btn-primary" (click)="updateUser(userName, name, surname, authorization, tcNu, address, phoneNu, mail, iban)">Kullanıcıyı Güncelle</button>
+        </div> 
+    </form>
     
     
     </sb-layout-dashboard>

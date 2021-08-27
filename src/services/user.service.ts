@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
 import { catchError, tap } from "rxjs/operators";
 import { UserModel } from "src/models/usermodel";
+import { UserData } from "src/modules/data/userData";
 const httpOptions = {
     headers: new HttpHeaders({
         'Accept': 'text/html, application/xhtml+xml, */*',
@@ -18,18 +19,18 @@ export class UserService
 
     constructor(private http: HttpClient) {}
 
-    getAllUser():Observable<UserModel[]>
+    getAllUser():Observable<UserData[]>
     {
-        return this.http.get<UserModel[]>(this.url)
+        return this.http.get<UserData[]>(this.url)
         .pipe(
             tap(data => console.log(data)),
             catchError(this.handleError)
         ); 
     }
 
-    getUserById(id: number): Observable<UserModel> 
+    getUserById(id: number): Observable<UserData> 
     {
-        return this.http.get<UserModel>(this.url + id)
+        return this.http.get<UserData>(this.url + id)
         .pipe(
             tap(data => console.log(data)),
             catchError(this.handleError)

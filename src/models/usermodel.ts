@@ -1,5 +1,5 @@
 export class UserModel {
-    id: number | undefined;
+    // id: number | undefined;
     userName: string | undefined;
     name: string | undefined;
     surname: string | undefined;

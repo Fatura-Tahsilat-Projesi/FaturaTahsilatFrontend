@@ -16,7 +16,7 @@ const httpOptions = {
 @Injectable()
 export class InvoiceActivitiesService {
 
-    url = "https://localhost:44389/api/invoiceActivities";
+    url = "https://localhost:44389/api/invoiceActivities/";
     result:InvoiceActivitiesData[]=[];
     
     constructor(private http: HttpClient) {}

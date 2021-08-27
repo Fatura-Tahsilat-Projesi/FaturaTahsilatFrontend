@@ -11,8 +11,8 @@ import { InvoiceActivitiesService } from 'src/services/invoiceActivities.service
 })
 export class FaturaHareketleriComponent implements OnInit {
 
-  fatura: InvoiceActivitiesData | undefined;
-  result: InvoiceActivitiesData[]=[];
+  fatura: InvoiceActivitiesData | any;
+  //result: InvoiceActivitiesData[]=[];
   constructor(
     private invoiceActivitiesService: InvoiceActivitiesService,
     private activatedRoute: ActivatedRoute,
@@ -22,7 +22,9 @@ export class FaturaHareketleriComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params =>{
       this.invoiceActivitiesService.getInvoiceActivitiesById(params["id"]).subscribe(data => {
+        console.log("id => " + params["id"]);
         this.fatura = data;
+        console.log("data => " + data);
         //this.fatura.name = data?.name;
         //this.fatura.tutar = data?.tutar;
         //this.fatura.categoryId = data?.categoryId;

@@ -1,29 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { InvoiceActivitiesData } from 'src/modules/data/invoiceActivitiesData';
-import { InvoiceActivitiesService } from 'src/services/invoiceActivities.service';
+import { ActivatedRoute } from '@angular/router';
+import { InvoiceAndActivitiesData } from 'src/modules/data/InvoiceAndActivitiesData';
+import { InvoiceData } from 'src/modules/data/invoiceData';
+import { ServisGelenVeriler } from 'src/modules/data/ServisGelenVeriler';
+import { FaturaService } from 'src/services/fatura.service';
 
 @Component({
   selector: 'app-fatura-hareketleri',
   templateUrl: './fatura-hareketleri.component.html',
   styleUrls: ['./fatura-hareketleri.component.scss'],
-  providers: [InvoiceActivitiesService]
+  providers: [FaturaService]
 })
 export class FaturaHareketleriComponent implements OnInit {
 
-  fatura: InvoiceActivitiesData | any;
+  fatura: InvoiceAndActivitiesData | any;
   //result: InvoiceActivitiesData[]=[];
   constructor(
-    private invoiceActivitiesService: InvoiceActivitiesService,
+    private faturaService: FaturaService,
     private activatedRoute: ActivatedRoute,
-    private router: Router,
   ) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params =>{
-      this.invoiceActivitiesService.getInvoiceActivitiesById(params["id"]).subscribe(data => {
+      this.faturaService.getWithInvoiceActivitiesById(params["id"]).subscribe(data => {
         console.log("id => " + params["id"]);
-        this.fatura = data;
+        this.fatura = data?.invoiceActivities;
         console.log("data => " + data);
         //this.fatura.name = data?.name;
         //this.fatura.tutar = data?.tutar;

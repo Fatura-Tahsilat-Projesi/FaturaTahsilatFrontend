@@ -4,6 +4,7 @@ import { Observable, throwError } from "rxjs";
 import { catchError, tap } from "rxjs/operators";
 import { FaturaModel } from "src/models/faturamodel";
 import { InvoiceActivitiesModel } from "src/models/invoiceactivitiesmodel";
+import { InvoiceAndActivitiesData } from "src/modules/data/InvoiceAndActivitiesData";
 import { ServisGelenVeriler } from "src/modules/data/ServisGelenVeriler";
 
 const httpOptions = {
@@ -37,6 +38,13 @@ export class FaturaService {
             tap(data => console.log(data)),
             catchError(this.handleError)
         );
+    }
+
+    getWithInvoiceActivitiesById(id: number): Observable<InvoiceAndActivitiesData> {
+        //https://localhost:44389/api/invoices/
+        //https://localhost:44389/api/invoices/5/invoiceActivities
+        const newUrl = this.url + id + '/invoiceActivities';
+        return this.http.get<InvoiceAndActivitiesData>(newUrl);
     }
 
     createFatura(fatura: FaturaModel): Observable<FaturaModel> {

@@ -9,6 +9,9 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { IconsModule } from '../modules/icons/icons.module';
 
+
+
+
 const thirdParty = [IconsModule, NgbModule];
 @NgModule({
   declarations: [

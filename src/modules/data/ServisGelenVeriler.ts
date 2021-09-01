@@ -1,7 +1,7 @@
 export class ServisGelenVeriler {
     invoiceId:number | undefined;
     invoiceNu:number | undefined;
-    name:string | undefined;
+    name:string="";
     total: number | undefined;
     totalVat: number | undefined;
     excludingVat: number | undefined;

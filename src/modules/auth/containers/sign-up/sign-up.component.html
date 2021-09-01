@@ -1,0 +1,36 @@
+<sb-layout-auth
+    ><div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Yeni Üyelik Kaydı</h3></div>
+                    <div class="card-body">
+                        <form>
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <div class="form-group"><label class="small mb-1" for="inputFirstName">Ad</label><input class="form-control py-4" id="inputFirstName" type="text" placeholder="Adınız" /></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group"><label class="small mb-1" for="inputLastName">Soyad</label><input class="form-control py-4" id="inputLastName" type="text" placeholder="Soyadınız" /></div>
+                                </div>
+                            </div>
+                            <div class="form-group"><label class="small mb-1" for="inputEmailAddress">E-posta</label><input class="form-control py-4" id="inputEmailAddress" type="email" aria-describedby="emailHelp" placeholder="E-posta Adresiniz" /></div>
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <div class="form-group"><label class="small mb-1" for="inputPassword">Parola</label><input class="form-control py-4" id="inputPassword" type="password" placeholder="Parolanız" /></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group"><label class="small mb-1" for="inputConfirmPassword">Parolanızı Tekrar Giriniz</label><input class="form-control py-4" id="inputConfirmPassword" type="password" placeholder="Parolanızı Tekrar Giriniz" /></div>
+                                </div>
+                            </div>
+                            <div class="form-group mt-4 mb-0"><a class="btn btn-primary btn-block" routerLink="/dashboard">Kaydı Tamamla</a></div>
+                        </form>
+                    </div>
+                    <div class="card-footer text-center">
+                        <div class="small"><a routerLink="/auth/login">Üyeliğiniz Var Mı? Giriş Yapın</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div></sb-layout-auth
+>

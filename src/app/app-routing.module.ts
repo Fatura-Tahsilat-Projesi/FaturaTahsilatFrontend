@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 /* Containers */
-import * as dashboardContainers from '../modules/dashboard/containers';
+import * as authContainers from '../modules/auth/containers';
 const routes: Routes = [
   {
     path: '',
@@ -16,10 +17,10 @@ const routes: Routes = [
         ),
   },
   {
-    path: 'faturadetay',
-    component: dashboardContainers.FaturaDuzenleComponent,
-
-  }
+    path: 'auth',
+    loadChildren: () =>
+        import('../modules/auth/auth-routing.module').then(m => m.AuthRoutingModule),
+},
 ];
 
 @NgModule({

@@ -25,6 +25,8 @@ export class FaturaListeleComponent implements OnInit {
   selectedType: any;
   deger: any;
   selectedCategory: any;
+  selectedStatusCode: any;
+  selectedPaymentStatus: any;
   readonly inputElement: HTMLInputElement | undefined;
   constructor(
     private http:HttpClient,
@@ -69,7 +71,8 @@ export class FaturaListeleComponent implements OnInit {
   odemeBilgisi = [
     { id: 0, name: "Ödenmedi"},
     { id: 1, name: "Ödendi"},
-    { id: 2, name: "Beklemede"}
+    { id: 2, name: "Beklemede"},
+    { id: 3, name: "Ertelendi"}
   ];
 
 
@@ -80,10 +83,15 @@ export class FaturaListeleComponent implements OnInit {
     //this.deger = id;
   }
 
-  onChangeStatusCode(categoryIdVariable:any) {
+  onChangeCategory(categoryIdVariable:any) {
     this.selectedCategory = this.faturaTip[categoryIdVariable-1].name;
   }
-  
+  onChangeStatusCode(id:any) {
+    this.selectedStatusCode = this.odemeBilgisi[id].name;
+  }
+  onChangePaymentStatus(id:any) {
+    this.selectedPaymentStatus = this.odemeBilgisi[id].name;
+  }
 
   
   faturaDetayGetir(id: any) {
@@ -152,8 +160,9 @@ export class FaturaListeleComponent implements OnInit {
     document.getElementById('dateOfBirth')?.setAttribute('value', <any>fatura.dueDate);
 
     document.getElementById('invoiceType2')?.setAttribute('value', <any>fatura.invoiceType);
-    this.onChangeStatusCode(fatura.invoiceType);
-
+    this.onChangeCategory(fatura.invoiceType);
+    this.onChangeStatusCode(fatura.statusCode);
+    this.onChangePaymentStatus(fatura.isComplete);
     // document.getElementById('lname').setAttribute('value', fatura.lastname);
     // document.getElementById('dept').setAttribute('value', fatura.department);
     // document.getElementById('email2').setAttribute('value', fatura.email);

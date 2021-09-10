@@ -6,6 +6,7 @@ import { FaturaModel } from "src/models/faturamodel";
 import { InvoiceActivitiesModel } from "src/models/invoiceactivitiesmodel";
 import { InvoiceAndActivitiesData } from "src/modules/data/InvoiceAndActivitiesData";
 import { ServisGelenVeriler } from "src/modules/data/ServisGelenVeriler";
+import { AuthService } from "./auth.service";
 
 const httpOptions = {
     headers: new HttpHeaders({
@@ -21,10 +22,12 @@ export class FaturaService {
     url = "https://localhost:44389/api/invoices/";
     result:ServisGelenVeriler[]=[];
 
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient,
+        private authService:AuthService) {}
 
     getFatura():Observable<ServisGelenVeriler[]> {
-        return this.http.get<ServisGelenVeriler[]>(this.url)
+        //httpOptions.headers.append = this.authService.getToken();
+        return this.http.get<ServisGelenVeriler[]>(this.url, httpOptions)
         .pipe(
             tap(data => console.log(data)),
             catchError(this.handleError)

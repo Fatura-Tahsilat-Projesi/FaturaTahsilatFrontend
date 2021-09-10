@@ -67,7 +67,7 @@ export class TumFaturalarComponent implements OnInit {
   }
 
   onChangeCategory(categoryIdVariable:any) {
-    this.selectedCategory = this.faturaTip[categoryIdVariable-1].name;
+    this.selectedCategory = this.faturaTip[categoryIdVariable].name;
   }
   onChangeStatusCode(id:any) {
     this.selectedStatusCode = this.odemeBilgisi[id].name;

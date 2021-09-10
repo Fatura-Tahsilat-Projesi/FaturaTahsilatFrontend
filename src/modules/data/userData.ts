@@ -7,7 +7,7 @@ export class UserData {
     tcNu: number | undefined;
     address: string | undefined;
     phoneNu: string | undefined;
-    mail: string | undefined;
+    email: string | undefined;
     iban: number | undefined;
     createdAt: Date | undefined;
 }

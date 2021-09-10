@@ -10,6 +10,7 @@ import { DashboardModule } from './dashboard.module';
 import * as dashboardContainers from './containers';
 
 import { FaturaListeleComponent } from './containers/fatura-listele/fatura-listele.component';
+import { AuthGuard } from 'src/guards/auth.guard';
 
 /* Routes */
 export const ROUTES: Routes = [
@@ -24,7 +25,7 @@ export const ROUTES: Routes = [
                 },
             ],
         } as SBRouteData,
-        canActivate: [],
+        canActivate: [AuthGuard],
         component: dashboardContainers.DashboardComponent,
     },
     { 

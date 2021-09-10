@@ -7,13 +7,13 @@ export class UserModel {
     tcNu: number | undefined;
     address: string | undefined;
     phoneNu: string | undefined;
-    mail: string | undefined;
+    email: string | undefined;
     iban: number | undefined;
     createdAt: Date | undefined;
 
     
 
-    constructor(userName:string, name:string, surname:string, authorization: number, tcNu: number, address:string, phoneNu:string, mail:string, iban: number, createdAt: Date){
+    constructor(userName:string, name:string, surname:string, authorization: number, tcNu: number, address:string, phoneNu:string, email:string, iban: number, createdAt: Date){
         this.userName = userName;
         this.name = name;
         this.surname = surname;
@@ -21,7 +21,7 @@ export class UserModel {
         this.tcNu = tcNu;
         this.address = address;
         this.phoneNu = phoneNu;
-        this.mail = mail;
+        this.email = email;
         this.iban = iban;
         this.createdAt = createdAt;
     };

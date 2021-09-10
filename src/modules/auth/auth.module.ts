@@ -10,6 +10,8 @@ import * as authComponents from './components';
 
 /* Components */
 import * as authContainers from './containers';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from 'src/services/auth.interceptor';
 
 
 @NgModule({
@@ -25,6 +27,7 @@ import * as authContainers from './containers';
     FormsModule,
     NavigationModule
   ],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   exports: [...authContainers.containers, ...authComponents.components]
 })
 export class AuthModule { }

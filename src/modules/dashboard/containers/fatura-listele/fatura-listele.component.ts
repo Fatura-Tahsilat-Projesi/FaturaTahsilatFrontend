@@ -84,7 +84,9 @@ export class FaturaListeleComponent implements OnInit {
   }
 
   onChangeCategory(categoryIdVariable:any) {
+    //console.log("categoryIdVariable => " + categoryIdVariable);
     this.selectedCategory = this.faturaTip[categoryIdVariable-1].name;
+    //console.log("this.selectedCategory => " + this.selectedCategory);
   }
   onChangeStatusCode(id:any) {
     this.selectedStatusCode = this.odemeBilgisi[id].name;

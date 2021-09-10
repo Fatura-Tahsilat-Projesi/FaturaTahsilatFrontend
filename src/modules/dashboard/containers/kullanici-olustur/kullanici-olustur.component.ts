@@ -74,7 +74,7 @@ export class KullaniciOlusturComponent implements OnInit {
       tcNu: tcNu.value,
       address: address.value,
       phoneNu: phoneNu.value,
-      mail: mail.value,
+      email: mail.value,
       iban: iban.value,
       createdAt: today
     };

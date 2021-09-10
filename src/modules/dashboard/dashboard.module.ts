@@ -22,6 +22,8 @@ import * as dashboardContainers from './containers';
 // /* Services */
 import * as dashboardServices from './services';
 import { AlertifyService } from 'src/services/alertify.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from 'src/services/auth.interceptor';
 
 @NgModule({
     imports: [
@@ -33,7 +35,7 @@ import { AlertifyService } from 'src/services/alertify.service';
         NavigationModule,
         ChartsModule
     ],
-    providers: [...dashboardServices.services, AlertifyService],
+    providers: [...dashboardServices.services, AlertifyService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
     declarations: [...dashboardContainers.containers, ...dashboardComponents.components],
     exports: [...dashboardContainers.containers, ...dashboardComponents.components],
 })

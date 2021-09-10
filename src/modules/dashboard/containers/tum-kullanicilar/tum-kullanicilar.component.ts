@@ -10,7 +10,7 @@ import { UserData } from 'src/modules/data/userData';
   selector: 'app-tum-kullanicilar',
   templateUrl: './tum-kullanicilar.component.html',
   styleUrls: ['./tum-kullanicilar.component.scss'],
-  providers: [UserService]
+  providers: [UserService, AlertifyService]
 })
 export class TumKullanicilarComponent implements OnInit {
 

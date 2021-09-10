@@ -1,4 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthResponse } from 'src/models/AuthResponse';
+import { UserModel } from 'src/models/usermodel';
+import { AuthService } from 'src/services/auth.service';
 // import { UserService } from '@modules/auth/services';
 
 @Component({
@@ -9,12 +13,30 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 })
 export class TopNavUserComponent implements OnInit {
 
-    user = {
+    user2 = {
         firstName: "Muhammed",
         lastName: "Karadaş",
         email: "test@test.com"
     };
+    userData: AuthResponse | any;
+    isAuthenticated: boolean = false;
+    constructor(
+        private authService: AuthService,
+        private router: Router) {}
+    ngOnInit() {
+        this.authService.user.subscribe(user => {
+            //this.isAuthenticated = !!user;
+            this.isAuthenticated = !!localStorage.getItem('accessToken');
+            //console.log("isAuthenticated => " + this.isAuthenticated);
+            this.userData = user;
+            //console.log("userData => "+JSON.stringify(user));
+        });
+    }
 
-    constructor() {}
-    ngOnInit() {}
+    logout() {
+        this.authService.logout();
+        this.router.navigate(['/auth/login']);
+    }
+
+
 }

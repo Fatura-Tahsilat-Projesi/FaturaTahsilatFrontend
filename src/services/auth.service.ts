@@ -97,7 +97,7 @@ export class AuthService {
                         this.userData.data.accessToken,
                         this.userData.data.accessTokenExpiration
                     );
-                    this.setToken(this.userData.data.accessToken);
+                    this.setToken(this.userData.data.accessToken,this.userData.data.accessTokenExpiration);
                     this.user.next(user);
                 }),
             catchError(this.handleError)
@@ -110,15 +110,18 @@ export class AuthService {
     }
 
 
-    setToken(token: string)
+    setToken(token: string, accessTokenExpiration: string)
     {
         localStorage.setItem('accessToken', token);
+        localStorage.setItem('accessTokenExpiration', accessTokenExpiration);
     }
 
     getToken() {
         return localStorage.getItem('accessToken');
     }
-
+    getTokenExpiration() {
+        return localStorage.getItem('accessTokenExpiration');
+    }
     // TODO => bakılacak hata var!
     get authenticated(): boolean {
         return this.token2 != null;

@@ -20,7 +20,7 @@ export class SignUpComponent implements OnInit {
   public email: string | any;
   public password: string | any;
   public errorMessage: string | any;
-
+  statusCode: number | any;
   constructor(
     private http:HttpClient,
     private authService: AuthService,
@@ -41,9 +41,16 @@ export class SignUpComponent implements OnInit {
       };
       console.log(userInformation);
 
-      this.authService.createUser(userInformation).subscribe(data => 
-        this.router.navigate(['dashboard/kullanicilar'])  
-      );
+      this.authService.createUser(userInformation).subscribe(data => {
+        this.statusCode = data?.statusCode;
+        console.log("statuscode => "+data?.statusCode);
+        console.log("this => "+this.statusCode);
+        if(this.statusCode == 200) {
+        this.alertify.warning("Başarılı şekilde kayıt oldunuz!");
+        }
+        this.router.navigate(['/dashboard'])
+      });
+      
     }
     else {
       this.alertify.warning("Parola ve Parola Tekrarı Aynı Değil!");
@@ -72,7 +79,7 @@ export class SignUpComponent implements OnInit {
       this.loading = false;
       this.errorMessage = 'Lütfen Bilgileri Eksiksiz Olarak Giriniz!';
     }
-
+    
 
     
   }

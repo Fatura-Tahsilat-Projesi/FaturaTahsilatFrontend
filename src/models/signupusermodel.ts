@@ -6,7 +6,7 @@ export class SignupuserModel {
     id?: string | undefined;
     accessToken?: Date | undefined;
     accessTokenExpiration?: Date | undefined;
-
+    statusCode?: string | undefined;
     
 
     constructor(username:string, email:string, password:string){

@@ -23,7 +23,7 @@ const httpOptions = {
 })
 
 export class AuthService {
-    url = "https://faturatahsilat.azurewebsites.net/api/auth/";
+    url = "https://localhost:44389/api/auth/";
     token2: any;
 
     email: any;

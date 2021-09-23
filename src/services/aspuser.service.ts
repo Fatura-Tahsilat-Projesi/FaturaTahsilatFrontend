@@ -17,7 +17,7 @@ const httpOptions = {
 
 @Injectable()
 export class AspUserService {
-    url = "https://faturatahsilat.azurewebsites.net/api/auth/";
+    url = "https://localhost:44389/api/auth/";
 
     constructor(private http: HttpClient) {}
 

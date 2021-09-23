@@ -17,7 +17,7 @@ const httpOptions = {
 @Injectable()
 export class CreditCardService
 {
-    url = "https://faturatahsilat.azurewebsites.net/api/creditCards/";
+    url = "https://localhost:44389/api/creditCards/";
 
     constructor(private http: HttpClient) {}
 

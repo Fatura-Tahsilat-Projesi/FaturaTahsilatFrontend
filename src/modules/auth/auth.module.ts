@@ -12,6 +12,7 @@ import * as authComponents from './components';
 import * as authContainers from './containers';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from 'src/services/auth.interceptor';
+import { AspUserService } from 'src/services/aspuser.service';
 
 
 @NgModule({
@@ -27,7 +28,7 @@ import { AuthInterceptor } from 'src/services/auth.interceptor';
     FormsModule,
     NavigationModule
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}, AspUserService],
   exports: [...authContainers.containers, ...authComponents.components]
 })
 export class AuthModule { }

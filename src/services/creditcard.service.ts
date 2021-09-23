@@ -2,8 +2,8 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http
 import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
 import { catchError, tap } from "rxjs/operators";
-import { InvoiceActivitiesModel } from "src/models/invoiceactivitiesmodel";
-import { InvoiceActivitiesData } from "src/modules/data/invoiceActivitiesData";
+import { CreditCardModel } from "src/models/creditcardmodel";
+import { CreditCardData } from "src/modules/data/creditcarddata";
 
 const httpOptions = {
     headers: new HttpHeaders({
@@ -13,29 +13,59 @@ const httpOptions = {
     })
 };
 
-@Injectable()
-export class InvoiceActivitiesService {
 
-    url = "https://faturatahsilat.azurewebsites.net/api/invoiceActivities/";
-    result:InvoiceActivitiesData[]=[];
-    
+@Injectable()
+export class CreditCardService
+{
+    url = "https://faturatahsilat.azurewebsites.net/api/creditCards/";
+
     constructor(private http: HttpClient) {}
 
-    getInvoiceActivities():Observable<InvoiceActivitiesModel[]> {
-        return this.http.get<InvoiceActivitiesModel[]>(this.url)
+    getAllCards():Observable<CreditCardData[]>
+    {
+        return this.http.get<CreditCardData[]>(this.url)
         .pipe(
             tap(data => console.log(data)),
             catchError(this.handleError)
         );
     }
 
-    getInvoiceActivitiesById(id: number): Observable<InvoiceActivitiesData> {
-        return this.http.get<InvoiceActivitiesData>(this.url + id)
+    getCreditCardById(id: number): Observable<CreditCardData> {
+        return this.http.get<CreditCardData>(this.url + id)
         .pipe(
             tap(data => console.log(data)),
             catchError(this.handleError)
         );
     }
+
+    createCreditCard(creditCardInformation: CreditCardModel): Observable<CreditCardModel>
+    {
+        return this.http.post<CreditCardModel>(this.url, creditCardInformation, httpOptions)
+        .pipe(
+            tap(data => console.log(data)),
+            catchError(this.handleError)
+        )
+    }
+
+
+    updateCreditCard(creditCardInformation: CreditCardModel): Observable<CreditCardModel> {
+        return this.http.put<CreditCardModel>(this.url, creditCardInformation, httpOptions)
+        .pipe(
+            tap(data => console.log(data)),
+            catchError(this.handleError)
+        );
+    }
+
+
+    deleteCreditCard(id: number): Observable<unknown>
+    {
+        return this.http.delete(this.url + id, httpOptions)
+        .pipe(
+            tap(data => console.log(data)),
+            catchError(this.handleError)
+        );
+    }
+
 
     private handleError(error: HttpErrorResponse) {
 
@@ -67,7 +97,5 @@ export class InvoiceActivitiesService {
 
         return throwError("Bir hata oluştu!");
     }
-
-
 
 }

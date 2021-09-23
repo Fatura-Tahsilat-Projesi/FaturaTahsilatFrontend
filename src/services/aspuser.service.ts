@@ -2,8 +2,10 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http
 import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
 import { catchError, tap } from "rxjs/operators";
-import { InvoiceActivitiesModel } from "src/models/invoiceactivitiesmodel";
-import { InvoiceActivitiesData } from "src/modules/data/invoiceActivitiesData";
+import { AspUserModel } from "src/models/aspusermodel";
+import { AspUserData } from "src/modules/data/aspuser.data";
+
+
 
 const httpOptions = {
     headers: new HttpHeaders({
@@ -14,28 +16,32 @@ const httpOptions = {
 };
 
 @Injectable()
-export class InvoiceActivitiesService {
+export class AspUserService {
+    url = "https://faturatahsilat.azurewebsites.net/api/auth/";
 
-    url = "https://faturatahsilat.azurewebsites.net/api/invoiceActivities/";
-    result:InvoiceActivitiesData[]=[];
-    
     constructor(private http: HttpClient) {}
 
-    getInvoiceActivities():Observable<InvoiceActivitiesModel[]> {
-        return this.http.get<InvoiceActivitiesModel[]>(this.url)
+
+
+    getAllUser():Observable<AspUserData[]>
+    {
+        return this.http.get<AspUserData[]>(this.url+'GetAllUser')
+        .pipe(
+            tap(data => console.log(data)),
+            catchError(this.handleError)
+        ); 
+    }
+
+
+    getUserById(id: number): Observable<AspUserModel> 
+    {
+        return this.http.get<AspUserModel>(this.url + id)
         .pipe(
             tap(data => console.log(data)),
             catchError(this.handleError)
         );
     }
 
-    getInvoiceActivitiesById(id: number): Observable<InvoiceActivitiesData> {
-        return this.http.get<InvoiceActivitiesData>(this.url + id)
-        .pipe(
-            tap(data => console.log(data)),
-            catchError(this.handleError)
-        );
-    }
 
     private handleError(error: HttpErrorResponse) {
 
@@ -67,7 +73,5 @@ export class InvoiceActivitiesService {
 
         return throwError("Bir hata oluştu!");
     }
-
-
 
 }

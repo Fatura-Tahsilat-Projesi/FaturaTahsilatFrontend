@@ -15,7 +15,7 @@ const httpOptions = {
 @Injectable()
 export class UserService
 {
-    url = "https://localhost:44389/api/users/";
+    url = "https://faturatahsilat.azurewebsites.net/api/users/";
 
     constructor(private http: HttpClient) {}
 

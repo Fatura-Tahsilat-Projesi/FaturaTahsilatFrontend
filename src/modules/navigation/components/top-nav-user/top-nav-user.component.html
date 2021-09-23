@@ -5,11 +5,10 @@
     <div *ngIf="isAuthenticated" class="dropdown-menu dropdown-menu-right" ngbDropdownMenu aria-labelledby="dropdownUser">
         <h6 class="dropdown-header">
             <div class="dropdown-user-details">
-                <div class="dropdown-user-details-name"> user.firstName  user.lastName</div>
-                <div class="dropdown-user-details-email">{{userData.email}}</div>
+                <div class="dropdown-user-details-name">{{username}}</div>
+                <div class="dropdown-user-details-email">{{email}}</div>
             </div>
         </h6>
-        <p>|{{userData.token3}}</p>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" routerLink="ayarlar">Ayarlar</a><a class="dropdown-item" routerLink="/dashboard">Activity Log</a>
         <div class="dropdown-divider"></div>

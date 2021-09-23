@@ -23,6 +23,7 @@ export class User {
             return null;
         }
         console.log("accessTokenExpiration => "+localStorage.getItem('accessTokenExpiration'));
+        console.log("id => "+localStorage.getItem('id'));
         //console.log("_tokenExpirationDate => "+this._tokenExpirationDate);
         return this._token;
     }

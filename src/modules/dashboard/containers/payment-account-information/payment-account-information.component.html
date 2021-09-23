@@ -26,23 +26,81 @@
     </div>
 
     <hr>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item dropdown">
+            <select class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Firma Tipi
+              <option class="dropdown-item">Hepsi</option>
+          </select>
+          </li>
+          
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Ara" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Ara</button>
+          <button class="btn btn-outline-primary my-2 ml-2 my-sm-0" routerLink="../yenikart" type="submit">Yeni Ekle</button>
+        </form>
+      </div>
+      </nav>
 
     <p>Kayıtlı Kredi Kartlarım</p>
-
-    <div>
-        <table border="4">
-            <td><b>#</b></td>
-            <td><b>Kart Numarası:</b></td>
-            <td><b>Banka</b></td>
-            <tr>
-                <td><b>1</b></td>
-                <td>1111 2222 3333 444</td>
-                <td>Vakıfbank<td>
-            </tr>
+    
+    <div *ngIf="!searchActive else searcTable">
+        <table border="4" *ngIf="result.length != 0 else no_data">
+          <td><b>#</b></td>
+          <td><b>Kart Numarası</b></td>
+          <td><b>Son Kullanım Ayı</b></td>
+          <td><b>Son Kullanım Yılı</b></td>
+          <td><b>CVC2</b></td>
+          <td><b>Bakiye</b></td>
+          <td><b>Kart Tipi</b></td>
+          <td><b>Oluşturulma Tarihi</b></td>
+          <td><b>Düzenle</b></td>
+          <td><b>Sil</b></td>
+          <tr *ngFor="let deger of result">
+              <td><b>{{deger.id}}</b></td>
+              <td>{{deger.cardNumber}}</td>
+              <td>{{deger.expMonth}}</td>
+              <td>{{deger.expYear}}</td>
+              <td>{{deger.cvC2}}</td>
+              <td>{{deger.balance}}</td>
+              <td>{{deger.creditCardType}}</td>
+              <td>{{deger.createdAt}}</td>
+              <td><button class="btn btn-warning" routerLink="../kartdetay/{{deger.id}}"> Düzenle</button></td>
+              <td><button class="btn btn-danger" (click)="deleteCreditCard(deger.id)"><i class="fa fa-trash"></i> Sil</button></td>
+          </tr>
         </table>
-    </div>
+        </div>
 
+    <ng-template #searcTable>
+        <div>
+        <p>Arama Sonuçları</p>
+        <table border="4" *ngIf="result.length != 0 else no_data">
+        <td><b>#</b></td>
+        <td><b>Kart Numarası</b></td>
+        <td><b>Firma Kategori</b></td>
+        <td><b>Firma Kodu</b></td>
+        <td><b>Düzenle</b></td>
+        <td><b>Sil</b></td>
+          <tr *ngFor="let deger of result">
+            <td><b>{{deger.id}}</b></td>
+            <td>{{deger.cardNumber}}</td>
+            <td>{{deger.expMonth}}</td>
+            <td>{{deger.expYear}}</td>
+            <td><button class="btn btn-warning" routerLink="../firmadetay/{{deger.id}}"> Düzenle</button></td>
+            <td><button class="btn btn-danger" (click)="deleteCreditCard(deger.id)"><i class="fa fa-trash"></i> Sil</button></td>
+          </tr>
+        </table>
+        </div>
+        </ng-template>
 
     </sb-layout-dashboard>
     
-    
+    <ng-template #no_data>
+        <div class="alert alert-warning">Veri Bulunamadı!</div>
+    </ng-template>

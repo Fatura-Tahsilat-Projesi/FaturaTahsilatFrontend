@@ -17,7 +17,9 @@ const httpOptions = {
 })
 export class FaturaOlusturService {
   //url =  "https://localhost:44389/api/TodoItems/";
-  url =  "https://localhost:44347/api/products/";
+  //url =  "https://localhost:44347/api/products/";
+  url =  "https://faturatahsilat.azurewebsites.net/api/products/";
+  
   handleError: any;
   constructor(private http:HttpClient) { }
 

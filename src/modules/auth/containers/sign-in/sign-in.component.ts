@@ -4,6 +4,8 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthResponse } from 'src/models/AuthResponse';
+import { AspUserData } from 'src/modules/data/aspuser.data';
+import { AlertifyService } from 'src/services/alertify.service';
 import { AuthService } from 'src/services/auth.service';
 import { NavigationService } from '../../../navigation/services';
 
@@ -20,9 +22,13 @@ export class SignInComponent implements OnInit {
   public errorMessage: string | any;
   loading: boolean = false;
   data: any = {};
+  resultAspUser: AspUserData | undefined;
+  aspUsername: string="username";
+  responseAspUser: any = {};
   constructor(
     private router: Router,
-    private authService: AuthService ) { }
+    private authService: AuthService,
+    private alertify: AlertifyService ) { }
 
   ngOnInit(): void {
   }
@@ -46,6 +52,15 @@ export class SignInComponent implements OnInit {
         //console.log("sI Response => "+response);
         this.data = response;
         response = this.data.data;
+        
+        var id: string | null = localStorage.getItem('id');
+        this.authService.getAspUserById(id).subscribe(data => {
+        this.responseAspUser = data;
+        data = this.responseAspUser.data;
+        this.aspUsername = <any> data.userName;
+        console.log("aspUsername => "+this.aspUsername);
+        localStorage.setItem('username',this.aspUsername);
+        });
         //response = response.data.data;
         //console.log(JSON.stringify(this.data));
         //console.log("response/");

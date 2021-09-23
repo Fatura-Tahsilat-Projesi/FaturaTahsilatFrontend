@@ -20,7 +20,7 @@
                 <td>{{deger.companyId}}</td>
                 <td>{{deger.transactionDate}}</td>
                 <td>{{deger.statusCode}}</td>
-                <td><button class="btn btn-primary"><i class="fa fa-trash"></i> Detay Görüntüle</button></td>
+                <td><button class="btn btn-primary" (click)="openDetails(content, deger)"><i class="fa fa-trash"></i> Detay Görüntüle</button></td>
             </tr>
         </table>
     </div>
@@ -34,3 +34,52 @@
         Veri Bulunamadı!
     </div>
 </ng-template>
+
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Fatura Hareket Detayları</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <div class="mb-3">
+            <label for="invoiceId" class="form-label">Fatura Id:</label>
+            <input disabled #invoiceId id="invoiceId" type="text" class="form-control" />
+          </div>
+  
+          <div class="mb-3">
+            <label for="userId" class="form-label">Kullanıcı Id:</label>
+            <input disabled #userId id="userId" type="number" class="form-control" />
+          </div>
+  
+          <div class="mb-3">
+            <label for="companyId" class="form-label">Şirket Id:</label>
+            <input disabled #companyId id="companyId" type="text" class="form-control" />
+          </div>
+  
+          <label for="dateOfBirth">İşlem Tarihi:</label>
+          <div class="input-group">
+            <input disabled id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker
+              #dp="ngbDatepicker" />
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
+            </div>
+          </div>
+  
+          <div class="mb-3">
+            <label for="statusCode" class="form-label">Durum Kodu:</label>
+            <input disabled #statusCode id="statusCode" [ngModel]="selectedStatusCode" (ngModelChange)="onChangeStatusCode($event)" type="text" class="form-control" value="selectedStatusCode" name="statuscodename"/>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">
+        Geri
+      </button>
+    </div>
+    </ng-template>

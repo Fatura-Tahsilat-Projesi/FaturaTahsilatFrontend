@@ -4,7 +4,9 @@ import { BehaviorSubject, Observable, Subject, throwError } from "rxjs";
 import { catchError, tap, map } from "rxjs/operators";
 import { AuthResponse } from "src/models/AuthResponse";
 import { User } from "src/models/userauthmodel";
+import { AspUserData } from "src/modules/data/aspuser.data";
 import { SignupuserModel } from '../models/signupusermodel';
+import { AspUserService } from "./aspuser.service";
 const httpOptions = {
     headers: new HttpHeaders({
         'Accept': 'text/html, application/xhtml+xml, */*',
@@ -17,11 +19,11 @@ const httpOptions = {
 
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 
 export class AuthService {
-    url = "https://localhost:44389/api/auth/";
+    url = "https://faturatahsilat.azurewebsites.net/api/auth/";
     token2: any;
 
     email: any;
@@ -30,9 +32,11 @@ export class AuthService {
     _tokenExpirationDate: any;
     userTmp = new User(null, null, null, null) ;
     user = new BehaviorSubject<User>(this.userTmp);
+    responseUser: any = {};
+    username: string | undefined;
     
 
-   
+
 
     constructor(private http: HttpClient) {}
 
@@ -68,6 +72,34 @@ export class AuthService {
     userData: any = {};
     
 
+    getAllAspUser():Observable<AspUserData[]>
+    {
+        return this.http.get<AspUserData[]>(this.url+ "GetAllUser")
+        .pipe(
+            tap(data => console.log(data)),
+            catchError(this.handleError)
+        );
+    }
+
+
+    getAspUserById(id: string | null): Observable<AspUserData> 
+    {
+        return this.http.post<AspUserData>(this.url + "GetByIdUser",{ id: id})
+        .pipe(
+            tap(data => data),
+            catchError(this.handleError)
+        );
+    }
+
+    getAspUserRoleById(id: string | null): Observable<AspUserData> 
+    {
+        return this.http.post<AspUserData>(this.url + "GetByIdUserRole",{ id: id})
+        .pipe(
+            tap(data => data),
+            catchError(this.handleError)
+        );
+    }
+    
     signUp(username: string, email: string, password: string) {
         return this.http.post<AuthResponse>(this.url + '', {username: username, email: email, password: password, returnSecureToken: true}, httpOptions)
         .pipe(
@@ -97,7 +129,14 @@ export class AuthService {
                         this.userData.data.accessToken,
                         this.userData.data.accessTokenExpiration
                     );
-                    this.setToken(this.userData.data.accessToken,this.userData.data.accessTokenExpiration);
+                    this.setToken(this.userData.data.accessToken,this.userData.data.accessTokenExpiration,this.userData.data.userIdValue);
+                    // this.aspUserService.getUserById(this.userData.data.userIdValue).subscribe( data => {
+                    //     this.responseUser = data;
+                    //     data = this.responseUser.data;
+                    //     this.username = data.userName;
+                    //     this.setUsernameStorage(<any>data.userName);
+                    //     console.log("responseUser => "+this.responseUser);
+                    // });
                     this.user.next(user);
                 }),
             catchError(this.handleError)
@@ -107,13 +146,19 @@ export class AuthService {
     logout() {
         this.user.next(this.userTmp);
         localStorage.removeItem('accessToken');
+        localStorage.clear();
     }
 
 
-    setToken(token: string, accessTokenExpiration: string)
+    setToken(token: string, accessTokenExpiration: string, id:string)
     {
         localStorage.setItem('accessToken', token);
         localStorage.setItem('accessTokenExpiration', accessTokenExpiration);
+        localStorage.setItem('id', id);
+    }
+    setUsernameStorage(username: string)
+    {
+        localStorage.setItem('username', username);
     }
 
     getToken() {

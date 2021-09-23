@@ -19,7 +19,7 @@ const httpOptions = {
 @Injectable()
 export class FaturaService {
 
-    url = "https://localhost:44389/api/invoices/";
+    url = "https://faturatahsilat.azurewebsites.net/api/invoices/";
     result:ServisGelenVeriler[]=[];
 
     constructor(private http: HttpClient,

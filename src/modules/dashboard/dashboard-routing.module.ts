@@ -173,6 +173,24 @@ export const ROUTES: Routes = [
         component: dashboardContainers.KullaniciOlusturComponent
     },
     {
+        path: 'yenikart',
+        data: {
+            title: 'Dashboard',
+            breadcrumbs: [
+                {
+                    text: 'Dashboard',
+                    link: '/dashboard/',
+                },
+                {
+                    text: 'Yeni Kredi Kartı Oluştur',
+                    active: true,
+                },
+            ],
+        } as SBRouteData,
+        canActivate: [],
+        component: dashboardContainers.NewCreditCardComponent
+    },
+    {
         path: 'faturalar',
         data: {
             title: 'Dashboard',
@@ -210,6 +228,24 @@ export const ROUTES: Routes = [
     },
     {
         path: 'kullanicilar',
+        data: {
+            title: 'Dashboard',
+            breadcrumbs: [
+                {
+                    text: 'Dashboard',
+                    link: '/dashboard/',
+                },
+                {
+                    text: 'Tüm Kullanıcılar',
+                    active: true,
+                },
+            ],
+        } as SBRouteData,
+        canActivate: [],
+        component: dashboardContainers.TumKullanicilarAspComponent
+    },
+    {
+        path: 'ozelkullanicilar',
         data: {
             title: 'Dashboard',
             breadcrumbs: [

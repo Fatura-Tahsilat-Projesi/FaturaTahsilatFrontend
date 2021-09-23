@@ -21,6 +21,7 @@ export class SignUpComponent implements OnInit {
   public password: string | any;
   public errorMessage: string | any;
   statusCode: number | any;
+
   constructor(
     private http:HttpClient,
     private authService: AuthService,

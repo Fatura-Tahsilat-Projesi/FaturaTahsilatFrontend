@@ -1,5 +1,18 @@
 <!-- <sb-layout-dashboard><sb-dashboard-head title="Dashboard" [hideBreadcrumbs]="false"></sb-dashboard-head><sb-dashboard-cards></sb-dashboard-cards><sb-dashboard-charts></sb-dashboard-charts><sb-dashboard-tables></sb-dashboard-tables></sb-layout-dashboard> -->
 
 
-<app-dashboard-layout><sb-dashboard-head title="Ana Sayfa" [hideBreadcrumbs]="false"></sb-dashboard-head><p>Kullanıcı İşlemler</p><sb-dashboard-cards></sb-dashboard-cards><hr><p>Admin İşlemler</p><app-admin-dashboard-cards></app-admin-dashboard-cards></app-dashboard-layout>
+<app-dashboard-layout>
+    <sb-dashboard-head title="Ana Sayfa" [hideBreadcrumbs]="false">
+
+    </sb-dashboard-head>
+    <p>Kullanıcı İşlemler</p>
+    <sb-dashboard-cards>
+
+    </sb-dashboard-cards>
+    <hr>
+    <p>Admin İşlemler</p>
+    <app-admin-dashboard-cards *ngIf="role == 'Employee'">
+
+    </app-admin-dashboard-cards>
+</app-dashboard-layout>
 

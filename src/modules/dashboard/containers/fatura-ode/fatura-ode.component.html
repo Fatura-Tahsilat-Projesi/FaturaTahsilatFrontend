@@ -1,52 +1,143 @@
-
 <sb-layout-dashboard [static]="true"
-><sb-dashboard-head title="Fatura Öde" [hideBreadcrumbs]="false"></sb-dashboard-head>
+  ><sb-dashboard-head
+    title="Fatura Ödeme Sayfası"
+    [hideBreadcrumbs]="false"
+  ></sb-dashboard-head>
 
-<form>
-    <hr>
+  <form>
+    <hr />
     <div class="col col-md-6">
-        <label for="selectedFatura" class="form-label">Fatura Seç:</label>
-        <select #selectedFatura class="form-select form-control form-control-sm">
-            <option *ngFor="let fatura of result" [value]="fatura.invoiceId" (click)="verileriGetir(fatura.invoiceId)">{{fatura.name}}</option>
-        </select>
+      <label for="selectedFatura" class="form-label">Fatura Seç:</label>
+      <select #selectedFatura class="form-select form-control form-control-sm">
+        <option
+          *ngFor="let fatura of result"
+          [value]="fatura.invoiceId"
+          (click)="verileriGetir(fatura.invoiceId)"
+        >
+          {{ fatura.name }}
+        </option>
+      </select>
     </div>
-    
-    <!-- <div class="col col-md-3">
-        <label for="categoryId" class="form-label">Fatura Tipi:</label>
-        <select #categoryId class="form-select form-control form-control-sm">
-            <option *ngFor="let tip of faturaTip" [value]="tip.id">{{tip.name}}</option>
-        </select>
-    </div> -->
-    <hr>
-    <div class="col col-md-3">
+
+    <hr />
+    <div class="col col-md-6">
+      <label for="selectedPaymentType" class="form-label"
+        >Ödeme Yöntemi Seç:</label
+      >
+      <select
+        #selectType
+        [ngModel]=""
+        class="form-select form-control form-control-sm"
+        (ngModelChange)="onChange($event)"
+        name="selectedpaymenttype"
+      >
+        <option *ngFor="let c of countries" [value]="c.id">{{ c.name }}</option>
+      </select>
+    </div>
+    <hr />
+    <!-- <div *ngIf="selectType.selectedIndex === selectType.options.length - 5">
+      <div class="col col-md-3">
         <label for="name" class="form-label">Kart Numarası:</label>
-        <input #name type="text" class="form-control" disabled>
-    </div>
-    <div class="col col-md-3">
-        <label for="name" class="form-label">Son Kullanım Tarihi (Ay/Yıl):</label>
-        <input #name type="text" class="form-control" disabled>
-    </div>
-    <div class="col col-md-3">
+        <input #name type="text" class="form-control" disabled />
+      </div>
+      <div class="col col-md-3">
+        <label for="name" class="form-label"
+          >Son Kullanım Tarihi (Ay/Yıl):</label
+        >
+        <input #name type="text" class="form-control" disabled />
+      </div>
+      <div class="col col-md-3">
         <label for="name" class="form-label">Güvenlik Numarası(CVC2):</label>
-        <input #name type="text" class="form-control" disabled>
+        <input #name type="text" class="form-control" disabled />
+      </div>
+      <hr />
+    </div> -->
+
+    <!-- -->
+    <div *ngIf="selectType.selectedIndex === selectType.options.length - 2">
+      <div class="col col-md-3">
+        <label for="name" class="form-label">Kart Numarası:</label>
+        <input #name type="text" class="form-control" disabled />
+      </div>
+      <div class="col col-md-3">
+        <label for="name" class="form-label"
+          >Son Kullanım Tarihi (Ay/Yıl):</label
+        >
+        <input #name type="text" class="form-control" disabled />
+      </div>
+      <div class="col col-md-3">
+        <label for="name" class="form-label">Güvenlik Numarası(CVC2):</label>
+        <input #name type="text" class="form-control" disabled />
+      </div>
+      <hr />
     </div>
+    <!-- -->
 
-    <hr>
+    <!-- -->
+    <div *ngIf="selectType.selectedIndex === selectType.options.length - 3">
+      <div class="col col-md-3">
+        <label for="name" class="form-label">Kart Numarası:</label>
+        <input #name type="text" class="form-control" disabled />
+      </div>
+      <div class="col col-md-3">
+        <label for="name" class="form-label"
+          >Son Kullanım Tarihi (Ay/Yıl):</label
+        >
+        <input #name type="text" class="form-control" disabled />
+      </div>
+      <div class="col col-md-3">
+        <label for="name" class="form-label">Güvenlik Numarası(CVC2):</label>
+        <input #name type="text" class="form-control" disabled />
+      </div>
+      <hr />
+    </div>
+    <!-- -->
 
+    <!-- -->
+    <div *ngIf="selectType.selectedIndex === selectType.options.length - 4">
+      <div class="col col-md-3">
+        <label for="name" class="form-label">Kart Numarası:</label>
+        <input #name type="text" class="form-control" disabled />
+      </div>
+      <div class="col col-md-3">
+        <label for="name" class="form-label"
+          >Son Kullanım Tarihi (Ay/Yıl):</label
+        >
+        <input #name type="text" class="form-control" disabled />
+      </div>
+      <div class="col col-md-3">
+        <label for="name" class="form-label">Güvenlik Numarası(CVC2):</label>
+        <input #name type="text" class="form-control" disabled />
+      </div>
+      <hr />
+    </div>
+    <!-- -->
+
+    <!-- Kredi Kartı-->
+    <div *ngIf="selectType.selectedIndex === selectType.options.length - 1">
+      <div class="col col-md-6">
+        <label for="selectedKart" class="form-label">Kredi Kartı Seç:</label>
+        <select #selectedKart class="form-select form-control form-control-sm">
+          <option
+            *ngFor="let kart of resultCreditCard"
+            [value]="kart.cardNumber"
+            (click)="kartverileriniGetir(kart.id)"
+          >
+            {{ kart.cardNumber }}
+          </option>
+        </select>
+      </div>
+      <hr />
+    </div>
+    <!-- -->
 
     <div class="col col-md-12 mt-3">
-        <button class="col col-md-2 mr-2 btn btn-success" (click)="successPayment(selectedFatura.value)">Ödeme Yap(Yeterli Bakiye)</button>
-        <button class="col col-md-3 mr-2 btn btn-danger" (click)="failPayment(selectedFatura.value)">Ödeme Yap(Yetersiz Bakiye)</button>
-        <button class="col col-md-3  btn btn-primary" (click)="provisionPayment(selectedFatura.value)">Ödeme Yap(Provizyonda Beklemede)</button>
-
-
-    </div> 
-    <div class="col col-md-6 mt-3">
-        
-    </div> 
-    <div class="col col-md-6 mt-3">
-    </div> 
-</form>
-
-
+      <button
+        class="col col-md-2 mr-2 btn btn-success"
+        (click)="successPayment(selectedFatura.value)"
+      >
+        Ödeme Yap
+      </button>
+    </div>
+  </form>
 </sb-layout-dashboard>

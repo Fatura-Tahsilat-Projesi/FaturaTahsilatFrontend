@@ -58,7 +58,6 @@
           <td><b>Son Kullanım Yılı</b></td>
           <td><b>CVC2</b></td>
           <td><b>Bakiye</b></td>
-          <td><b>Kart Tipi</b></td>
           <td><b>Oluşturulma Tarihi</b></td>
           <td><b>Düzenle</b></td>
           <td><b>Sil</b></td>
@@ -69,7 +68,6 @@
               <td>{{deger.expYear}}</td>
               <td>{{deger.cvC2}}</td>
               <td>{{deger.balance}}</td>
-              <td>{{deger.creditCardType}}</td>
               <td>{{deger.createdAt}}</td>
               <td><button class="btn btn-warning" routerLink="../kartdetay/{{deger.id}}"> Düzenle</button></td>
               <td><button class="btn btn-danger" (click)="deleteCreditCard(deger.id)"><i class="fa fa-trash"></i> Sil</button></td>

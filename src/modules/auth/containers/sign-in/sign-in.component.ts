@@ -13,7 +13,7 @@ import { NavigationService } from '../../../navigation/services';
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.scss'],
-  providers: [AuthService]
+  providers: [AuthService,AlertifyService]
 })
 export class SignInComponent implements OnInit {
 
@@ -70,9 +70,11 @@ export class SignInComponent implements OnInit {
         //console.log(this.data.data.accessToken);
         //console.log(this.authService.getToken());
         this.loading = false;
+        this.alertify.success("Başarıyla Giriş Yaptınız!");
         this.router.navigate(['/dashboard']);
       }, err => {
         this.errorMessage = err;
+        this.alertify.error("Hata!"+err);
         //console.log("err=>"+err);
         this.loading = false;
       })

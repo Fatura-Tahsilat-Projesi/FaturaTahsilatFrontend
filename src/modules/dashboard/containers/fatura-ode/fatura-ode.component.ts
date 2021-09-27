@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FaturaModel } from 'src/models/faturamodel';
 import { CreditCardData } from 'src/modules/data/creditcarddata';
 import { InvoiceData } from 'src/modules/data/invoiceData';
+import { ServisGelenVeriler } from 'src/modules/data/ServisGelenVeriler';
 import { AlertifyService } from 'src/services/alertify.service';
 import { CreditCardService } from 'src/services/creditcard.service';
 import { FaturaService } from 'src/services/fatura.service';
@@ -39,6 +40,8 @@ export class FaturaOdeComponent implements OnInit {
 
   result:InvoiceData[]=[];
   resultCreditCard:CreditCardData[]=[];
+  fatura: ServisGelenVeriler | undefined;
+
   ngOnInit(): void {
     this.faturaService.getFatura().subscribe(data =>{
       this.result = data;
@@ -87,31 +90,41 @@ export class FaturaOdeComponent implements OnInit {
    
     //const successCode=1;
     //this.faturaDetay?.statusCode = successCode;
-    if(this.faturaDetay) {
+
+    // this.faturaService.getFaturaById(id).subscribe( data => {
+    //   this.fatura = data;
+    //   console.log("odeme oncesi data => "+data);
+    // });
+    //this.fatura = <any>this.verileriGetir(id);
+    this.fatura =<any>this.result[id];
+    console.log("this.fatura => "+this.fatura);
+    if(this.fatura?.invoiceId == null || this.fatura?.invoiceId == undefined) {
+      console.log("else girildi, null!");
+      this.alertify.error("Fatura Verileri Getirilemedi!");
+    } else {
     console.log("if girildi, null değil => "+this.faturaDetay);
 
     
     const faturaBilgileri = {
-      invoiceId: this.faturaDetay?.invoiceId,
-      invoiceNu:  this.faturaDetay?.invoiceNu,
+      invoiceId: this.fatura?.invoiceId,
+      invoiceNu:  this.fatura?.invoiceNu,
       //Math.floor(Math.random() * (99999999999 -  10000000000)) + 10000000000;
-      name:  this.faturaDetay?.name,
-      total: this.faturaDetay?.total,
-      totalVat:  this.faturaDetay?.totalVat,
-      excludingVat:  this.faturaDetay?.excludingVat,
-      dueDate:  this.faturaDetay?.dueDate,
+      name:  this.fatura?.name,
+      total: this.fatura?.total,
+      totalVat:  this.fatura?.totalVat,
+      excludingVat:  this.fatura?.excludingVat,
+      dueDate:  this.fatura?.dueDate,
       isComplete:  1,
-      invoiceType: this.faturaDetay?.invoiceType,
+      invoiceType: this.fatura?.invoiceType,
       statusCode:  1,
-      companyId:  this.faturaDetay?.companyId,
-      userId:  this.faturaDetay?.userId
+      companyId:  this.fatura?.companyId,
+      userId:  this.fatura?.userId
       };
 
-    this.faturaService.updateInvoice(faturaBilgileri).subscribe(data => 
-      this.router.navigate(['dashboard/faturalar'])  
-    );
-  } else {
-    console.log("else girildi, null!");
+      this.faturaService.updateInvoice(faturaBilgileri).subscribe(data => 
+        this.router.navigate(['dashboard/faturalar'])  
+      );
+      this.alertify.success("Ödeme Talebiniz Alındı!");
   }
   }
 

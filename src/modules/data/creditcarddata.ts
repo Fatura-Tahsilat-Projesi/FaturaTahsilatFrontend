@@ -1,6 +1,6 @@
 export class CreditCardData {
     id: number | undefined;
-    userId: number | undefined;
+    userId: string | undefined;
     cardNumber: string | undefined;
     expMonth: number | undefined;
     expYear: number | undefined;

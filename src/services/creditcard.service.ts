@@ -29,6 +29,14 @@ export class CreditCardService
             catchError(this.handleError)
         );
     }
+    getAllUserCards(userId: number):Observable<CreditCardData[]>
+    {
+        return this.http.get<CreditCardData[]>(this.url+userId+'/allcards')
+        .pipe(
+            tap(data => console.log(data)),
+            catchError(this.handleError)
+        );
+    }
 
     getCreditCardById(id: number): Observable<CreditCardData> {
         return this.http.get<CreditCardData>(this.url + id)

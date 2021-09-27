@@ -17,12 +17,16 @@
       </div>
       <div class="col col-md-6">
         <label for="ExpYear" class="form-label">Son Kullanım Yılı:</label>
+        <input #ExpYear type="text" class="form-control" />
+      </div>
+      <!-- <div class="col col-md-6">
+        <label for="ExpYear" class="form-label">Son Kullanım Yılı:</label>
         <select #ExpYear class="form-select form-control form-control-sm">
           <option *ngFor="let tip of faturaTip" [value]="tip.id">
             {{ tip.name }}
           </option>
         </select>
-      </div>
+      </div> -->
     <div class="col col-md-6">
         <label for="cvc2" class="form-label">CVC2:</label>
         <input #cvc2 type="text" class="form-control" />

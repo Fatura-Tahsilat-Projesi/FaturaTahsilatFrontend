@@ -49,8 +49,9 @@
       </nav>
 
     <p>Kayıtlı Kredi Kartlarım</p>
-    
-    <div *ngIf="!searchActive else searcTable">
+            
+    <!-- !searchActive else searcTable && *ngIf="userIdValue == deger.userId" -->
+    <div *ngIf="!searchActive && userIdValue == responseUserId else searcTable">
         <table border="4" *ngIf="result.length != 0 else no_data">
           <td><b>#</b></td>
           <td><b>Kart Numarası</b></td>
@@ -71,28 +72,34 @@
               <td>{{deger.createdAt}}</td>
               <td><button class="btn btn-warning" routerLink="../kartdetay/{{deger.id}}"> Düzenle</button></td>
               <td><button class="btn btn-danger" (click)="deleteCreditCard(deger.id)"><i class="fa fa-trash"></i> Sil</button></td>
-          </tr>
+            </tr>
         </table>
         </div>
-
+    <!-- && userIdValue == responseUserId -->
     <ng-template #searcTable>
         <div>
         <p>Arama Sonuçları</p>
         <table border="4" *ngIf="result.length != 0 else no_data">
-        <td><b>#</b></td>
-        <td><b>Kart Numarası</b></td>
-        <td><b>Firma Kategori</b></td>
-        <td><b>Firma Kodu</b></td>
-        <td><b>Düzenle</b></td>
-        <td><b>Sil</b></td>
+          <td><b>#</b></td>
+          <td><b>Kart Numarası</b></td>
+          <td><b>Son Kullanım Ayı</b></td>
+          <td><b>Son Kullanım Yılı</b></td>
+          <td><b>CVC2</b></td>
+          <td><b>Bakiye</b></td>
+          <td><b>Oluşturulma Tarihi</b></td>
+          <td><b>Düzenle</b></td>
+          <td><b>Sil</b></td>
           <tr *ngFor="let deger of result">
-            <td><b>{{deger.id}}</b></td>
-            <td>{{deger.cardNumber}}</td>
-            <td>{{deger.expMonth}}</td>
-            <td>{{deger.expYear}}</td>
-            <td><button class="btn btn-warning" routerLink="../firmadetay/{{deger.id}}"> Düzenle</button></td>
-            <td><button class="btn btn-danger" (click)="deleteCreditCard(deger.id)"><i class="fa fa-trash"></i> Sil</button></td>
-          </tr>
+              <td><b>{{deger.id}}</b></td>
+              <td>{{deger.cardNumber}}</td>
+              <td>{{deger.expMonth}}</td>
+              <td>{{deger.expYear}}</td>
+              <td>{{deger.cvC2}}</td>
+              <td>{{deger.balance}}</td>
+              <td>{{deger.createdAt}}</td>
+              <td><button class="btn btn-warning" routerLink="../kartdetay/{{deger.id}}"> Düzenle</button></td>
+              <td><button class="btn btn-danger" (click)="deleteCreditCard(deger.id)"><i class="fa fa-trash"></i> Sil</button></td>
+            </tr>
         </table>
         </div>
         </ng-template>

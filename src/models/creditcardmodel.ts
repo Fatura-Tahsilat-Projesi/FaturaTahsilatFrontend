@@ -4,7 +4,7 @@ export class CreditCardModel {
     ExpMonth: number | undefined;
     ExpYear: number | undefined;
     cvc2: number | undefined;
-    CreditCardType?: number | undefined;
+    //CreditCardType?: number | undefined;
     CreatedAt: Date | undefined;
     Balance: number | undefined;
     

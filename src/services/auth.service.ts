@@ -179,7 +179,7 @@ export class AuthService {
 
     private handleError(error: HttpErrorResponse) {
         let message = "HandleError Hata Oluştu!";
-
+        console.log("error => "+JSON.stringify(error));
         if(!navigator.onLine)
         {
             message = "Çevrimdışı Gözüküyorsunuz. Lütfen İnternet Bağlantınızı Kontrol Edin!";

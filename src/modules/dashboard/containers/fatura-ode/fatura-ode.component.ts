@@ -90,7 +90,7 @@ export class FaturaOdeComponent implements OnInit {
    
     //const successCode=1;
     //this.faturaDetay?.statusCode = successCode;
-
+    
     // this.faturaService.getFaturaById(id).subscribe( data => {
     //   this.fatura = data;
     //   console.log("odeme oncesi data => "+data);
@@ -120,7 +120,7 @@ export class FaturaOdeComponent implements OnInit {
       companyId:  this.fatura?.companyId,
       userId:  this.fatura?.userId
       };
-
+      
       this.faturaService.updateInvoice(faturaBilgileri).subscribe(data => 
         this.router.navigate(['dashboard/faturalar'])  
       );

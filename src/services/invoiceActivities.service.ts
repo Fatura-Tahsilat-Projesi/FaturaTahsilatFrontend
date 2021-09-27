@@ -16,7 +16,7 @@ const httpOptions = {
 @Injectable()
 export class InvoiceActivitiesService {
 
-    url = "https://faturatahsilat.azurewebsites.net/api/invoiceActivities/";
+    url = "https://localhost:44389/api/invoiceActivities/";
     result:InvoiceActivitiesData[]=[];
     
     constructor(private http: HttpClient) {}

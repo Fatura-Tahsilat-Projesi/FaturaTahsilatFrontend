@@ -17,13 +17,21 @@ const httpOptions = {
 @Injectable()
 export class CreditCardService
 {
-    url = "https://faturatahsilat.azurewebsites.net/api/creditCards/";
+    url = "https://localhost:44389/api/creditCards/";
 
     constructor(private http: HttpClient) {}
 
     getAllCards():Observable<CreditCardData[]>
     {
         return this.http.get<CreditCardData[]>(this.url)
+        .pipe(
+            tap(data => console.log(data)),
+            catchError(this.handleError)
+        );
+    }
+    getAllUserCards(userId: number):Observable<CreditCardData[]>
+    {
+        return this.http.get<CreditCardData[]>(this.url+userId+'/allcards')
         .pipe(
             tap(data => console.log(data)),
             catchError(this.handleError)

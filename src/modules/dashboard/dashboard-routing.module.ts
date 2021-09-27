@@ -370,6 +370,24 @@ export const ROUTES: Routes = [
         canActivate: [],
         component: dashboardContainers.FirmaDuzenleComponent
     },
+    {
+        path:'kartdetay/:id',
+        data: {
+            title: 'Dashboard - SB Admin Angular',
+            breadcrumbs: [
+                {
+                    text: 'Dashboard',
+                    link: '/dashboard/',
+                },
+                {
+                    text: 'Kredi Kart Düzenle',
+                    active: true,
+                },
+            ],
+        } as SBRouteData,
+        canActivate: [],
+        component: dashboardContainers.UpdateCreditCardComponent
+    },
     
 ];
 

@@ -87,6 +87,10 @@ export class FaturaOdeComponent implements OnInit {
    
     //const successCode=1;
     //this.faturaDetay?.statusCode = successCode;
+    if(this.faturaDetay) {
+    console.log("if girildi, null değil => "+this.faturaDetay);
+
+    
     const faturaBilgileri = {
       invoiceId: this.faturaDetay?.invoiceId,
       invoiceNu:  this.faturaDetay?.invoiceNu,
@@ -106,6 +110,9 @@ export class FaturaOdeComponent implements OnInit {
     this.faturaService.updateInvoice(faturaBilgileri).subscribe(data => 
       this.router.navigate(['dashboard/faturalar'])  
     );
+  } else {
+    console.log("else girildi, null!");
+  }
   }
 
   failPayment(id:any)

@@ -1,1 +1,59 @@
-<p>update-credit-card works!</p>
+
+<sb-layout-dashboard [static]="true">
+    <sb-dashboard-head title="Kredi Kartını Düzenle" [hideBreadcrumbs]="false">
+    
+    </sb-dashboard-head>
+    
+    <form>
+        <div class="col col-md-6">
+            <label for="CardNumber" class="form-label">Kart Numarası:</label>
+            <input #CardNumber type="text" class="form-control" [value]="creditCard?.cardNumber">
+        </div>
+        
+        <div class="col col-md-6">
+            <label for="cvc2" class="form-label">CVC2:</label>
+            <input #cvc2 type="text" class="form-control" [value]="creditCard?.cvC2">
+        </div>
+        
+        <div class="col col-md-6">
+            <label for="ExpMonth" class="form-label">Son Kullanım Ayı:</label>
+            <select #ExpMonth [ngModel]="selectedExpMonth" class="form-select form-control form-control-sm" (ngModelChange)="onChangeExpMonth($event)" name="expMonth">
+                <option *ngFor="let tip of aylar" [value]="tip.id">
+                    {{ tip.name }}
+                </option>
+            </select>
+        </div>
+
+
+        <div class="col col-md-6">
+            <label for="ExpYear" class="form-label">Son Kullanım Yılı:</label>
+            <input #ExpYear type="text" class="form-control" [value]="creditCard?.expYear">
+        </div>
+
+
+        <!-- <div class="col col-md-6">
+            <label for="dueDate" class="form-label">Son Ödeme Tarihi:</label>
+        </div>
+    
+        <div class="col col-md-6 input-group">
+            <input #dueDate class="form-control" placeholder="Yıl-Ay-Gün"
+                name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+            </div>
+        </div> -->
+
+
+        <div class="col col-md-6 mt-3">
+        <button class="btn btn-primary" (click)="updateCreditCard(CardNumber, ExpMonth, ExpYear, cvc2)">Kartı Güncelle</button>
+        </div> 
+    </form>
+    
+    
+    </sb-layout-dashboard>
+    
+    <ng-template #no_data>
+        <div class="alert alert-warning">
+            Veri Bulunamadı!
+        </div>
+    </ng-template>

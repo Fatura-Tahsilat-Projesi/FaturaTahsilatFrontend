@@ -17,7 +17,7 @@ const httpOptions = {
 @Injectable()
 export class CompanyService
 {
-    url = "https://faturatahsilat.azurewebsites.net/api/companies/";
+    url = "https://localhost:44389/api/companies/";
 
     constructor(private http: HttpClient) {}
 

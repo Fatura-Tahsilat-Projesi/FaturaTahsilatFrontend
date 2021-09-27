@@ -23,7 +23,7 @@ const httpOptions = {
 })
 
 export class AuthService {
-    url = "https://faturatahsilat.azurewebsites.net/api/auth/";
+    url = "https://localhost:44389/api/auth/";
     token2: any;
 
     email: any;
@@ -179,7 +179,7 @@ export class AuthService {
 
     private handleError(error: HttpErrorResponse) {
         let message = "HandleError Hata Oluştu!";
-
+        console.log("error => "+JSON.stringify(error));
         if(!navigator.onLine)
         {
             message = "Çevrimdışı Gözüküyorsunuz. Lütfen İnternet Bağlantınızı Kontrol Edin!";

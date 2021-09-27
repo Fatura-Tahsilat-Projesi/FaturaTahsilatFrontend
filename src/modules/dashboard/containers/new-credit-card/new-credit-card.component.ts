@@ -44,17 +44,17 @@ export class NewCreditCardComponent implements OnInit {
 
   ];
 
-  createCreditCard(CardNumber: any, ExpMonth:any, ExpYear:any, cvc2:any, CreditCardType:any) {
+  createCreditCard(CardNumber: any, ExpMonth:any, ExpYear:any, cvc2:any) {
 
     var today = new Date();
     var balanceValue = 200;
+    const userId = <any>localStorage.getItem('id');
     const creditCardInformation = {
       cardNumber: CardNumber.value,
       ExpMonth: parseInt(ExpMonth.value),
       ExpYear: parseInt(ExpYear.value),
       cvc2: parseInt(cvc2.value),
-      CreditCardType: parseInt(CreditCardType.value),
-      UserId: 1,
+      UserId: userId,
       CreatedAt: today,
       Balance: balanceValue
     };

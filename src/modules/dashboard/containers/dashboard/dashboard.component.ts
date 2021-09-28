@@ -14,14 +14,15 @@ export class DashboardComponent implements OnInit {
     ) {}
 
     response: any = {};
-    role: string | undefined;
+    role = localStorage.getItem('role');
+    role2: string | undefined;
     ngOnInit() {
         var id: string | null = localStorage.getItem('id');
         this.authService.getAspUserRoleById(id).subscribe( data => {
             this.response = data;
             console.log("rol data => "+JSON.stringify(data));
             data = this.response.data;
-            this.role = data?.rolName;
+            this.role2 = data?.rolName;
             console.log("role => "+this.role);
         });
     }

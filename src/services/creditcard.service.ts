@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http
 import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
 import { catchError, tap } from "rxjs/operators";
+import { GlobalVariable } from "src/global/global-variable";
 import { CreditCardModel } from "src/models/creditcardmodel";
 import { CreditCardData } from "src/modules/data/creditcarddata";
 
@@ -17,7 +18,7 @@ const httpOptions = {
 @Injectable()
 export class CreditCardService
 {
-    url = "https://localhost:44389/api/creditCards/";
+    url = GlobalVariable.backendUrl +"api/creditCards/";
 
     constructor(private http: HttpClient) {}
 

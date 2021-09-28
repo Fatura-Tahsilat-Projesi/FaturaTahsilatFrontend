@@ -25,6 +25,8 @@ export class SignInComponent implements OnInit {
   resultAspUser: AspUserData | undefined;
   aspUsername: string="username";
   responseAspUser: any = {};
+  responseRole: any = {};
+  role: string | undefined;
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -61,6 +63,14 @@ export class SignInComponent implements OnInit {
         console.log("aspUsername => "+this.aspUsername);
         localStorage.setItem('username',this.aspUsername);
         });
+        this.authService.getAspUserRoleById(id).subscribe( data => {
+          this.responseRole = data;
+          console.log("rol data => "+JSON.stringify(data));
+          data = this.responseRole.data;
+          this.role = data?.rolName;
+          console.log("role => "+this.role);
+          localStorage.setItem('role',<any>this.role);
+      });
         //response = response.data.data;
         //console.log(JSON.stringify(this.data));
         //console.log("response/");

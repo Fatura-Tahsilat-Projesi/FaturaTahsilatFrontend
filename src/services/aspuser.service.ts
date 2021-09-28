@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http
 import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
 import { catchError, tap } from "rxjs/operators";
+import { GlobalVariable } from "src/global/global-variable";
 import { AspUserModel } from "src/models/aspusermodel";
 import { AspUserData } from "src/modules/data/aspuser.data";
 
@@ -17,7 +18,7 @@ const httpOptions = {
 
 @Injectable()
 export class AspUserService {
-    url = "https://localhost:44389/api/auth/";
+    url = GlobalVariable.backendUrl +"api/auth/";
 
     constructor(private http: HttpClient) {}
 

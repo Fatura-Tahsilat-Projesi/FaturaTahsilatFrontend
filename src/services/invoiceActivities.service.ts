@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http
 import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
 import { catchError, tap } from "rxjs/operators";
+import { GlobalVariable } from "src/global/global-variable";
 import { InvoiceActivitiesModel } from "src/models/invoiceactivitiesmodel";
 import { InvoiceActivitiesData } from "src/modules/data/invoiceActivitiesData";
 
@@ -16,7 +17,7 @@ const httpOptions = {
 @Injectable()
 export class InvoiceActivitiesService {
 
-    url = "https://localhost:44389/api/invoiceActivities/";
+    url = GlobalVariable.backendUrl +"api/invoiceActivities/";
     result:InvoiceActivitiesData[]=[];
     
     constructor(private http: HttpClient) {}

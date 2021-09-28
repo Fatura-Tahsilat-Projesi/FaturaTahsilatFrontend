@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http
 import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
 import { catchError, tap } from "rxjs/operators";
+import { GlobalVariable } from "src/global/global-variable";
 import { UserModel } from "src/models/usermodel";
 import { UserData } from "src/modules/data/userData";
 const httpOptions = {
@@ -15,7 +16,7 @@ const httpOptions = {
 @Injectable()
 export class UserService
 {
-    url = "https://localhost:44389/api/users/";
+    url = GlobalVariable.backendUrl +"api/users/";
 
     constructor(private http: HttpClient) {}
 

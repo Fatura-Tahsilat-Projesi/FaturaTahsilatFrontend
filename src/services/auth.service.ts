@@ -2,11 +2,13 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, Subject, throwError } from "rxjs";
 import { catchError, tap, map } from "rxjs/operators";
+import { GlobalVariable } from "src/global/global-variable";
 import { AuthResponse } from "src/models/AuthResponse";
+import { RoleModel } from "src/models/rolemodel";
 import { User } from "src/models/userauthmodel";
 import { AspUserData } from "src/modules/data/aspuser.data";
+import { RolesData } from "src/modules/data/roles.data";
 import { SignupuserModel } from '../models/signupusermodel';
-import { AspUserService } from "./aspuser.service";
 const httpOptions = {
     headers: new HttpHeaders({
         'Accept': 'text/html, application/xhtml+xml, */*',
@@ -23,7 +25,7 @@ const httpOptions = {
 })
 
 export class AuthService {
-    url = "https://localhost:44389/api/auth/";
+    url = GlobalVariable.backendUrl +"api/auth/";
     token2: any;
 
     email: any;
@@ -69,6 +71,15 @@ export class AuthService {
         );
     }
 
+    createRole(role: RoleModel): Observable<RoleModel> {
+        return this.http.post<RoleModel>(this.url + 'CreateRole', role, httpOptions)
+        .pipe(
+            tap(response => {
+            console.log("response => "+response);
+            })
+        )
+    }
+
     userData: any = {};
     
 
@@ -87,6 +98,14 @@ export class AuthService {
         return this.http.post<AspUserData>(this.url + "GetByIdUser",{ id: id})
         .pipe(
             tap(data => data),
+            catchError(this.handleError)
+        );
+    }
+
+    getRoles():Observable<RolesData[]> {
+        return this.http.get<RolesData[]>(this.url + "GetRoles")
+        .pipe(
+            tap(data => console.log(data)),
             catchError(this.handleError)
         );
     }

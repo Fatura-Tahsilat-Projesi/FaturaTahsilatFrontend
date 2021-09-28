@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FaturaModel } from '../models/faturamodel';
 import { catchError, tap } from "rxjs/operators";
+import { GlobalVariable } from 'src/global/global-variable';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -18,10 +19,12 @@ const httpOptions = {
 export class FaturaOlusturService {
   //url =  "https://localhost:44389/api/TodoItems/";
   //url =  "https://localhost:44347/api/products/";
-  url =  "https://localhost:44389/api/products/";
-  
+
+  url =  GlobalVariable.backendUrl + "api/products/";
   handleError: any;
+
   constructor(private http:HttpClient) { }
+  
 
   /*requestFunction(fatura: Fatura): Observable<Fatura> {
     return this.http.post<Fatura>(this.heroesUrl, fatura, httpOptions)

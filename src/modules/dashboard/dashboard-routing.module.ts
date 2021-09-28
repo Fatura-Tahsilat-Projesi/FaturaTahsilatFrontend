@@ -191,6 +191,24 @@ export const ROUTES: Routes = [
         component: dashboardContainers.NewCreditCardComponent
     },
     {
+        path:'yenirol',
+        data: {
+            title: 'Dashboard - SB Admin Angular',
+            breadcrumbs: [
+                {
+                    text: 'Dashboard',
+                    link: '/dashboard/',
+                },
+                {
+                    text: 'Yeni Rol Oluştur',
+                    active: true,
+                },
+            ],
+        } as SBRouteData,
+        canActivate: [],
+        component: dashboardContainers.NewRoleComponent
+    },
+    {
         path: 'faturalar',
         data: {
             title: 'Dashboard',
@@ -299,6 +317,24 @@ export const ROUTES: Routes = [
         component: dashboardContainers.PaymentAccountInformationComponent
     },
     {
+        path:'roller',
+        data: {
+            title: 'Dashboard - SB Admin Angular',
+            breadcrumbs: [
+                {
+                    text: 'Dashboard',
+                    link: '/dashboard/',
+                },
+                {
+                    text: 'Tüm Roller',
+                    active: true,
+                },
+            ],
+        } as SBRouteData,
+        canActivate: [],
+        component: dashboardContainers.RolesComponent
+    },
+    {
         path:'faturadetay/:id',
         data: {
             title: 'Dashboard - SB Admin Angular',
@@ -387,6 +423,24 @@ export const ROUTES: Routes = [
         } as SBRouteData,
         canActivate: [],
         component: dashboardContainers.UpdateCreditCardComponent
+    },
+    {
+        path:'kullaniciyetki/:id',
+        data: {
+            title: 'Dashboard - SB Admin Angular',
+            breadcrumbs: [
+                {
+                    text: 'Dashboard',
+                    link: '/dashboard/',
+                },
+                {
+                    text: 'Kullanıcı Yetkisini Düzenle',
+                    active: true,
+                },
+            ],
+        } as SBRouteData,
+        canActivate: [],
+        component: dashboardContainers.KullaniciYetkiDuzenleComponent
     },
     
 ];

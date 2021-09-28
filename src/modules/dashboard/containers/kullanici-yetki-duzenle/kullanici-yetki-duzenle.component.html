@@ -1,0 +1,37 @@
+
+<sb-layout-dashboard [static]="true">
+    <sb-dashboard-head title="Kullanıcı Yetki Düzenle" [hideBreadcrumbs]="false">
+    
+    </sb-dashboard-head>
+    
+    <form>
+         <div class="col col-md-6">
+            <label for="rolName" class="form-label">Kullanıcı Rolü:</label>
+            <input disabled #rolName type="text" class="form-control" [value]="user?.rolName">
+        </div>
+        <!--<div class="col col-md-6">
+            <label for="name" class="form-label">Ad:</label>
+            <input #name type="text" class="form-control" [value]="user?.name">
+        </div>
+        
+        <div class="col col-md-6">
+            <label for="authorization" class="form-label">Yetki Türü:</label>
+            <select #authorization [ngModel]="selectedUserType" class="form-select form-control form-control-sm" (ngModelChange)="onChangeUserType($event)" name="name3">
+                <option *ngFor="let tip of yetkiTip" [value]="tip.id">{{tip.name}}</option>
+            </select>
+        </div> -->
+        
+        
+        <div class="col col-md-6 mt-3">
+        <button class="btn btn-primary" (click)="updateUser()">Kullanıcıyı Güncelle</button>
+        </div> 
+    </form>
+    
+    
+    </sb-layout-dashboard>
+    
+    <ng-template #no_data>
+        <div class="alert alert-warning">
+            Veri Bulunamadı!
+        </div>
+    </ng-template>

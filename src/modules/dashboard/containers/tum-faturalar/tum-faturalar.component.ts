@@ -7,6 +7,8 @@ import { ServisGelenVeriler } from 'src/modules/data/ServisGelenVeriler';
 import { AlertifyService } from 'src/services/alertify.service';
 import { FaturaService } from 'src/services/fatura.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+
+
 @Component({
   selector: 'app-tum-faturalar',
   templateUrl: './tum-faturalar.component.html',
@@ -51,7 +53,7 @@ export class TumFaturalarComponent implements OnInit {
     { id: 2, name: "Beklemede"}
   ];
 
-
+  cars = [];
   deleteInvoice(id: any) {
     let resp;
     resp = this.faturaService.deleteInvoice(id).subscribe(data => {

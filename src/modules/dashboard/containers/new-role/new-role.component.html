@@ -1,0 +1,26 @@
+
+<sb-layout-dashboard [static]="true">
+    <sb-dashboard-head title="Yeni Rol Oluştur" [hideBreadcrumbs]="false">
+    
+    </sb-dashboard-head>
+    
+    <form>
+        <div class="col col-md-6">
+            <label for="name" class="form-label">Rol Adı:</label>
+            <input #name type="text" class="form-control">
+        </div>
+        
+    
+        <div class="col col-md-6 mt-3">
+        <button class="btn btn-primary" (click)="createRole(name)">Rol Oluştur</button>
+        </div> 
+    </form>
+    
+    
+    </sb-layout-dashboard>
+    
+    <ng-template #no_data>
+        <div class="alert alert-warning">
+            Veri Bulunamadı!
+        </div>
+    </ng-template>

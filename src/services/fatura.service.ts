@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http
 import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
 import { catchError, tap } from "rxjs/operators";
+import { GlobalVariable } from "src/global/global-variable";
 import { FaturaModel } from "src/models/faturamodel";
 import { InvoiceActivitiesModel } from "src/models/invoiceactivitiesmodel";
 import { InvoiceAndActivitiesData } from "src/modules/data/InvoiceAndActivitiesData";
@@ -19,7 +20,7 @@ const httpOptions = {
 @Injectable()
 export class FaturaService {
 
-    url = "https://localhost:44389/api/invoices/";
+    url = GlobalVariable.backendUrl +"api/invoices/";
     result:ServisGelenVeriler[]=[];
 
     constructor(private http: HttpClient,

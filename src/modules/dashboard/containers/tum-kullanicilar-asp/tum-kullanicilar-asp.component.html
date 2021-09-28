@@ -62,40 +62,40 @@
       <td><b>#</b></td>
       <td><b>Kullanıcı Adı</b></td>
       <td><b>Email</b></td>
-      <td><b>Telefon</b></td>
+      <td><b>Detaylar</b></td>
       <td><b>Yetki</b></td>
-      <td><b>Tc</b></td>
-      <td><b>Adres</b></td>
-      <td><b>Telefon</b></td>
-      <td><b>Email</b></td>
-      <td><b>Iban</b></td>
-      <td><b>Oluşturulma Tarihi</b></td>
       <td><b>Düzenle</b></td>
       <td><b>Sil</b></td>
-      <tr *ngFor="let deger of result">
-        <td>
-          <b>{{ deger.id }}</b>
-        </td>
+      <tr *ngFor="let deger of result; index as i">
+        <td>{{ i+1 }}</td>
         <td>{{ deger.userName }}</td>
         <td>{{ deger.email }}</td>
-        <td>{{ deger.phoneNumber }}</td>
-        <td>{{ deger.userName }}</td>
-        <td>{{ deger.userName }}</td>
-        <td>{{ deger.userName }}</td>
-        <td>{{ deger.userName }}</td>
-        <td>{{ deger.userName }}</td>
-        <td>{{ deger.userName }}</td>
-        <td>{{ deger.userName }}</td>
         <td>
-          <button
+          <button class="btn btn-primary" (click)="openDetails(content, deger)">
+            <i class="fa fa-trash"></i> Detay Görüntüle
+          </button>
+        </td>
+        
+        <td>
+          <button 
+            class="btn btn-secondary"
+            routerLink="../kullaniciyetki/{{ deger.id }}"
+          >
+            Yetki
+          </button>
+        </td>
+
+        <td>
+          <button disabled
             class="btn btn-warning"
             routerLink="../kullanicidetay/{{ deger.id }}"
           >
             Düzenle
           </button>
         </td>
+        
         <td>
-          <button class="btn btn-danger" (click)="deleteUser(deger.id)">
+          <button disabled class="btn btn-danger" (click)="deleteUser(deger.id)">
             <i class="fa fa-trash"></i> Sil
           </button>
         </td>
@@ -148,4 +148,166 @@
 
 <ng-template #no_data>
   <div class="alert alert-warning">Veri Bulunamadı!</div>
+</ng-template>
+
+<!-- Modal -->
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Kullanıcı Bilgileri</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <div class="mb-3">
+          <label for="userId" class="form-label">Kullanıcı Id:</label>
+          <input
+            disabled
+            #userId
+            id="userId"
+            type="text"
+            class="form-control"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="userName" class="form-label">User Name:</label>
+          <input
+            disabled
+            #userName
+            id="userName"
+            type="text"
+            class="form-control"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">E-posta Adresi:</label>
+          <input
+            disabled
+            #email
+            id="email"
+            type="text"
+            class="form-control"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="phoneNumber" class="form-label">Telefon Numarası:</label>
+          <input
+            disabled
+            #phoneNumber
+            id="phoneNumber"
+            type="text"
+            class="form-control"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="city" class="form-label">Şehir Bilgisi:</label>
+          <input
+            disabled
+            #city
+            id="city"
+            type="text"
+            class="form-control"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="emailConfirmed" class="form-label">E-posta Adresi Doğrulanma Durumu:</label>
+          <input
+            disabled
+            #emailConfirmed
+            id="emailConfirmed"
+            type="text"
+            class="form-control"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="phoneConfirmed" class="form-label">Telefon Numarası Doğrulanma Durumu:</label>
+          <input
+            disabled
+            #phoneConfirmed
+            id="phoneConfirmed"
+            type="text"
+            class="form-control"
+          />
+        </div>
+        
+        <div class="mb-3">
+          <label for="twoFactorEnabled" class="form-label">İki Faktörlü (Two Factor) Etkinleştirme Durumu:</label>
+          <input
+            disabled
+            #twoFactorEnabled
+            id="twoFactorEnabled"
+            type="text"
+            class="form-control"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="lockoutEnabled" class="form-label">Hesabın Kilitlenme Durumu:</label>
+          <input
+            disabled
+            #lockoutEnabled
+            id="lockoutEnabled"
+            type="text"
+            class="form-control"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="accessFailedCount" class="form-label">Başarısız Giriş Sayısı:</label>
+          <input
+            disabled
+            #accessFailedCount
+            id="accessFailedCount"
+            type="text"
+            class="form-control"
+          />
+        </div>
+
+        <!-- <label for="dateOfBirth">İşlem Tarihi:</label>
+        <div class="input-group">
+          <input
+            disabled
+            id="dateOfBirth"
+            class="form-control"
+            placeholder="yyyy-mm-dd"
+            name="dp"
+            ngbDatepicker
+            #dp="ngbDatepicker"
+          />
+          <div class="input-group-append">
+            <button
+              class="btn btn-outline-secondary calendar"
+              (click)="dp.toggle()"
+              type="button"
+            ></button>
+          </div>
+        </div> -->
+
+        
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="modal.close('Save click')"
+    >
+      Geri
+    </button>
+  </div>
 </ng-template>

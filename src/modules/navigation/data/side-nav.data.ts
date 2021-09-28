@@ -121,6 +121,10 @@ export const sideNavItems: SideNavItems = {
                     {
                         text: 'Yeni Kullanıcı Oluştur',
                         link: '/dashboard/yenikullanici',
+                    },
+                    {
+                        text: 'Roller',
+                        link: '/dashboard/roller',
                     }
                 ],
             }

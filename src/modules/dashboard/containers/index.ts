@@ -22,6 +22,9 @@ import { FirmaDuzenleComponent } from './firma-duzenle/firma-duzenle.component';
 import { NewCreditCardComponent } from './new-credit-card/new-credit-card.component';
 import { UpdateCreditCardComponent } from './update-credit-card/update-credit-card.component';
 import { TumKullanicilarAspComponent } from './tum-kullanicilar-asp/tum-kullanicilar-asp.component';
+import { KullaniciYetkiDuzenleComponent } from './kullanici-yetki-duzenle/kullanici-yetki-duzenle.component';
+import { RolesComponent } from './roles/roles.component';
+import { NewRoleComponent } from './new-role/new-role.component';
 export const containers = [
     DashboardComponent,
     StaticComponent,
@@ -45,7 +48,10 @@ export const containers = [
     FirmaDuzenleComponent, 
     NewCreditCardComponent, 
     UpdateCreditCardComponent,
-    TumKullanicilarAspComponent
+    TumKullanicilarAspComponent,
+    KullaniciYetkiDuzenleComponent,
+    RolesComponent,
+    NewRoleComponent
 ];
 
 export * from './dashboard/dashboard.component';
@@ -72,3 +78,6 @@ export * from './firma-duzenle/firma-duzenle.component';
 export * from './new-credit-card/new-credit-card.component';
 export * from './update-credit-card/update-credit-card.component';
 export * from './tum-kullanicilar-asp/tum-kullanicilar-asp.component';
+export * from './kullanici-yetki-duzenle/kullanici-yetki-duzenle.component';
+export * from './roles/roles.component'
+export * from './new-role/new-role.component';

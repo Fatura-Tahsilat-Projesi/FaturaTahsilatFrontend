@@ -35,6 +35,22 @@ export const sideNavCompanySections: SideNavSection[] = [
     },
 ];
 
+export const sideNavEmployeeSections: SideNavSection[] = [
+    {
+        text: 'Ana Sayfa',
+        items: ['dashboard'],
+    },
+    {
+        text: 'Kullanıcı İşlemler',
+        items: ['layouts'],
+    },
+    {
+        text: 'Profil',
+        items: ['charts', 'tables'],
+        //items: ['charts', 'tables'],
+    },
+];
+
 export const sideNavItems: SideNavItems = {
     dashboard: {
         icon: 'tachometer-alt',
@@ -281,6 +297,66 @@ export const sideNavCompanyItems: SideNavItems = {
                 ],
             },
         ],
+    },
+
+};
+
+export const sideNavEmployeeItems: SideNavItems = {
+    dashboard: {
+        icon: 'tachometer-alt',
+        text: 'Ana Sayfa',
+        link: '/dashboard',
+    },
+    layouts: {
+        icon: 'columns',
+        text: 'Fatura İşlemleri',
+        submenu: [
+            {
+                text: 'Faturalarımı Listele',
+                link: '/dashboard/faturalarim',
+            },
+            {
+                text: 'Fatura Öde',
+                link: '/dashboard/faturaodeme',
+            },
+            {
+                text: 'Fatura Hareketleri',
+                link: '/dashboard/faturahareketleri',
+            }
+        ],
+    },
+    pages: {
+        icon: 'book-open',
+        text: 'Sayfalar',
+        submenu: [
+            {
+                text: 'Authentication',
+                submenu: [
+                    {
+                        text: 'Login',
+                        link: '/auth/login',
+                    },
+                    {
+                        text: 'Register',
+                        link: '/auth/register',
+                    },
+                    {
+                        text: 'Forgot Password',
+                        link: '/auth/forgot-password',
+                    },
+                ],
+            },
+        ],
+    },
+    charts: {
+        icon: 'chart-area',
+        text: 'Profil Ayarları',
+        link: '/dashboard/ayarlar',
+    },
+    tables: {
+        icon: 'table',
+        text: 'Hesap Bilgileri',
+        link: '/dashboard/hesapbilgilerim',
     },
 
 };

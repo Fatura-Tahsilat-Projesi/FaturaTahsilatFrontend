@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, HostBinding,ChangeDetectionStrategy, ChangeDetectorRef, } from '@angular/core';
-import { sideNavItems, sideNavSections, sideNavCompanyItems, sideNavCompanySections } from '../../../navigation/data';
+import { sideNavItems, sideNavSections, sideNavCompanyItems, sideNavCompanySections, sideNavEmployeeItems, sideNavEmployeeSections } from '../../../navigation/data';
 import { Subscription } from 'rxjs';
 import { NavigationService } from '../../../navigation/services';
 
@@ -19,6 +19,8 @@ export class DashboardLayoutComponent implements OnInit {
   sideNavCompanyItems= sideNavCompanyItems;
   sideNavSections = sideNavSections;
   sideNavCompanySections = sideNavCompanySections;
+  sideNavEmployeeItems = sideNavEmployeeItems;
+  sideNavEmployeeSections = sideNavEmployeeSections;
   sidenavStyle = 'sb-sidenav-dark';
   role = localStorage.getItem('role');
     

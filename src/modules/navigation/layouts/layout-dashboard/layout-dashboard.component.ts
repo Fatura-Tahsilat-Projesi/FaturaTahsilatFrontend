@@ -7,7 +7,7 @@ import {
     OnDestroy,
     OnInit,
 } from '@angular/core';
-import { sideNavItems, sideNavSections, sideNavCompanyItems, sideNavCompanySections } from '../../data';
+import { sideNavItems, sideNavSections, sideNavCompanyItems, sideNavCompanySections, sideNavEmployeeItems, sideNavEmployeeSections } from '../../data';
 import { NavigationService } from '../../services';
 import { Subscription } from 'rxjs';
 
@@ -26,6 +26,8 @@ export class LayoutDashboardComponent implements OnInit, OnDestroy {
     sideNavSections = sideNavSections;
     sideNavCompanyItems = sideNavCompanyItems;
     sideNavCompanySections = sideNavCompanySections;
+    sideNavEmployeeItems = sideNavEmployeeItems;
+    sideNavEmployeeSections = sideNavEmployeeSections;
     sidenavStyle = 'sb-sidenav-dark';
     role = localStorage.getItem('role');
 

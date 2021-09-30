@@ -2,7 +2,7 @@
     ><sb-top-nav></sb-top-nav>
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
-            <sb-side-nav *ngIf="role == 'Employee'" [sidenavStyle]="sidenavStyle" [sideNavItems]="sideNavItems" [sideNavSections]="sideNavSections"></sb-side-nav>
+            <sb-side-nav *ngIf="role == 'Employee'" [sidenavStyle]="sidenavStyle" [sideNavItems]="sideNavEmployeeItems" [sideNavSections]="sideNavEmployeeSections"></sb-side-nav>
             <sb-side-nav *ngIf="role == 'Company'" [sidenavStyle]="sidenavStyle" [sideNavItems]="sideNavCompanyItems" [sideNavSections]="sideNavCompanySections"></sb-side-nav>
             <sb-side-nav *ngIf="role == 'Admin'" [sidenavStyle]="sidenavStyle" [sideNavItems]="sideNavItems" [sideNavSections]="sideNavSections"></sb-side-nav>
         </div>

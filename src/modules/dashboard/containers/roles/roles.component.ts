@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { RolesData } from 'src/modules/data/roles.data';
+import { CountryService } from 'src/modules/tables/services';
 import { AuthService } from 'src/services/auth.service';
 
 @Component({
@@ -11,7 +12,8 @@ export class RolesComponent implements OnInit {
 
   constructor(
     private authService:AuthService,
-
+    public countryService: CountryService,
+    private changeDetectorRef: ChangeDetectorRef
   ) { }
   error: any;
   searchActive = false;

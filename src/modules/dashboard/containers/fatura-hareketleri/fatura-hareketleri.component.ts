@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { InvoiceActivitiesData } from 'src/modules/data/invoiceActivitiesData';
 import { InvoiceAndActivitiesData } from 'src/modules/data/InvoiceAndActivitiesData';
 import { InvoiceData } from 'src/modules/data/invoiceData';
 import { ServisGelenVeriler } from 'src/modules/data/ServisGelenVeriler';
+import { CountryService } from 'src/modules/tables/services';
 import { FaturaService } from 'src/services/fatura.service';
 
 @Component({
@@ -31,7 +32,9 @@ export class FaturaHareketleriComponent implements OnInit {
   constructor(
     private faturaService: FaturaService,
     private activatedRoute: ActivatedRoute,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    public countryService: CountryService,
+    private changeDetectorRef: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {

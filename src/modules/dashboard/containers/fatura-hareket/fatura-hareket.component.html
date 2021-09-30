@@ -51,7 +51,50 @@
     </div>
   </nav>
 
-  <div>
+
+  <form>
+    <div style="display: none;" class="form-group form-inline">Ara:<input class="form-control ml-2" type="text" name="searchTerm" [(ngModel)]="countryService.searchTerm" /><span class="ml-3" *ngIf="countryService.loading$ | async">Loading...</span></div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col" ><span>UserId</span></th>
+                <th scope="col" ><span>FaturaId</span></th>
+                <th scope="col"><span>FirmaId</span></th>
+                <th scope="col"><span>Tarih</span></th>
+                <th scope="col"><span>DurumKodu</span></th>
+                <!-- <th scope="col"><span>Kullanıcı</span></th>
+                <th scope="col"><span>Fatura</span></th>
+                <th scope="col"><span>Şirket</span></th> -->
+                <th scope="col"><span>Detaylar</span></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let country of result">
+                <th>{{ country.userId }}</th>
+                <th>{{ country.userId }}</th>
+                <td>{{ country.invoiceId }}</td>
+                <td>{{ country.companyId}}</td>
+                <td>{{ country.transactionDate}}</td>
+                <td>{{ country.statusCode}}</td>
+                <!-- <td>{{ country.statusCode}}</td>
+                <td>{{ country.statusCode}}</td>
+                <td>{{ country.statusCode}}</td> -->
+                <td>
+                  <button class="btn btn-primary" (click)="openDetails(content, country)">
+                    <i class="fa fa-trash"></i> Detay Görüntüle
+                  </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</form>
+
+
+
+
+  <div style="display: none;">
     <table border="4" *ngIf="result.length != 0; else no_data">
       <td><b>#</b></td>
       <td><b>UserId</b></td>

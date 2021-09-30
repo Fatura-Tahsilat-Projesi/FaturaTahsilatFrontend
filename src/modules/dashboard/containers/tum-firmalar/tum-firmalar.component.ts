@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CompanyModel } from 'src/models/companymodel';
 import { CompanyData } from 'src/modules/data/companyData';
+import { CountryService } from 'src/modules/tables/services';
 import { AlertifyService } from 'src/services/alertify.service';
 import { CompanyService } from 'src/services/company.service';
 
@@ -24,7 +25,9 @@ export class TumFirmalarComponent implements OnInit {
     private companyService:CompanyService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private alertify: AlertifyService
+    private alertify: AlertifyService,
+    public countryService: CountryService,
+    private changeDetectorRef: ChangeDetectorRef
   ) { }
 
   result:CompanyData[]=[];

@@ -22,7 +22,7 @@ export class TumKullanicilarComponent implements OnInit {
     private userService:UserService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private alertify: AlertifyService
+    private alertify: AlertifyService,
   ) { }
 
   result:UserData[]=[];

@@ -83,10 +83,10 @@
                 <td>{{ country.dueDate}}</td>
                 <td>{{ country.statusCode}}</td>
                 <td>
-                  <button class="btn btn-outline-success" routerLink="../faturahareket/{{country.invoiceId}}"><i class="fa fa-trash"></i> Hareketler</button>
+                  <button class="btn btn-success" routerLink="../faturahareket/{{country.invoiceId}}"><i class="fa fa-trash"></i> Hareketler</button>
                 </td>
                 <td>
-                  <button class="btn btn-outline-primary" (click)="openDetails(content, country)">
+                  <button class="btn btn-primary" (click)="openDetails(content, country)">
                     <i class="fa fa-trash"></i> Detay Görüntüle
                   </button>
                 </td>

@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { InvoiceActivitiesData } from 'src/modules/data/invoiceActivitiesData';
 import { InvoiceActivitiesService } from 'src/services/invoiceActivities.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FaturaModel } from 'src/models/faturamodel';
+import { CountryService } from 'src/modules/tables/services';
 
 @Component({
   selector: 'app-fatura-hareket',
@@ -29,7 +30,9 @@ export class FaturaHareketComponent implements OnInit {
   constructor(
     private http:HttpClient,
     private invoiceActivitiesService:InvoiceActivitiesService,
-    private modalService: NgbModal) { 
+    private modalService: NgbModal,
+    public countryService: CountryService,
+    private changeDetectorRef: ChangeDetectorRef) { 
     
   }
   result:InvoiceActivitiesData[]=[];

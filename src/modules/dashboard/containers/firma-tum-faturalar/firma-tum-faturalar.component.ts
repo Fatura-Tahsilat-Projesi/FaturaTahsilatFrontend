@@ -1,26 +1,20 @@
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FaturaModel } from 'src/models/faturamodel';
-import { InvoiceData } from 'src/modules/data/invoiceData';
-import { ServisGelenVeriler } from 'src/modules/data/ServisGelenVeriler';
-import { AlertifyService } from 'src/services/alertify.service';
-import { FaturaService } from 'src/services/fatura.service';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { CompanyService } from 'src/services/company.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CompanyData } from 'src/modules/data/companyData';
-import { CountryService } from 'src/modules/tables/services';
-
+import { InvoiceData } from 'src/modules/data/invoiceData';
+import { AlertifyService } from 'src/services/alertify.service';
+import { CompanyService } from 'src/services/company.service';
+import { FaturaService } from 'src/services/fatura.service';
 
 @Component({
-  selector: 'app-tum-faturalar',
-  templateUrl: './tum-faturalar.component.html',
-  styleUrls: ['./tum-faturalar.component.scss'],
-  providers: [FaturaService,CompanyService]
+  selector: 'app-firma-tum-faturalar',
+  templateUrl: './firma-tum-faturalar.component.html',
+  styleUrls: ['./firma-tum-faturalar.component.scss'],
+  providers: [FaturaService,CompanyService,AlertifyService]
 })
-
-export class TumFaturalarComponent implements OnInit {
-  @Input() pageSize = 4;
+export class FirmaTumFaturalarComponent implements OnInit {
 
   error: any;
   selectedCategory: any;
@@ -28,26 +22,17 @@ export class TumFaturalarComponent implements OnInit {
   selectedPaymentStatus: any;
   selectedCompany: any;
   searchActive = false;
-  
   constructor(
     private http:HttpClient,
     private alertify: AlertifyService,
     private faturaService: FaturaService,
     private modalService: NgbModal,
     private companyService: CompanyService,
-    private router: Router,
-    public countryService: CountryService,
-    private changeDetectorRef: ChangeDetectorRef
+    private router: Router
   ) { }
-
+  
   result:InvoiceData[]=[];
   companyResult: CompanyData | undefined;
-  ngOnInit(): void {
-    this.faturaService.getFatura().subscribe(data => {
-      this.result = data;
-    }, error => this.error = error)
-  }
-
   faturaTip =[
     { id: 1, name: "Elektrik" },
     { id: 2, name: "Su" },
@@ -62,6 +47,16 @@ export class TumFaturalarComponent implements OnInit {
     { id: 1, name: "Ödendi"},
     { id: 2, name: "Beklemede"}
   ];
+
+
+  ngOnInit(): void {
+    var id: string | null = localStorage.getItem('id');
+    this.faturaService.getAllCompanyInvoice(<any>id).subscribe(data => {
+      this.result = data;
+      console.log("data => "+JSON.stringify(data));
+    }, error => this.error = error);
+  }
+
 
   deleteInvoice(id: any) {
     let resp;
@@ -122,7 +117,6 @@ export class TumFaturalarComponent implements OnInit {
     // document.getElementById('email2').setAttribute('value', fatura.email);
     // document.getElementById('cntry').setAttribute('value', fatura.country);
  }
-
 
 
 }

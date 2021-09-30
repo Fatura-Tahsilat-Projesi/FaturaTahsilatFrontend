@@ -25,6 +25,7 @@ import { TumKullanicilarAspComponent } from './tum-kullanicilar-asp/tum-kullanic
 import { KullaniciYetkiDuzenleComponent } from './kullanici-yetki-duzenle/kullanici-yetki-duzenle.component';
 import { RolesComponent } from './roles/roles.component';
 import { NewRoleComponent } from './new-role/new-role.component';
+import { FirmaTumFaturalarComponent } from './firma-tum-faturalar/firma-tum-faturalar.component';
 export const containers = [
     DashboardComponent,
     StaticComponent,
@@ -45,7 +46,8 @@ export const containers = [
     FaturaHareketleriComponent, 
     PaymentAccountInformationComponent, 
     KullaniciDuzenleComponent, 
-    FirmaDuzenleComponent, 
+    FirmaDuzenleComponent,
+    FirmaTumFaturalarComponent, 
     NewCreditCardComponent, 
     UpdateCreditCardComponent,
     TumKullanicilarAspComponent,
@@ -75,6 +77,7 @@ export * from './fatura-hareketleri/fatura-hareketleri.component';
 export * from './payment-account-information/payment-account-information.component';
 export * from './kullanici-duzenle/kullanici-duzenle.component';
 export * from './firma-duzenle/firma-duzenle.component';
+export * from './firma-tum-faturalar/firma-tum-faturalar.component';
 export * from './new-credit-card/new-credit-card.component';
 export * from './update-credit-card/update-credit-card.component';
 export * from './tum-kullanicilar-asp/tum-kullanicilar-asp.component';

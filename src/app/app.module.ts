@@ -17,7 +17,7 @@ import { AuthInterceptor } from 'src/services/auth.interceptor';
 const thirdParty = [IconsModule, NgbModule];
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,

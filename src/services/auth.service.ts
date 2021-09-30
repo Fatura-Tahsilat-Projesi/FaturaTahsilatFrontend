@@ -119,6 +119,16 @@ export class AuthService {
         );
     }
     
+    deleteUser(id: string | null): Observable<AspUserData>
+    {
+        return this.http.post<AspUserData>(this.url + 'RemoveUser/', {id: id })
+        .pipe(
+            tap(data => console.log(data)),
+            catchError(this.handleError)
+        );
+        
+    }
+
     signUp(username: string, email: string, password: string) {
         return this.http.post<AuthResponse>(this.url + '', {username: username, email: email, password: password, returnSecureToken: true}, httpOptions)
         .pipe(
@@ -206,6 +216,7 @@ export class AuthService {
         }
 
         if(error.error) {
+            console.log("error.error => "+error.error);
             switch (error.error.error.errors[0])
             {
               case "Email or Password is wrong":

@@ -9,9 +9,9 @@ export class FaturaModel {
     invoiceType: number | undefined;
     statusCode: number | undefined;
     companyId: number | undefined;
-    userId: number | undefined;
+    userId: string | undefined;
 
-    constructor(invoiceNu:number, name: string, total:number, totalVat:number, excludingVat:number, isComplete:number, invoiceType: number, statusCode: number, companyId: number, userId: number){
+    constructor(invoiceNu:number, name: string, total:number, totalVat:number, excludingVat:number, isComplete:number, invoiceType: number, statusCode: number, companyId: number, userId: string){
         this.invoiceNu = invoiceNu;
         this.name = name;
         this.total = total;

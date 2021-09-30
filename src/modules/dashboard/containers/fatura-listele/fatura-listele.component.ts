@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ServisGelenVeriler} from '../../../data/ServisGelenVeriler';
 import { FaturaOlusturService } from '../../../fatura-olustur.service';
@@ -7,15 +7,23 @@ import { FaturaModel } from 'src/models/faturamodel';
 import { Router } from '@angular/router';
 import { AlertifyService } from 'src/services/alertify.service';
 import { FaturaService } from 'src/services/fatura.service';
+import { Country } from 'src/modules/tables/models';
+import { Observable } from 'rxjs';
+import { CountryService } from 'src/modules/tables/services';
+import { SBSortableHeaderDirective, SortEvent } from '../../../../modules/tables/directives';
+
 
 @Component({
   selector: 'app-fatura-listele',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './fatura-listele.component.html',
   styleUrls: ['./fatura-listele.component.scss'],
   providers: [FaturaOlusturService,FaturaService]
 })
 
 export class FaturaListeleComponent implements OnInit {
+  
+  @Input() pageSize = 4;
 
   searchActive = false;
   faturaDetay: FaturaModel | undefined;
@@ -27,6 +35,11 @@ export class FaturaListeleComponent implements OnInit {
   selectedCategory: any;
   selectedStatusCode: any;
   selectedPaymentStatus: any;
+
+  sortedColumn!: string;
+  sortedDirection!: string;
+  countries$!: Observable<ServisGelenVeriler[]>;
+  total$!: Observable<number>;
   readonly inputElement: HTMLInputElement | undefined;
   constructor(
     private http:HttpClient,
@@ -34,17 +47,37 @@ export class FaturaListeleComponent implements OnInit {
     private modalService: NgbModal,
     private alertify: AlertifyService,
     private faturaService: FaturaService,
-    private router: Router) { }
+    private router: Router,
+    public countryService: CountryService,
+    private changeDetectorRef: ChangeDetectorRef) { }
 
   result:ServisGelenVeriler[]=[];
+  @ViewChildren(SBSortableHeaderDirective) headers!: QueryList<SBSortableHeaderDirective>;
+  
   ngOnInit(): void {
-    this.faturaService.getFatura().subscribe(data =>{
+    this.countryService.pageSize =<any> this.pageSize;
+    this.countries$ =<any> this.countryService.countries$;
+    this.total$ =<any> this.countryService.total$;
+
+    var id: string | null = localStorage.getItem('id');
+    /*this.faturaService.getFatura().subscribe(data =>{
       this.result = data;
       //this.selectedCompany = this.result[1].statusCode;
       //this.onChangeStatusCode(this.selectedCompany);
+    }, error => this.error = error);*/
+    this.faturaService.getAllUserInvoice(<any>id).subscribe(data => {
+      this.result = data;
+      console.log("data => "+JSON.stringify(data));
     }, error => this.error = error);
     
   }
+  onSort({ column, direction }: SortEvent) {
+    this.sortedColumn = column;
+    this.sortedDirection = direction;
+    this.countryService.sortColumn = column;
+    this.countryService.sortDirection = direction;
+    this.changeDetectorRef.detectChanges();
+}
   // isEmptyObject(obj:any){
   //   console.log("obj => "+obj);
   //   for(var prop in obj) {

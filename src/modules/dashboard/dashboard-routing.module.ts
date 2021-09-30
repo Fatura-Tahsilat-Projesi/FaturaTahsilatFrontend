@@ -227,6 +227,24 @@ export const ROUTES: Routes = [
         component: dashboardContainers.TumFaturalarComponent
     },
     {
+        path: 'firmafaturalar',
+        data: {
+            title: 'Dashboard',
+            breadcrumbs: [
+                {
+                    text: 'Dashboard',
+                    link: '/dashboard/',
+                },
+                {
+                    text: 'Firma Tüm Faturalar',
+                    active: true,
+                },
+            ],
+        } as SBRouteData,
+        canActivate: [],
+        component: dashboardContainers.FirmaTumFaturalarComponent
+    },
+    {
         path: 'firmalar',
         data: {
             title: 'Dashboard',

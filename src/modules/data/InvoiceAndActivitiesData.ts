@@ -12,7 +12,7 @@ export class InvoiceAndActivitiesData {
     statusCode:number | undefined;
     isComplete:number | undefined;
     companyId:number | undefined;
-    userId:number | undefined;
+    userId:string | undefined;
     invoiceActivities: Array<InvoiceActivitiesData> | undefined;
     //kdvsizTutar: number | undefined;
     //categoryId: number | undefined;

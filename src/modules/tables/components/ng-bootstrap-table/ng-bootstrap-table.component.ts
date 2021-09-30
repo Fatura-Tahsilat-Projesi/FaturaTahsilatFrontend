@@ -34,9 +34,9 @@ export class NgBootstrapTableComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.countryService.pageSize = this.pageSize;
-        this.countries$ = this.countryService.countries$;
-        this.total$ = this.countryService.total$;
+        this.countryService.pageSize =<any> this.pageSize;
+        this.countries$ =<any> this.countryService.countries$;
+        this.total$ =<any> this.countryService.total$;
     }
 
     onSort({ column, direction }: SortEvent) {

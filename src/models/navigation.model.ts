@@ -25,3 +25,19 @@ export interface SideNavSection {
     text?: string;
     items: string[];
 }
+
+export interface SideNavCompanyItems {
+    [index: string]: SideNavCompanyItem;
+}
+
+export interface SideNavCompanyItem {
+    icon?: string;
+    text: string;
+    link?: string;
+    submenu?: SideNavCompanyItem[];
+}
+
+export interface SideNavCompanySection {
+    text?: string;
+    items: string[];
+}

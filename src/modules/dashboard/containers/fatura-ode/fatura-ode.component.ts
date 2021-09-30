@@ -43,8 +43,13 @@ export class FaturaOdeComponent implements OnInit {
   fatura: ServisGelenVeriler | undefined;
 
   ngOnInit(): void {
-    this.faturaService.getFatura().subscribe(data =>{
+    // this.faturaService.getFatura().subscribe(data =>{
+    //   this.result = data;
+    // }, error => this.error = error);
+    var id: string | null = localStorage.getItem('id');
+    this.faturaService.getAllUserInvoice(<any>id).subscribe(data => {
       this.result = data;
+      console.log("data => "+JSON.stringify(data));
     }, error => this.error = error);
     this.creditCardService.getAllCards().subscribe(data =>{
       this.resultCreditCard = data;
@@ -87,7 +92,6 @@ export class FaturaOdeComponent implements OnInit {
   successPayment(id:any)
   {
     //console.log("id => "+id);
-   
     //const successCode=1;
     //this.faturaDetay?.statusCode = successCode;
     
@@ -96,7 +100,20 @@ export class FaturaOdeComponent implements OnInit {
     //   console.log("odeme oncesi data => "+data);
     // });
     //this.fatura = <any>this.verileriGetir(id);
-    this.fatura =<any>this.result[id];
+
+    for (var tmp of this.result) {
+      console.log("----");
+      console.log(tmp);
+      console.log("----");
+      if(tmp.invoiceId == id) {
+        this.fatura = <any>tmp;
+      }
+    }
+    console.log("this.fatura => "+this.fatura);
+    /*var tmp: any = {};
+    tmp = th
+
+    this.fatura = <any>this.result[]*/
     console.log("this.fatura => "+this.fatura);
     if(this.fatura?.invoiceId == null || this.fatura?.invoiceId == undefined) {
       console.log("else girildi, null!");

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AspUserData } from 'src/modules/data/aspuser.data';
 import { AlertifyService } from 'src/services/alertify.service';
 import { AspUserService } from 'src/services/aspuser.service';
+import { AuthService } from 'src/services/auth.service';
 
 @Component({
   selector: 'app-tum-kullanicilar-asp',
@@ -19,8 +21,10 @@ export class TumKullanicilarAspComponent implements OnInit {
   result2: any = {};
   constructor(
     private aspUserService:AspUserService,
+    private authService:AuthService,
     private alertify:AlertifyService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private router:Router
   ) { }
 
   ngOnInit(): void {
@@ -94,17 +98,18 @@ export class TumKullanicilarAspComponent implements OnInit {
 
   deleteUser(id: any)
   {
-    // let resp;
-    // resp = this.aspUserService.deleteUser(id).subscribe(data =>
-    //   this.router.navigate(['dashboard/kullanicilar']) 
-    // );
-    // console.log("response dönen cevap => "+ resp);
-    // if(resp){
-    //   this.alertify.success(id + "numaralı kullanıcı başarıyla silinmiştir!");
-    // } else {
-    //   this.alertify.warning("Kullanıcı silinemedi! Hata Oluştu!");
-    // }
-    // //window.location.reload();
+    let resp;
+    resp = this.authService.deleteUser(id).subscribe(data => {
+      console.log("kullanıcı silme => "+data);
+      resp = data;
+    });
+    //console.log("response dönen cevap => "+ resp);
+    if(resp){
+      this.alertify.success(id + "numaralı kullanıcı başarıyla silinmiştir!");
+    } else {
+      this.alertify.warning("Kullanıcı silinemedi! Hata Oluştu!");
+    }
+    this.router.navigate(['/dashboard/kullanicilar']);
   }
 
 

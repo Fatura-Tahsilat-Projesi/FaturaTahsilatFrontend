@@ -1,1 +1,1 @@
-export * from './side-nav.data';
+export * from '../navigation/data/side-nav.data';

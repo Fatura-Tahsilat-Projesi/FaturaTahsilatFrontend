@@ -21,7 +21,7 @@ export class SignUpComponent implements OnInit {
   public password: string | any;
   public errorMessage: string | any;
   statusCode: number | any;
-
+  memberType: string | any;
   constructor(
     private http:HttpClient,
     private authService: AuthService,
@@ -32,13 +32,19 @@ export class SignUpComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  createUser(ad:any, soyad:any, email:any, password:any, password2:any) {
+  onChangeRole(role:any) {
+    this.memberType = role;
+  }
+
+  createUser(ad:any, soyad:any, email:any, phonenumber:any, password:any, password2:any) {
     if(password.value === password2.value)
     {
       const userInformation = {
         username: ad.value + soyad.value,
         email: email.value,
-        password: password.value
+        phonenumber: phonenumber.value,
+        password: password.value,
+        memberType: this.memberType
       };
       console.log(userInformation);
 

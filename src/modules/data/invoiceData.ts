@@ -10,5 +10,5 @@ export class InvoiceData {
     invoiceType: number | undefined;
     statusCode: number | undefined;
     companyId: number | undefined;
-    userId: number | undefined;
+    userId: string | undefined;
 }

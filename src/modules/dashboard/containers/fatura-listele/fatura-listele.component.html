@@ -30,13 +30,60 @@
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Ara" aria-label="Search" />
+        <input class="form-control mr-sm-2" type="text" name="searchTerm"  placeholder="Ara" aria-label="Search" />
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
           Ara
         </button>
       </form>
     </div>
   </nav>
+
+<!--<div class="card-body">
+   <sb-ng-bootstrap-table [pageSize]="4">
+    
+  </sb-ng-bootstrap-table></div> -->
+  <form>
+    <div style="display: none;" class="form-group form-inline">Ara:<input class="form-control ml-2" type="text" name="searchTerm" [(ngModel)]="countryService.searchTerm" /><span class="ml-3" *ngIf="countryService.loading$ | async">Loading...</span></div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col" ><span>Fatura Adı</span></th>
+                <th scope="col" ><span>Fatura Tutar</span></th>
+                <th scope="col"><span>Son Ödeme Tarihi</span></th>
+                <th scope="col"><span>Ödenme Bilgisi</span></th>
+                <th scope="col"><span>Hareketler</span></th>
+                <th scope="col"><span>Detaylar</span></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let country of result">
+                <th>{{ country.invoiceId }}</th>
+                <td>{{ country.name }}</td>
+                <td>{{ country.excludingVat}}</td>
+                <td>{{ country.dueDate}}</td>
+                <td>{{ country.statusCode}}</td>
+                <td>
+                  <button class="btn btn-outline-success" routerLink="../faturahareket/{{country.invoiceId}}"><i class="fa fa-trash"></i> Hareketler</button>
+                </td>
+                <td>
+                  <button class="btn btn-outline-primary" (click)="openDetails(content, country)">
+                    <i class="fa fa-trash"></i> Detay Görüntüle
+                  </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</form>
+
+
+
+
+
+
+
+
   <!-- Data Table-->
   <div>
     <table border="4" *ngIf="result.length != 0; else no_data">
@@ -65,8 +112,8 @@
     </table>
   </div>
 
-  <!-- Search Table-->
-  <ng-template #searcTable>
+   <!-- Search Table -->
+ <ng-template #searcTable>
     <div>
       <p>Arama Sonuçları</p>
       <table border="4" *ngIf="result.length != 0; else no_data">
@@ -206,3 +253,6 @@
     </button>
   </div>
 </ng-template>
+
+<!-- <div class="card-body"><sb-ng-bootstrap-table [pageSize]="4"></sb-ng-bootstrap-table></div> -->
+<!-- <div class="card-body"><sb-ng-bootstrap-table></sb-ng-bootstrap-table></div> -->

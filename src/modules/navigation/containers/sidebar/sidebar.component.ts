@@ -1,8 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AspUserData } from 'src/modules/data/aspuser.data';
-import { UserData } from 'src/modules/data/userData';
-import { AspUserService } from 'src/services/aspuser.service';
-import { UserService } from 'src/services/user.service';
+import { AuthService } from 'src/services/auth.service';
 import { SideNavItems, SideNavSection } from '../../models/navigation.model';
 @Component({
   selector: 'app-sidebar',
@@ -14,14 +12,20 @@ export class SidebarComponent implements OnInit {
   @Input() sideNavItems!: SideNavItems;
   @Input() sideNavSections!: SideNavSection[];
   constructor(
-    private aspUserService:AspUserService,
+    private authService:AuthService,
   ) { }
 
   error: any;
   result:AspUserData |undefined;
+  response: any = {};
+
   ngOnInit(): void {
     //var id: number | null = localStorage.getItem('id');
-    this.aspUserService.getUserById(+"8d75c6707f71").subscribe(data => {
+    var id: string | null = localStorage.getItem('id');
+    this.authService.getAspUserById(id).subscribe(data => {
+      //this.result = data;
+      this.response = data;
+      data = this.response.data;
       this.result = data;
     }, error => this.error = error);
   }

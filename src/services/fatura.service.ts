@@ -35,6 +35,23 @@ export class FaturaService {
         );
     }
 
+    getAllUserInvoice(userId: number):Observable<ServisGelenVeriler[]>
+    {
+        return this.http.get<ServisGelenVeriler[]>(this.url+userId+'/allinvoices')
+        .pipe(
+            tap(data => console.log(data)),
+            catchError(this.handleError)
+        );
+    }
+
+    getAllCompanyInvoice(companyId: number):Observable<ServisGelenVeriler[]>
+    {
+        return this.http.get<ServisGelenVeriler[]>(this.url+companyId+'/companyallinvoices')
+        .pipe(
+            tap(data => console.log(data)),
+            catchError(this.handleError)
+        );
+    }
 
     getFaturaById(id: number): Observable<ServisGelenVeriler> {
         return this.http.get<ServisGelenVeriler>(this.url + id)

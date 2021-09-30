@@ -13,11 +13,17 @@ import {
   NgbTimeStruct, 
   } from '@ng-bootstrap/ng-bootstrap';
   import {NgbTimepickerConfig} from '@ng-bootstrap/ng-bootstrap';
+import { CompanyService } from 'src/services/company.service';
+import { CompanyData } from 'src/modules/data/companyData';
+import { AlertifyService } from 'src/services/alertify.service';
+import { UserData } from 'src/modules/data/userData';
+import { AspUserService } from 'src/services/aspuser.service';
+import { AspUserData } from 'src/modules/data/aspuser.data';
 @Component({
   selector: 'app-fatura-olustur',
   templateUrl: './fatura-olustur.component.html',
   styleUrls: ['./fatura-olustur.component.scss'],
-  providers: [FaturaService, NgbInputDatepickerConfig, NgbTimepickerConfig]
+  providers: [FaturaService, CompanyService, AspUserService, NgbInputDatepickerConfig, NgbTimepickerConfig, AlertifyService]
 })
 export class FaturaOlusturComponent implements OnInit {
 
@@ -27,6 +33,9 @@ export class FaturaOlusturComponent implements OnInit {
   constructor(private http:HttpClient,
     private faturaService: FaturaService,
     private router: Router,
+    private companyService:CompanyService,
+    private aspUserService:AspUserService,
+    private alertifyService: AlertifyService,
     config: NgbInputDatepickerConfig,
     calendar: NgbCalendar,
     configtime: NgbTimepickerConfig) {
@@ -50,8 +59,21 @@ export class FaturaOlusturComponent implements OnInit {
       config.placement = ['top-left', 'top-right'];
 
   }
-
+  companyResult:CompanyData[]=[];
+  error: any;
+  searchActive = false;
+  userResult:AspUserData[]=[];
+  userResult2: any = {};
   ngOnInit(): void {
+    this.companyService.getAllCompany().subscribe(data => {
+      this.companyResult = data;
+      console.log("firmalar => "+JSON.stringify(data));
+    }, error => this.error = error);
+    this.aspUserService.getAllUser().subscribe(data => {
+      this.userResult2 = data;
+      data = this.userResult2.data;
+      this.userResult = data;
+    }, error => this.error = error);
   }
   
   selectToday() {
@@ -79,7 +101,7 @@ export class FaturaOlusturComponent implements OnInit {
   ];
   
 
-  createFatura(name: any, total:any, totalVat:any, dueDate: any, invoiceType: any) {
+  createFatura(name: any, total:any, totalVat:any, dueDate: any, companyId:any, userId:any, invoiceType: any) {
 
     const faturaBilgileri = {
       invoiceNu: 0,
@@ -92,8 +114,8 @@ export class FaturaOlusturComponent implements OnInit {
       isComplete: 0,
       invoiceType: parseInt(invoiceType.value),
       statusCode: 0,
-      companyId: 1,
-      userId: 1
+      companyId: companyId.value,
+      userId: userId.value
       };
     this.faturaService.createFatura(faturaBilgileri).subscribe(data => 
       this.router.navigate(['dashboard/faturalarim'])  

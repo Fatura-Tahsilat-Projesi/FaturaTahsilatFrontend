@@ -5,14 +5,20 @@
     <sb-dashboard-head title="Ana Sayfa" [hideBreadcrumbs]="false">
 
     </sb-dashboard-head>
-    <p>Kullanıcı İşlemler</p>
-    <sb-dashboard-cards>
+    <p *ngIf="role == 'Employee'"><b>Kullanıcı İşlemler</b></p>
+    <sb-dashboard-cards *ngIf="role == 'Employee'">
 
     </sb-dashboard-cards>
-    <hr>
-    <p>Admin İşlemler</p>
-    <app-admin-dashboard-cards *ngIf="role == 'Employee'">
+    <!-- <hr> -->
+    <p *ngIf="role == 'Admin'"><b>Admin İşlemler</b></p>
+    <app-admin-dashboard-cards *ngIf="role == 'Admin'">
 
     </app-admin-dashboard-cards>
+    <!-- <hr> -->
+    <p *ngIf="role == 'Company'"><b>Firma İşlemler</b></p>
+    <app-company-dashboard-cards *ngIf="role == 'Company'">
+
+    </app-company-dashboard-cards>
+
 </app-dashboard-layout>
 

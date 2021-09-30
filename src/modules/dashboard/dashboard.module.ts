@@ -8,7 +8,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppCommonModule } from '../app-common/app-common.module';
 import { NavigationModule } from '../navigation/navigation.module';
 import { ChartsModule } from '../charts/charts.module';
-// import { TablesModule } from '@modules/tables/tables.module';
+import { TablesModule } from '../tables/tables.module';
 
 /* Components */
 import * as dashboardComponents from './components';
@@ -34,7 +34,8 @@ import { AspUserService } from 'src/services/aspuser.service';
         ReactiveFormsModule,
         FormsModule,
         NavigationModule,
-        ChartsModule
+        ChartsModule,
+        TablesModule
     ],
     providers: [...dashboardServices.services, AlertifyService, AspUserService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
     declarations: [...dashboardContainers.containers, ...dashboardComponents.components],

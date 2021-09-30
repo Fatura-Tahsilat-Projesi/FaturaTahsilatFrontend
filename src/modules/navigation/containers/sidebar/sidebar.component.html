@@ -4,7 +4,11 @@
             
             <ng-container *ngFor="let section of sideNavSections"
                 ><div class="sb-sidenav-menu-heading" *ngIf="section.text">{{ section.text }}</div>
-                <ng-container *ngFor="let item of section.items"><app-side-nav-item [sideNavItem]="sideNavItems[item]"></app-side-nav-item></ng-container
+                <ng-container *ngFor="let item of section.items">
+                    <app-side-nav-item *ngIf="role == 'Employee'" [sideNavItem]="sideNavItems[item]"></app-side-nav-item>
+                    <app-side-nav-item *ngIf="role == 'Company'"  [sideNavItem]="sideNavItems[item]"></app-side-nav-item>
+                    <app-side-nav-item *ngIf="role == 'Admin'"    [sideNavItem]="sideNavItems[item]"></app-side-nav-item>
+                    </ng-container
             ></ng-container>
                 
         </div>

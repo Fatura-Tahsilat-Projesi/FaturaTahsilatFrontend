@@ -141,7 +141,7 @@ export class FaturaDuzenleComponent implements OnInit {
       companyId: companyId.value,
       userId: userId.value
       };
-    this.faturaService.updateInvoice(faturaBilgileri).subscribe(data => 
+    this.faturaService.updateNormalInvoice(faturaBilgileri).subscribe(data =>
       this.router.navigate(['dashboard/faturalarim'])  
     );
   }

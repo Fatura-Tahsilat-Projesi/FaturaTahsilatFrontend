@@ -51,7 +51,7 @@ export class FaturaOdeComponent implements OnInit {
       this.result = data;
       console.log("data => "+JSON.stringify(data));
     }, error => this.error = error);
-    this.creditCardService.getAllCards().subscribe(data =>{
+    this.creditCardService.getAllUserCards(<any>id).subscribe(data =>{
       this.resultCreditCard = data;
     }, error => this.error = error);
   }
@@ -83,7 +83,7 @@ export class FaturaOdeComponent implements OnInit {
   {
     this.creditCardService.getCreditCardById(id).subscribe(data => {
       this.kartDetay = data;
-      console.log("kartlar => "+data);
+      console.log("kartlar => "+JSON.stringify(data));
     })
   }
 

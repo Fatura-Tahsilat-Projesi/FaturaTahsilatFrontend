@@ -85,6 +85,16 @@ export class FaturaService {
         );
     }
 
+    updateNormalInvoice(invoice: FaturaModel | undefined): Observable<FaturaModel> {
+        console.log(invoice);
+        return this.http.put<FaturaModel>(this.url + 'normalInvoice', invoice, httpOptions)
+        .pipe(
+            tap(data => console.log(data)),
+            catchError(this.handleError)
+        );
+    }
+
+
     deleteInvoice(id: number): Observable<unknown>
     {
         //const url = `${this.url}${id}`;

@@ -118,7 +118,7 @@ export class FaturaOlusturComponent implements OnInit {
       userId: userId.value
       };
     this.faturaService.createFatura(faturaBilgileri).subscribe(data => 
-      this.router.navigate(['dashboard/faturalarim'])  
+      this.router.navigate(['dashboard/firmafaturalar'])  
     );
   }
 

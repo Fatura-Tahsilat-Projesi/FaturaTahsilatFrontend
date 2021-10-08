@@ -30,7 +30,7 @@ export class CreditCardService
             catchError(this.handleError)
         );
     }
-    getAllUserCards(userId: number):Observable<CreditCardData[]>
+    getAllUserCards(userId: string):Observable<CreditCardData[]>
     {
         return this.http.get<CreditCardData[]>(this.url+userId+'/allcards')
         .pipe(

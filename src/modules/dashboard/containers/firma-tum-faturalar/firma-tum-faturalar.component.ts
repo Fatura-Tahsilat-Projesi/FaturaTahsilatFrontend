@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CompanyData } from 'src/modules/data/companyData';
@@ -7,7 +7,7 @@ import { InvoiceData } from 'src/modules/data/invoiceData';
 import { AlertifyService } from 'src/services/alertify.service';
 import { CompanyService } from 'src/services/company.service';
 import { FaturaService } from 'src/services/fatura.service';
-
+import { CountryService } from 'src/modules/tables/services';
 @Component({
   selector: 'app-firma-tum-faturalar',
   templateUrl: './firma-tum-faturalar.component.html',
@@ -28,7 +28,9 @@ export class FirmaTumFaturalarComponent implements OnInit {
     private faturaService: FaturaService,
     private modalService: NgbModal,
     private companyService: CompanyService,
-    private router: Router
+    private router: Router,
+    public countryService: CountryService,
+    private changeDetectorRef: ChangeDetectorRef
   ) { }
   
   result:InvoiceData[]=[];
@@ -51,10 +53,13 @@ export class FirmaTumFaturalarComponent implements OnInit {
 
   ngOnInit(): void {
     var id: string | null = localStorage.getItem('id');
-    this.faturaService.getAllUserInvoice(<any>id).subscribe(data => {
+    /*this.faturaService.getAllUserInvoice(<any>id).subscribe(data => {
       this.result = data;
       console.log("data => "+JSON.stringify(data));
-    }, error => this.error = error);
+    }, error => this.error = error);*/
+    this.faturaService.getFatura().subscribe(data => {
+      this.result = data;
+    }, error => this.error = error)
   }
 
 

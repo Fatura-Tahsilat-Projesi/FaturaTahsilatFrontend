@@ -20,8 +20,8 @@
               </tr>
           </thead>
           <tbody>
-              <tr *ngFor="let country of fatura">
-                  <th>{{ country.userId }}</th>
+              <tr *ngFor="let country of fatura; index as i">
+                  <th>{{ i+1 }}</th>
                   <th>{{ country.userId }}</th>
                   <td>{{ country.invoiceId }}</td>
                   <td>{{ country.companyId}}</td>

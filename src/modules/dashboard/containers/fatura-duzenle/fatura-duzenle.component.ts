@@ -11,12 +11,13 @@ import {
   NgbTimeStruct, 
   } from '@ng-bootstrap/ng-bootstrap';
   import {NgbTimepickerConfig} from '@ng-bootstrap/ng-bootstrap';
+import { CompanyService } from 'src/services/company.service';
 @Component({
   selector: 'app-fatura-duzenle',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './fatura-duzenle.component.html',
   styleUrls: ['./fatura-duzenle.component.scss'],
-  providers: [FaturaService, NgbInputDatepickerConfig, NgbTimepickerConfig]
+  providers: [FaturaService, NgbInputDatepickerConfig, NgbTimepickerConfig, CompanyService]
 })
 export class FaturaDuzenleComponent implements OnInit {
 
@@ -45,6 +46,7 @@ export class FaturaDuzenleComponent implements OnInit {
     private faturaService: FaturaService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
+    private companyService:CompanyService,
     config: NgbInputDatepickerConfig,
     calendar: NgbCalendar,
     configtime: NgbTimepickerConfig) {
@@ -66,7 +68,7 @@ export class FaturaDuzenleComponent implements OnInit {
 
       // setting datepicker popup to open above the input
       config.placement = ['top-left', 'top-right'];
-     }
+    }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params =>{
@@ -108,7 +110,11 @@ export class FaturaDuzenleComponent implements OnInit {
   }
 
   onChangeCompany(companyIdVariable:any) {
-    this.selectedCompany = companyIdVariable;
+    var tmp:any = {};
+    this.companyService.getCompanyById(companyIdVariable).subscribe(data => {
+      this.selectedCompany = data.name;
+    });
+    //console.log("firma ismi => "+this.selectedCompany);
   }
 
   onChangeDate(dateIdVariable:any) {

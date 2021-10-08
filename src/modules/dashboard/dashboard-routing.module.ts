@@ -305,7 +305,7 @@ export const ROUTES: Routes = [
             breadcrumbs: [
                 {
                     text: 'Dashboard',
-                    link: '/dashboard/',
+                    link: '/dashboard/ayarlar',
                 },
                 {
                     text: 'Ayarlar',

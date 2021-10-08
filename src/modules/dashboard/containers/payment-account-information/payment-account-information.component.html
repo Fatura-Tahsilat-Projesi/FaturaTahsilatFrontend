@@ -49,9 +49,45 @@
       </nav>
 
     <p>Kayıtlı Kredi Kartlarım</p>
-            
+    
+    <form>
+      <div style="display: none;" class="form-group form-inline">Ara:<input class="form-control ml-2" type="text" name="searchTerm" [(ngModel)]="countryService.searchTerm" /><span class="ml-3" *ngIf="countryService.loading$ | async">Loading...</span></div>
+      <table class="table table-striped">
+          <thead>
+              <tr>
+                  <th scope="col">#</th>
+                  <th scope="col" ><span>Kart Numarası</span></th>
+                  <th scope="col" ><span>Son Kullanım Ayı</span></th>
+                  <th scope="col"><span>Son Kullanım Yılı</span></th>
+                  <th scope="col"><span>CVC2</span></th>
+                  <th scope="col"><span>Bakiye</span></th>
+                  <th scope="col"><span>Oluşturulma Tarihi</span></th>
+                  <th scope="col"><span>Düzenle</span></th>
+                  <th scope="col"><span>Sil</span></th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let country of result">
+                  <th>{{ country.id }}</th>
+                  <td>{{ country.cardNumber }}</td>
+                  <td>{{ country.expMonth}}</td>
+                  <td>{{ country.expYear}}</td>
+                  <td>{{ country.cvC2}}</td>
+                  <td>{{ country.balance}}</td>
+                  <td>{{ country.createdAt}}</td>
+                  <td>
+                    <button class="btn btn-warning" routerLink="../kartdetay/{{country.id}}"> Düzenle</button></td>
+                  <td>
+                    <button class="btn btn-danger" (click)="deleteCreditCard(country.id)"><i class="fa fa-trash"></i> Sil</button>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+  
+  </form>
+
     <!-- !searchActive else searcTable && *ngIf="userIdValue == deger.userId" -->
-    <div *ngIf="!searchActive && userIdValue == responseUserId else searcTable">
+    <div style="display: none;" *ngIf="!searchActive && userIdValue == responseUserId else searcTable">
         <table border="4" *ngIf="result.length != 0 else no_data">
           <td><b>#</b></td>
           <td><b>Kart Numarası</b></td>
@@ -77,7 +113,7 @@
         </div>
     <!-- && userIdValue == responseUserId -->
     <ng-template #searcTable>
-        <div>
+        <div style="display: none;">
         <p>Arama Sonuçları</p>
         <table border="4" *ngIf="result.length != 0 else no_data">
           <td><b>#</b></td>

@@ -71,8 +71,9 @@
                 <th scope="col" ><span>Fatura Tutar</span></th>
                 <th scope="col"><span>Son Ödeme Tarihi</span></th>
                 <th scope="col"><span>Ödenme Bilgisi</span></th>
-                <th scope="col"><span>Hareketler</span></th>
+                <th scope="col"><span>Düzenle</span></th>
                 <th scope="col"><span>Detaylar</span></th>
+                <th scope="col"><span>Hareketler</span></th>
             </tr>
         </thead>
         <tbody>
@@ -83,12 +84,20 @@
                 <td>{{ country.dueDate}}</td>
                 <td>{{ country.statusCode}}</td>
                 <td>
-                  <button class="btn btn-success" routerLink="../faturahareket/{{country.invoiceId}}"><i class="fa fa-trash"></i> Hareketler</button>
+                  <button
+                    class="btn btn-warning"
+                    routerLink="../faturadetay/{{ country.invoiceId }}"
+                  >
+                    Düzenle
+                  </button>
                 </td>
                 <td>
                   <button class="btn btn-primary" (click)="openDetails(content, country)">
                     <i class="fa fa-trash"></i> Detay Görüntüle
                   </button>
+                </td>
+                <td>
+                  <button class="btn btn-success" routerLink="../faturahareket/{{country.invoiceId}}"><i class="fa fa-trash"></i> Hareketler</button>
                 </td>
             </tr>
         </tbody>

@@ -51,7 +51,7 @@ export class FirmaTumFaturalarComponent implements OnInit {
 
   ngOnInit(): void {
     var id: string | null = localStorage.getItem('id');
-    this.faturaService.getAllCompanyInvoice(<any>id).subscribe(data => {
+    this.faturaService.getAllUserInvoice(<any>id).subscribe(data => {
       this.result = data;
       console.log("data => "+JSON.stringify(data));
     }, error => this.error = error);

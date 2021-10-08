@@ -18,11 +18,22 @@
         <input #totalVat type="text" class="form-control" [value]="fatura?.excludingVat">
     </div>
 
-    <div class="col col-md-6">
+    <!-- <div class="col col-md-6">
         <label for="categoryId" class="form-label">Firma:</label>
         <select #categoryId [ngModel]="selectedCompany" class="form-select form-control form-control-sm" (ngModelChange)="onChangeCompany($event)" name="sel3">
             <option *ngFor="let tip of faturaTip" [value]="tip.id">{{tip.name}}</option>
         </select>
+    </div> -->
+
+    <div class="col col-md-6">
+        <label for="categoryId" class="form-label">Firma:</label>
+        <input #categoryId type="text" class="form-control"  [ngModel]="selectedCompany"
+        name="name1243"
+        disabled
+        id="companyType"
+        (ngModelChange)="onChangeCompany($event)"
+        type="text"
+        value="selectedCompany">
     </div>
 
     <div class="col col-md-6">

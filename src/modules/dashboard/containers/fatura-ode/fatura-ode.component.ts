@@ -109,7 +109,7 @@ export class FaturaOdeComponent implements OnInit {
         this.fatura = <any>tmp;
       }
     }
-    console.log("this.fatura => "+this.fatura);
+    console.log("1this.fatura => "+JSON.stringify(this.fatura));
     /*var tmp: any = {};
     tmp = th
 
@@ -121,6 +121,7 @@ export class FaturaOdeComponent implements OnInit {
     } else {
     console.log("if girildi, null değil => "+this.faturaDetay);
 
+    var idValue: string | null = localStorage.getItem('id');
     
     const faturaBilgileri = {
       invoiceId: this.fatura?.invoiceId,
@@ -137,9 +138,9 @@ export class FaturaOdeComponent implements OnInit {
       companyId:  this.fatura?.companyId,
       userId:  this.fatura?.userId
       };
-      
+      console.log("faturaBilgileri => "+JSON.stringify(faturaBilgileri));
       this.faturaService.updateInvoice(faturaBilgileri).subscribe(data => 
-        this.router.navigate(['dashboard/faturalar'])  
+        this.router.navigate(['dashboard/faturalarim'])  
       );
       this.alertify.success("Ödeme Talebiniz Alındı!");
   }

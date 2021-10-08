@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CreditCardData } from 'src/modules/data/creditcarddata';
+import { CountryService } from 'src/modules/tables/services';
 import { AlertifyService } from 'src/services/alertify.service';
 import { CreditCardService } from 'src/services/creditcard.service';
 
@@ -24,7 +25,9 @@ export class PaymentAccountInformationComponent implements OnInit {
     private http:HttpClient,
     private router:Router,
     private creditCardService:CreditCardService,
-    private alertify: AlertifyService
+    private alertify: AlertifyService,
+    public countryService: CountryService,
+    private changeDetectorRef: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {

@@ -6,6 +6,29 @@ export const sideNavSections: SideNavSection[] = [
         items: ['dashboard'],
     },
     {
+        text: 'Yönetim Sekmesi',
+        items: ['admin'],
+    },
+];
+
+export const sideNavCompanySections: SideNavSection[] = [
+    {
+        text: 'Ana Sayfa',
+        items: ['dashboard'],
+    },
+    {
+        text: 'Firma İşlemler',
+        items: ['firma'],
+    },
+];
+
+/*
+export const sideNavSections: SideNavSection[] = [
+    {
+        text: 'Ana Sayfa',
+        items: ['dashboard'],
+    },
+    {
         text: 'İşlemler',
         items: ['layouts'],
     },
@@ -23,17 +46,7 @@ export const sideNavSections: SideNavSection[] = [
         items: ['firma'],
     },
 ];
-
-export const sideNavCompanySections: SideNavSection[] = [
-    {
-        text: 'Ana Sayfa',
-        items: ['dashboard'],
-    },
-    {
-        text: 'Firma İşlemler',
-        items: ['firma'],
-    },
-];
+*/
 
 export const sideNavEmployeeSections: SideNavSection[] = [
     {
